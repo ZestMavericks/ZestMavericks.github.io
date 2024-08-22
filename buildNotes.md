@@ -19,9 +19,30 @@ Feature side:
 -
 -
 -
--
+----- 22 aug ------
+all total pending modules in app:
+
+- pdf edit screen UI
+- split pdf
+- summarize pdf
+- delete pages, merge pd, split pdf (UI pending for all)
+- docx to pdf
+- paywall UI (revenueCat)
+- where to show paywall in whole app(device the locations & events in app)
+- compress pdf
+- extract images from pdf
+- watermark pdf
+- loader for all the events in the app
+- add signature UI
+- app icon change
+- tabbar redesign
+- free limit UI in profile(progress bar)
+
+- user in-app activity tracking
 -
 
+
+-
 Design side:
 -
 -
