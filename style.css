@@ -1,18 +1,104 @@
-h3 {
+h3, h4, h5 {
     color: lightgray;
 }
 
-h4 {
-    color: lightgray;
+body {
+    background-color: #B7E0FF;
+    padding: 0%;
+    margin: 0%;
+}
+
+.spacer {
+    height: 50px;
+}
+
+.big-spacer {
+    height: 500px;
+}
+.tagline {
+    /* padding: 20px;
+    margin-bottom: 20px; */
+    text-align: center;
+
+}
+
+
+
+.negative-transform {
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    transform: translateY(-100px);
+}
+
+
+.mark-screen {
+    background-color: whitesmoke;
+}
+
+
+.mark-features {
+    background-color: #FFEB00;
+}
+
+.mark-price {
+    background-color: #FFF5CD;
+}
+.mark-problem {
+    background-color: #384B70;
+}
+
+.mark-app {
+    background-color: #B8001F;
+}
+
+/* navBar style */
+@media (max-width: 768px) {
+    :root {
+        --navbar-width: 95%;
+        --navbar-height: 50px;
+        --button-font-size: 14px;
+    }
+}
+
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--navbar-width);
+    height: var(--navbar-height);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: var(--navbar-padding);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    color: gray;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: var(--button-font-size);
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
 
 /* footer style */
-footer {
-    margin: 0;
-    font-family: "Euclid Circular A", "Poppins";
-    color: #ddfdfd;
-    background: #050808;
+.wave-footer {
+    position: relative;
+    bottom: 0;
+
 }
 .banner {
     display: flex;
@@ -22,19 +108,19 @@ footer {
     gap: 50px;
     padding: 0 80px;
     text-align: center;
-    height: 100vh;
-    background: #050808;
+    height: 80vh;
+    background: #181C14;
 }
 
 .banner > img {
-    width: 60vw;
-    transition: 0.1s linear;
+  width: 60vw;
+  transition: 0.1s linear;
 }
 
 .banner h2 {
-    font-weight: 500;
-    font-size: 30px;
-    margin: 0 0 10px;
+  font-weight: 500;
+  font-size: 30px;
+  margin: 0 0 10px;
 }
 
 .banner p {
