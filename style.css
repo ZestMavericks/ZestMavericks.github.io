@@ -13,11 +13,15 @@ body {
 }
 
 .big-spacer {
-    height: 500px;
+    height: 700px;
+}
+.center-txt {
+    text-align: center;
+
 }
 .tagline {
-    /* padding: 20px;
-    margin-bottom: 20px; */
+    padding: 20px;
+    margin-bottom: 20px;
     text-align: center;
 
 }
@@ -50,6 +54,19 @@ body {
 
 .mark-app {
     background-color: #B8001F;
+}
+
+
+.app-icon {
+
+}
+
+.app-img {
+    max-width: 20%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 22px;
 }
 
 /* navBar style */
