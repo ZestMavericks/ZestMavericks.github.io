@@ -1,11 +1,29 @@
-h3, h4, h5 {
+.footer-text {
     color: lightgray;
+}
+.social-btn {
+    width: 50px;
+}
+
+/* markpdf-page {
+    background-color: white;
+} */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 body {
     background-color: #B7E0FF;
     padding: 0%;
     margin: 0%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .spacer {
@@ -14,6 +32,11 @@ body {
 
 .big-spacer {
     height: 700px;
+}
+
+.about-div {
+    height: 900px;
+
 }
 .center-txt {
     text-align: center;
@@ -25,6 +48,178 @@ body {
     text-align: center;
 
 }
+
+.tagline-text {
+    /* padding: 30px; */
+    padding-top: 30px;
+    padding-left: 20%;
+    padding-right: 20%;
+
+}
+.heading {
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    padding-bottom: 20px;
+}
+
+.subline {
+    font-size: 32px;
+    color: #091057;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+.dowload-btn {
+    width: 170px;
+    height: 50px;
+    display: block;
+    object-fit: contain;
+}
+.learn-more {
+    font-size: 20px;
+    color: blue;
+    text-decoration: none;
+}
+
+.container {
+      display: flex;
+      gap: 1rem;
+      padding: 2rem;
+      justify-content: start;
+      align-items: center;
+
+}
+
+/* Form CSS Starts */
+.form-showcase {
+    /* display: flex; */
+    /* overflow: hidden; */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
+}
+.form-spacer{
+    max-height: 1500px;
+
+}
+.form-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 3rem;
+    padding-right: 50px;
+    background-color: #B7E0FF;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #374151;
+    font-size: 0.875rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.formBtn {
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.formBtn:hover {
+    background-color: white;
+    color: black;
+
+}
+
+.error {
+    color: #dc2626;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.success-message {
+    color: #059669;
+    text-align: center;
+    margin-top: 1rem;
+    display: none;
+}
+/* Form CSS Stop */
+
+
+/* Font classes starts */
+.poppins-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.poppins-extrabold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.poppins-black {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+/* Font classes ends */
+
+
+
 
 
 
@@ -48,6 +243,9 @@ body {
 .mark-price {
     background-color: #FFF5CD;
 }
+.mark-lock {
+    background-color: #CDC1FF;
+}
 .mark-problem {
     background-color: #384B70;
 }
@@ -56,7 +254,13 @@ body {
     background-color: #B8001F;
 }
 
+.mark-screenshots {
+    background-color: #F4F6FF;
+}
 
+
+
+/* App showcase component */
 .app-icon {
 
 }
@@ -68,6 +272,48 @@ body {
     margin: 0 auto;
     border-radius: 22px;
 }
+
+.app-info {
+    flex: 2;
+    font-size: 40px;
+    padding: 50px;
+}
+
+.app-showcase {
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
+}
+
+.app-screenshot {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.app-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .app-showcase {
+        flex-direction: column;
+    }
+
+    .app-screenshot {
+        max-width: 80%;
+    }
+}
+
+
 
 /* navBar style */
 @media (max-width: 768px) {
@@ -110,6 +356,181 @@ body {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
+
+
+
+.privacy-div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    padding-left: 24%;
+    padding-right: 24%;
+    text-align: justify;
+
+}
+
+.privacy-title {
+    font-size: 37px;
+}
+
+.privacy-text {
+    font-size: 20px;
+    text-align: justify;
+    line-height: 1.8;
+}
+
+
+.hover-btn {
+display: inline-block;
+padding: 15px 40px;
+background-color: black;
+color: white;
+text-decoration: none;
+border-radius: 25px; /* Adjust this value for more or less curve */
+font-size: 18px;
+transition: all 0.3s ease;
+}
+
+.hover-btn:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.hover-sml-btn {
+display: inline-block;
+padding: 15px 40px;
+background-color: black;
+color: white;
+text-decoration: none;
+border-radius: 25px; /* Adjust this value for more or less curve */
+font-size: 18px;
+transition: all 0.3s ease;
+}
+
+.hover-sml-btn:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.cntr-d{
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* price style starts */
+.pricing-container {
+     display: flex;
+     gap: 2rem;
+     justify-content: center;
+     padding: 2rem;
+     font-family: system-ui, -apple-system, sans-serif;
+     max-width: 900px;
+     margin: 0 auto;
+   }
+
+   .pricing-card {
+     flex: 1;
+     padding: 2rem;
+     background-color: #ffffff;
+     border-radius: 12px;
+     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+     transition: transform 0.2s ease;
+     max-width: 300px;
+   }
+
+   .pricing-card:hover {
+     transform: translateY(-4px);
+   }
+
+   .plan-name {
+     font-size: 1.25rem;
+     font-weight: 600;
+     color: #374151;
+     margin-bottom: 1rem;
+   }
+
+   .price {
+     font-size: 2.5rem;
+     font-weight: 700;
+     color: #111827;
+     margin-bottom: 0.5rem;
+   }
+
+   .price span {
+     font-size: 1rem;
+     color: #6b7280;
+     font-weight: normal;
+   }
+
+   .billing-period {
+     color: #6b7280;
+     font-size: 0.875rem;
+     margin-bottom: 2rem;
+   }
+
+   .features {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+   }
+
+   .features li {
+     margin-bottom: 1rem;
+     padding-left: 1.5rem;
+     position: relative;
+     color: #4b5563;
+   }
+
+   .features li::before {
+     content: "✓";
+     position: absolute;
+     left: 0;
+     color: #059669;
+     font-weight: bold;
+   }
+
+   .popular {
+     position: relative;
+     border: 2px solid #3b82f6;
+   }
+
+   .popular::after {
+     content: "Best Value";
+     position: absolute;
+     top: -12px;
+     left: 50%;
+     transform: translateX(-50%);
+     background-color: #3b82f6;
+     color: white;
+     padding: 0.25rem 1rem;
+     border-radius: 1rem;
+     font-size: 0.75rem;
+     font-weight: 500;
+   }
+
+   .cta-button {
+     display: block;
+     width: 100%;
+     padding: 0.75rem;
+     background-color: #3b82f6;
+     color: white;
+     text-align: center;
+     border-radius: 6px;
+     margin-top: 2rem;
+     text-decoration: none;
+     font-weight: 500;
+     transition: background-color 0.2s ease;
+   }
+
+   .cta-button:hover {
+     background-color: #2563eb;
+   }
+/* price style ends */
 
 /* footer style */
 .wave-footer {

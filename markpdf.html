@@ -1,321 +1,272 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Venus Template</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>Mark PDF App</title>
+        <link rel="icon" type="image/png" href="assets/favicon.png" />
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css?family=Heebo:400,700|Oxygen:700"
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="dist/css/style.css" />
-        <script src="https://unpkg.com/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
     </head>
-    <body class="is-boxed has-animations">
-        <div class="body-wrap boxed-container">
-            <header class="site-header text-light">
-                <div class="container">
-                    <div class="site-header-inner">
-                        <div class="brand header-brand">
-                            <h1 class="m-0">
-                                <a href="#">
-                                    <img
-                                        class="header-logo-image"
-                                        src="dist/images/logo.svg"
-                                        alt="Logo"
-                                    />
-                                </a>
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-            </header>
 
-            <main>
-                <section class="hero text-center text-light">
-                    <div class="hero-bg"></div>
-                    <div class="hero-particles-container">
-                        <canvas id="hero-particles"></canvas>
-                    </div>
-                    <div class="container-sm">
-                        <div class="hero-inner">
-                            <div class="hero-copy">
-                                <h1 class="hero-title mt-0">
-                                    Landing template for startups
-                                </h1>
-                                <p class="hero-paragraph">
-                                    Our landing page template works on all
-                                    devices, so you only have to set it up once,
-                                    and get beautiful results forever.
-                                </p>
-                                <div class="hero-cta">
-                                    <a
-                                        class="button button-primary button-wide-mobile"
-                                        href="#"
-                                        >Get early access</a
-                                    >
-                                </div>
-                            </div>
-                            <div class="mockup-container">
-                                <div class="mockup-bg">
-                                    <img
-                                        src="dist/images/iphone-hero-bg.svg"
-                                        alt="iPhone illustration"
-                                    />
-                                </div>
-                                <img
-                                    class="device-mockup"
-                                    src="dist/images/iphone-hero.png"
-                                    alt="iPhone Hero"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <body class="markpdf-page">
+        <div>
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="markpdf.html">MarkPDF</a>
+                <a href="about.html">About</a>
+                <a href="index.html#contact-us">Contact</a>
+            </nav>
+        </div>
+        <div class="spacer"></div>
+        <div class="tagline">
+            <div class="spacer"></div>
 
-                <section class="features-extended section">
-                    <div class="features-extended-inner section-inner">
-                        <div class="features-extended-wrap">
-                            <div class="container">
-                                <div class="feature-extended">
-                                    <div class="feature-extended-image">
-                                        <div class="mockup-bg">
-                                            <img
-                                                src="dist/images/iphone-feature-bg-01.svg"
-                                                alt="iPhone Feature 01 illustration"
-                                            />
-                                        </div>
-                                        <img
-                                            class="device-mockup is-revealing"
-                                            src="dist/images/iphone-feature-01.png"
-                                            alt="iPhone Feature 01"
-                                        />
-                                    </div>
-                                    <div
-                                        class="feature-extended-body is-revealing"
-                                    >
-                                        <h3 class="mt-0 mb-16">
-                                            Amazing features, coming soon.
-                                        </h3>
-                                        <p class="m-0">
-                                            Quam quisque id diam vel quam
-                                            elementum pulvinar. Ut etiam sit
-                                            amet nisl purus in mollis nunc. Odio
-                                            morbi quis commodo odio aenean sed
-                                            adipiscing diam donec.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="feature-extended">
-                                    <div class="feature-extended-image">
-                                        <div class="mockup-bg">
-                                            <img
-                                                src="dist/images/iphone-feature-bg-02.svg"
-                                                alt="iPhone Feature 02 illustration"
-                                            />
-                                        </div>
-                                        <img
-                                            class="device-mockup is-revealing"
-                                            src="dist/images/iphone-feature-02.png"
-                                            alt="iPhone Feature 02"
-                                        />
-                                    </div>
-                                    <div
-                                        class="feature-extended-body is-revealing"
-                                    >
-                                        <h3 class="mt-0 mb-16">
-                                            Amazing features, coming soon.
-                                        </h3>
-                                        <p class="m-0">
-                                            Quam quisque id diam vel quam
-                                            elementum pulvinar. Ut etiam sit
-                                            amet nisl purus in mollis nunc. Odio
-                                            morbi quis commodo odio aenean sed
-                                            adipiscing diam donec.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="feature-extended">
-                                    <div class="feature-extended-image">
-                                        <div class="mockup-bg">
-                                            <img
-                                                src="dist/images/iphone-feature-bg-03.svg"
-                                                alt="iPhone Feature 03 illustration"
-                                            />
-                                        </div>
-                                        <img
-                                            class="device-mockup is-revealing"
-                                            src="dist/images/iphone-feature-03.png"
-                                            alt="iPhone Feature 03"
-                                        />
-                                    </div>
-                                    <div
-                                        class="feature-extended-body is-revealing"
-                                    >
-                                        <h3 class="mt-0 mb-16">
-                                            Amazing features, coming soon.
-                                        </h3>
-                                        <p class="m-0">
-                                            Quam quisque id diam vel quam
-                                            elementum pulvinar. Ut etiam sit
-                                            amet nisl purus in mollis nunc. Odio
-                                            morbi quis commodo odio aenean sed
-                                            adipiscing diam donec.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="feature-extended">
-                                    <div class="feature-extended-image">
-                                        <div class="mockup-bg">
-                                            <img
-                                                src="dist/images/iphone-feature-bg-04.svg"
-                                                alt="iPhone Feature 04 illustration"
-                                            />
-                                        </div>
-                                        <img
-                                            class="device-mockup is-revealing"
-                                            src="dist/images/iphone-feature-04.png"
-                                            alt="iPhone Feature 04"
-                                        />
-                                    </div>
-                                    <div
-                                        class="feature-extended-body is-revealing"
-                                    >
-                                        <h3 class="mt-0 mb-16">
-                                            Amazing features, coming soon.
-                                        </h3>
-                                        <p class="m-0">
-                                            Quam quisque id diam vel quam
-                                            elementum pulvinar. Ut etiam sit
-                                            amet nisl purus in mollis nunc. Odio
-                                            morbi quis commodo odio aenean sed
-                                            adipiscing diam donec.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
+            <div class="app-icon">
+                <img src="assets/MarkPDF.png" class="app-img" />
+            </div>
+            <div class="spacer"></div>
+            <h1 class="heading">Mark PDF</h1>
 
-            <footer class="site-footer">
-                <div class="footer-particles-container">
-                    <canvas id="footer-particles"></canvas>
-                </div>
-                <div class="site-footer-top">
-                    <section class="cta section text-light">
-                        <div class="container-sm">
-                            <div class="cta-inner section-inner">
-                                <div class="cta-header text-center">
-                                    <h2 class="section-title mt-0">
-                                        Stay in the know
-                                    </h2>
-                                    <p class="section-paragraph">
-                                        Lorem ipsum is common placeholder text
-                                        used to demonstrate the graphic elements
-                                        of a document or visual presentation.
-                                    </p>
-                                    <div class="cta-cta">
-                                        <a
-                                            class="button button-primary button-wide-mobile"
-                                            href="#"
-                                            >Get early access</a
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <div class="site-footer-bottom">
-                    <div class="container">
-                        <div class="site-footer-inner">
-                            <div class="brand footer-brand">
-                                <a href="#">
-                                    <img
-                                        src="dist/images/logo.svg"
-                                        alt="Venus logo"
-                                    />
-                                </a>
-                            </div>
-                            <ul class="footer-links list-reset">
-                                <li>
-                                    <a href="#">Contact</a>
-                                </li>
-                                <li>
-                                    <a href="#">About us</a>
-                                </li>
-                                <li>
-                                    <a href="#">FAQ's</a>
-                                </li>
-                                <li>
-                                    <a href="#">Support</a>
-                                </li>
-                            </ul>
-                            <ul class="footer-social-links list-reset">
-                                <li>
-                                    <a href="#">
-                                        <span class="screen-reader-text"
-                                            >Facebook</span
-                                        >
-                                        <svg
-                                            width="16"
-                                            height="16"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M6.023 16L6 9H3V6h3V4c0-2.7 1.672-4 4.08-4 1.153 0 2.144.086 2.433.124v2.821h-1.67c-1.31 0-1.563.623-1.563 1.536V6H13l-1 3H9.28v7H6.023z"
-                                                fill="#FFF"
-                                            />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="screen-reader-text"
-                                            >Twitter</span
-                                        >
-                                        <svg
-                                            width="16"
-                                            height="16"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M16 3c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4C.7 7.7 1.8 9 3.3 9.3c-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H0c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4C15 4.3 15.6 3.7 16 3z"
-                                                fill="#FFF"
-                                            />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="screen-reader-text"
-                                            >Google</span
-                                        >
-                                        <svg
-                                            width="16"
-                                            height="16"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M7.9 7v2.4H12c-.2 1-1.2 3-4 3-2.4 0-4.3-2-4.3-4.4 0-2.4 2-4.4 4.3-4.4 1.4 0 2.3.6 2.8 1.1l1.9-1.8C11.5 1.7 9.9 1 8 1 4.1 1 1 4.1 1 8s3.1 7 7 7c4 0 6.7-2.8 6.7-6.8 0-.5 0-.8-.1-1.2H7.9z"
-                                                fill="#FFF"
-                                            />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="footer-copyright">
-                                &copy; 2018 Venus, all rights reserved
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <h2 class="subline">
+                A fresh way to look & interact with PDFs & our Docs.<br />
+                Out now.
+            </h2>
+            <div class="spacer"></div>
+            <center>
+                <a href="#"
+                    ><img class="dowload-btn" src="assets/AppStore-Badge.png"
+                /></a>
+            </center>
+            <div class="spacer"></div>
         </div>
 
-        <script src="dist/js/main.min.js"></script>
+        <div class="mark-screen big-spacer app-showcase">
+            <div class="app-screenshot">
+                <img src="assets/Launch-Screen.png" alt="App Screenshot" />
+            </div>
+
+            <div class="app-info" style="align-items: flex-start">
+                <h2>MarkPDF</h2>
+                <br />
+                <p>A refreshing, Intuitive PDF editior for 21st Century.</p>
+                <br />
+            </div>
+        </div>
+
+        <div class="mark-features big-spacer app-showcase">
+            <div class="app-info" style="align-items: flex-start">
+                <h2>One App to Rule all Docs</h2>
+                <br />
+                <p>
+                    A refreshing intuitive UI which adds some zest to your
+                    experience. With Minimal design and usefull features. it's
+                    an app for people who love PDFs.
+                </p>
+                <br />
+            </div>
+
+            <div class="app-screenshot">
+                <img src="assets/Mark-Home-Screen.png" alt="App Screenshot" />
+            </div>
+        </div>
+
+        <div class="mark-problem big-spacer app-showcase">
+            <div class="app-screenshot">
+                <img src="assets/Scan-Screen.png" alt="App Screenshot" />
+            </div>
+
+            <div class="app-info" style="align-items: flex-start; color: white">
+                <h2>Scan, Scan and Scan again</h2>
+                <br />
+                <p>
+                    A powerfull scanner inbuilt to help you with all that long
+                    PDF you have to scan.
+                </p>
+                <br />
+            </div>
+        </div>
+
+        <div class="mark-lock big-spacer app-showcase">
+            <div class="app-info" style="align-items: flex-start">
+                <h2>
+                    Design that helps you,<br />
+                    Not hinder you
+                </h2>
+                <br />
+                <p>
+                    We crafted MarkPDF from keeping our design and app flow very
+                    intuitive from the beginning so everyone can use it.
+                </p>
+                <br />
+            </div>
+
+            <div class="app-screenshot">
+                <img src="assets/Design-Screen.png" alt="App Screenshot" />
+            </div>
+        </div>
+
+        <div class="mark-screenshots big-spacer app-showcase">
+            <div class="app-info" style="align-items: flex-start">
+                <h2>Delete Pages like a Pro</h2>
+                <br />
+                <p>Manage your Documents and edit pages on-the-go!</p>
+                <br />
+            </div>
+
+            <div class="app-screenshot">
+                <img src="assets/Delete-Screen.png" alt="App Screenshot" />
+            </div>
+        </div>
+        <div class="mark-price big-spacer app-showcase">
+            <div class="app-screenshot">
+                <img src="assets/Lock-Screen.png" alt="App Screenshot" />
+            </div>
+
+            <div class="app-info" style="align-items: flex-start">
+                <h2>Lock & Unclock your important Docs</h2>
+                <br />
+                <p>
+                    Using MarkPDF you can easily manage all your critical
+                    documents.<br />
+                    All at one place. Very fast.
+                </p>
+                <br />
+            </div>
+        </div>
+
+        <div class="mark-app big-spacer app-showcase">
+            <div class="app-info" style="align-items: flex-start; color: white">
+                <h2>MarkPDF PRO</h2>
+                <br />
+                <p>
+                    We believe there's an opportunity in making a complete reset
+                    in how we as humans see and interact with documents in our
+                    life. <br />And here we are. We call it MarkPDF PRO.
+                </p>
+                <br />
+            </div>
+
+            <div class="pricing-container">
+                <div class="pricing-card">
+                    <div class="plan-name">Monthly Plan</div>
+                    <div class="price">$9.99<span>/month</span></div>
+                    <div class="billing-period">Billed monthly</div>
+                    <ul class="features">
+                        <li>Access to all premium features</li>
+                        <li>Priority customer support</li>
+                        <li>Fast updates and improvements</li>
+                    </ul>
+                    <!-- <a href="#" class="cta-button">Get Started</a> -->
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="plan-name">Annual Plan</div>
+                    <div class="price">$89.99<span>/year</span></div>
+                    <div class="billing-period">
+                        Save 25% with annual billing
+                    </div>
+                    <ul class="features">
+                        <li>All monthly plan features plus new AI features</li>
+                        <li>First two weeks free</li>
+                        <li>Exclusive annual member perks</li>
+                    </ul>
+                    <!-- <a href="#" class="cta-button">Get Started</a> -->
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <center>
+                <div class="spacer"></div>
+                <div class="cntr-d spacer">
+                    <a href="terms.html" class="hover-btn"
+                        >Terms of use & Privacy Policy</a
+                    >
+                </div>
+                <div class="spacer"></div>
+            </center>
+        </div>
+
+        <div class="wave-footer">
+            <section class="banner">
+                <div class="banner-content">
+                    <div class="center-txt">
+                        <a
+                            href="https://twitter.com/zestmavericks"
+                            style="text-decoration: none; color: white"
+                            ><img src="assets/Twitter.png" class="social-btn"
+                        /></a>
+
+                        <a
+                            href="mailto:zestmavericks@gmail.com"
+                            style="text-decoration: none; color: white"
+                            ><img src="assets/email.png" class="social-btn"
+                        /></a>
+                        <br />
+                        <br />
+
+                        <h4 class="center-txt footer-text">
+                            { } & Designed with 🤍 in India
+                        </h4>
+                        <br />
+                        <h5 class="footer-text">
+                            © 2024 ZestMavericks. All rights reserved.
+                        </h5>
+                    </div>
+                </div>
+            </section>
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28"
+                preserveAspectRatio="none"
+            >
+                <defs>
+                    <path
+                        id="gentle-wave"
+                        d="M-160 44c30 0
+                    58-18 88-18s
+                    58 18 88 18
+                    58-18 88-18
+                    58 18 88 18
+                    v44h-352z"
+                    />
+                </defs>
+                <g class="waves">
+                    <use
+                        xlink:href="#gentle-wave"
+                        x="50"
+                        y="0"
+                        fill="#03ffff"
+                        fill-opacity=".2"
+                    />
+                    <use
+                        xlink:href="#gentle-wave"
+                        x="50"
+                        y="3"
+                        fill="#03ffff"
+                        fill-opacity=".5"
+                    />
+                    <use
+                        xlink:href="#gentle-wave"
+                        x="50"
+                        y="6"
+                        fill="#03ffff"
+                        fill-opacity=".9"
+                    />
+                </g>
+            </svg>
+        </div>
     </body>
 </html>

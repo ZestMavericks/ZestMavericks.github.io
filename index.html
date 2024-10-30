@@ -9,39 +9,164 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
         <title>Zest Mavericks</title>
         <link rel="icon" type="image/png" href="assets/favicon.png" />
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
     </head>
 
     <body>
         <div>
             <nav class="navbar">
-                <a href="#">Home</a>
-                <a href="#">MarkPDF</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+                <a href="index.html">Home</a>
+                <a href="markpdf.html">MarkPDF</a>
+                <a href="about.html">About</a>
+                <a href="index.html#contact-us">Contact</a>
             </nav>
         </div>
+
         <div class="spacer"></div>
+
         <div class="tagline">
             <div class="spacer"></div>
-
             <div class="app-icon">
                 <img src="assets/zest.png" class="app-img" />
             </div>
             <div class="spacer"></div>
-            <h1>
-                At Zest Mavericks,<br />
-                We create absurdly intuitive, meaningful and creative apps which
-                we belive we enjoy to use.
-            </h1>
+            <div class="tagline-text">
+                <h1 class="heading">Zest Mavericks</h1>
+                <p class="subline">
+                    We create absurdly intuitive, meaningful and creative apps
+                    which we believe we enjoy to use and Hope you will too.
+                </p>
+            </div>
         </div>
         <!-- <hr /> -->
         <div class="spacer"></div>
 
-        <div class="mark-screen big-spacer"></div>
-        <div class="mark-features big-spacer"></div>
-        <div class="mark-price big-spacer"></div>
-        <div class="mark-problem big-spacer"></div>
-        <div class="mark-app big-spacer"></div>
+        <div class="mark-screen big-spacer app-showcase">
+            <div class="app-screenshot">
+                <img src="assets/Launch-Screen.png" alt="App Screenshot" />
+            </div>
+
+            <div class="app-info" style="align-items: flex-start">
+                <h2>MarkPDF</h2>
+                <p>A refreshing, Intuitive PDF editior for 21st Century.</p>
+                <br />
+                <div class="container">
+                    <a href="#"
+                        ><img
+                            class="dowload-btn"
+                            src="assets/AppStore-Badge.png"
+                    /></a>
+                    <a href="markpdf.html" class="hover-sml-btn">Learn more</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mark-features big-spacer app-showcase">
+            <div class="app-info">
+                <h2>One App to Rule all Docs</h2>
+                <p>
+                    A refreshing intuitive UI which adds some zest to your
+                    experience. With Minimal design and usefull features. it's
+                    an app for people who love PDFs.
+                </p>
+                <br />
+                <div class="container">
+                    <a href="markpdf.html" class="hover-sml-btn">Learn more</a>
+                </div>
+            </div>
+
+            <div class="app-screenshot">
+                <img src="assets/Mark-Home-Screen.png" alt="App Screenshot" />
+            </div>
+        </div>
+
+        <div class="mark-price big-spacer app-showcase">
+            <div class="app-screenshot">
+                <img
+                    src="assets/Mark-Summarise-Screen.png"
+                    alt="App Screenshot"
+                />
+            </div>
+
+            <div class="app-info">
+                <h2>Summarize your PDFs with help of AI</h2>
+                <p>
+                    With the power of today's LLMs you can harness huge amount
+                    of productivity while being focused and aligned.
+                </p>
+                <br />
+                <div class="container">
+                    <a href="markpdf.html" class="hover-sml-btn">Learn more</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mark-problem form-spacer form-showcase" id="contact-us">
+            <div class="app-info" style="color: white; text-align: center">
+                <h2>Let's get in touch</h2>
+                <br />
+                <p>
+                    If you want to work with us, or have some suggestions or
+                    wanted to simply say hi 👋🏼.<br />we will love to hear from
+                    you.
+                </p>
+            </div>
+
+            <div class="form-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            required
+                        />
+                        <div class="error" id="subjectError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required />
+                        <div class="error" id="nameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required />
+                        <div class="error" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            required
+                        ></textarea>
+                        <div class="error" id="messageError"></div>
+                    </div>
+
+                    <center>
+                        <button class="formBtn" type="submit">Send</button>
+                    </center>
+                </form>
+                <div class="spacer"></div>
+
+                <div class="success-message" id="successMessage">
+                    Thank you for your message. We'll get back to you soon!
+                </div>
+                <div class="spacer"></div>
+            </div>
+            <div class="spacer"></div>
+        </div>
+
         <div class="spacer"></div>
         <div class="spacer tagline">
             <h2>"It's Better to Be A Pirate than to Join Navy" ~ Steve Jobs</h2>
@@ -52,16 +177,28 @@
         <div class="wave-footer">
             <section class="banner">
                 <div class="banner-content">
-                    <div>
+                    <div class="center-txt">
+                        <a
+                            href="https://twitter.com/zestmavericks"
+                            style="text-decoration: none; color: white"
+                            ><img src="assets/Twitter.png" class="social-btn"
+                        /></a>
+
+                        <a
+                            href="mailto:zestmavericks@gmail.com"
+                            style="text-decoration: none; color: white"
+                            ><img src="assets/email.png" class="social-btn"
+                        /></a>
                         <br />
                         <br />
-                        <br />
-                        <h4 class="center-txt">
-                            Website currently under development.<br /><br />We
-                            are constantly making changes.
+
+                        <h4 class="center-txt footer-text">
+                            { } & Designed with 🤍 in India
                         </h4>
                         <br />
-                        <h5>© 2024 ZestMavericks. All rights reserved.</h5>
+                        <h5 class="footer-text">
+                            © 2024 ZestMavericks. All rights reserved.
+                        </h5>
                     </div>
                 </div>
             </section>
@@ -108,5 +245,75 @@
                 </g>
             </svg>
         </div>
+
+        <script>
+            document
+                .getElementById("contactForm")
+                .addEventListener("submit", function (e) {
+                    e.preventDefault();
+
+                    // Reset errors
+                    const errors = document.querySelectorAll(".error");
+                    errors.forEach((error) => (error.textContent = ""));
+
+                    // Get form values
+                    const subject = document
+                        .getElementById("subject")
+                        .value.trim();
+                    const name = document.getElementById("name").value.trim();
+                    const email = document.getElementById("email").value.trim();
+                    const message = document
+                        .getElementById("message")
+                        .value.trim();
+
+                    // Validate
+                    let isValid = true;
+
+                    if (!subject) {
+                        document.getElementById("subjectError").textContent =
+                            "Subject is required";
+                        isValid = false;
+                    }
+
+                    if (!name) {
+                        document.getElementById("nameError").textContent =
+                            "Name is required";
+                        isValid = false;
+                    }
+
+                    if (!email) {
+                        document.getElementById("emailError").textContent =
+                            "Email is required";
+                        isValid = false;
+                    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        document.getElementById("emailError").textContent =
+                            "Please enter a valid email";
+                        isValid = false;
+                    }
+
+                    if (!message) {
+                        document.getElementById("messageError").textContent =
+                            "Message is required";
+                        isValid = false;
+                    }
+
+                    if (isValid) {
+                        // Here you would typically send the data to a server
+                        console.log("Form data:", {
+                            subject,
+                            name,
+                            email,
+                            message,
+                        });
+
+                        // Show success message
+                        document.getElementById("contactForm").style.display =
+                            "none";
+                        document.getElementById(
+                            "successMessage",
+                        ).style.display = "block";
+                    }
+                });
+        </script>
     </body>
 </html>
