@@ -164,13 +164,13 @@
                 </div>
                 <div class="spacer"></div>
             </div>
-            <p id="success-message" class="success-message">
+            <!-- <p id="success-message" class="success-message">
                 Thank you! Your form has been submitted successfully.
             </p>
             <p id="error-message" class="error-message">
                 Sorry, there was an error submitting your form. Please try
                 again.
-            </p>
+            </p> -->
             <div class="spacer"></div>
         </div>
 
@@ -254,73 +254,73 @@
         </div>
 
         <script>
-            document
-                .getElementById("contactForm")
-                .addEventListener("submit", function (e) {
-                    e.preventDefault();
+            // document
+            //     .getElementById("contactForm")
+            //     .addEventListener("submit", function (e) {
+            //         e.preventDefault();
 
-                    // Reset errors
-                    const errors = document.querySelectorAll(".error");
-                    errors.forEach((error) => (error.textContent = ""));
+            //         // Reset errors
+            //         const errors = document.querySelectorAll(".error");
+            //         errors.forEach((error) => (error.textContent = ""));
 
-                    // Get form values
-                    const subject = document
-                        .getElementById("subject")
-                        .value.trim();
-                    const name = document.getElementById("name").value.trim();
-                    const email = document.getElementById("email").value.trim();
-                    const message = document
-                        .getElementById("message")
-                        .value.trim();
+            //         // Get form values
+            //         const subject = document
+            //             .getElementById("subject")
+            //             .value.trim();
+            //         const name = document.getElementById("name").value.trim();
+            //         const email = document.getElementById("email").value.trim();
+            //         const message = document
+            //             .getElementById("message")
+            //             .value.trim();
 
-                    // Validate
-                    let isValid = true;
+            //         // Validate
+            //         let isValid = true;
 
-                    if (!subject) {
-                        document.getElementById("subjectError").textContent =
-                            "Subject is required";
-                        isValid = false;
-                    }
+            //         if (!subject) {
+            //             document.getElementById("subjectError").textContent =
+            //                 "Subject is required";
+            //             isValid = false;
+            //         }
 
-                    if (!name) {
-                        document.getElementById("nameError").textContent =
-                            "Name is required";
-                        isValid = false;
-                    }
+            //         if (!name) {
+            //             document.getElementById("nameError").textContent =
+            //                 "Name is required";
+            //             isValid = false;
+            //         }
 
-                    if (!email) {
-                        document.getElementById("emailError").textContent =
-                            "Email is required";
-                        isValid = false;
-                    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                        document.getElementById("emailError").textContent =
-                            "Please enter a valid email";
-                        isValid = false;
-                    }
+            //         if (!email) {
+            //             document.getElementById("emailError").textContent =
+            //                 "Email is required";
+            //             isValid = false;
+            //         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            //             document.getElementById("emailError").textContent =
+            //                 "Please enter a valid email";
+            //             isValid = false;
+            //         }
 
-                    if (!message) {
-                        document.getElementById("messageError").textContent =
-                            "Message is required";
-                        isValid = false;
-                    }
+            //         if (!message) {
+            //             document.getElementById("messageError").textContent =
+            //                 "Message is required";
+            //             isValid = false;
+            //         }
 
-                    if (isValid) {
-                        // Here you would typically send the data to a server
-                        console.log("Form data:", {
-                            subject,
-                            name,
-                            email,
-                            message,
-                        });
+            //         if (isValid) {
+            //             // Here you would typically send the data to a server
+            //             console.log("Form data:", {
+            //                 subject,
+            //                 name,
+            //                 email,
+            //                 message,
+            //             });
 
-                        // Show success message
-                        document.getElementById("contactForm").style.display =
-                            "none";
-                        document.getElementById(
-                            "successMessage",
-                        ).style.display = "block";
-                    }
-                });
+            //             // Show success message
+            //             document.getElementById("contactForm").style.display =
+            //                 "none";
+            //             document.getElementById(
+            //                 "successMessage",
+            //             ).style.display = "block";
+            //         }
+            //     });
 
             // Form submission func
             const scriptURL =
