@@ -118,7 +118,7 @@
                 </p>
             </div>
 
-            <div class="form-container">
+            <div id="c-form-container" class="form-container">
                 <form id="contactForm">
                     <div class="form-group">
                         <label for="subject">Subject</label>
@@ -164,6 +164,13 @@
                 </div>
                 <div class="spacer"></div>
             </div>
+            <p id="success-message" class="success-message">
+                Thank you! Your form has been submitted successfully.
+            </p>
+            <p id="error-message" class="error-message">
+                Sorry, there was an error submitting your form. Please try
+                again.
+            </p>
             <div class="spacer"></div>
         </div>
 
@@ -197,7 +204,7 @@
                         </h4>
                         <br />
                         <h5 class="footer-text">
-                            © 2024 ZestMavericks. All rights reserved.
+                            © 2025 ZestMavericks. All rights reserved.
                         </h5>
                     </div>
                 </div>
@@ -314,6 +321,53 @@
                         ).style.display = "block";
                     }
                 });
+
+            // Form submission func
+            const scriptURL =
+                "https://script.google.com/macros/s/AKfycbwPNf8XE1PY-w1IpVXwule93wypgxeB3f0GrdcPSZH_1RBD30AXRPUbt2rAoYZxVwSG/exec";
+            const form = document.getElementById("contactForm");
+            const formContainer = document.getElementById("c-form-container");
+            const successMessage = document.getElementById("success-message");
+            const errorMessage = document.getElementById("error-message");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                // Show loading state
+                form.querySelector("button").textContent = "Sending...";
+                form.querySelector("button").disabled = true;
+
+                // Create FormData object
+                const formData = new FormData(form);
+
+                // Convert FormData to URL params
+                const params = new URLSearchParams();
+                for (const [key, value] of formData.entries()) {
+                    params.append(key, value);
+                }
+
+                // Send the data
+                fetch(scriptURL, {
+                    method: "POST",
+                    body: params,
+                    mode: "no-cors",
+                })
+                    .then(() => {
+                        // Show success message and reset form
+                        formContainer.style.display = "none";
+                        successMessage.style.display = "block";
+                        form.reset();
+                    })
+                    .catch((error) => {
+                        // Show error message
+                        console.error("Error!", error.message);
+                        errorMessage.style.display = "block";
+
+                        // Reset button
+                        form.querySelector("button").textContent = "Submit";
+                        form.querySelector("button").disabled = false;
+                    });
+            });
         </script>
     </body>
 </html>

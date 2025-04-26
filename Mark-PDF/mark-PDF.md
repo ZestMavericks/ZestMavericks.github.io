@@ -55,3 +55,11 @@ https://developer.apple.com/help/app-store-connect/reference/minimum-payment-thr
 org fees:
 
 https://developer.apple.com/support/enrollment/#:~:text=The%20Apple%20Developer%20Program%20annual,in%20local%20currency%20where%20available.
+
+
+
+
+
+google sheet form:
+<!-- Deployment ID: AKfycbwPNf8XE1PY-w1IpVXwule93wypgxeB3f0GrdcPSZH_1RBD30AXRPUbt2rAoYZxVwSG -->
+<!-- Web app url:  https://script.google.com/macros/s/AKfycbwPNf8XE1PY-w1IpVXwule93wypgxeB3f0GrdcPSZH_1RBD30AXRPUbt2rAoYZxVwSG/exec -->
