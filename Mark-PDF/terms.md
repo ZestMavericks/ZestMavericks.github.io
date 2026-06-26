@@ -1,6 +1,6 @@
 # Privacy Policy for [MarkPDF]
 
-Last updated: [October 19, 2024]
+Last updated: [June 26, 2026]
 
 [ZestMavericks] ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our [MarkPDF] mobile application (the "App").
 
