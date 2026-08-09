@@ -8,7 +8,7 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    // Waitlist — fully locked from client
+    // Waitlist : fully locked from client
     // Only Cloud Functions (admin SDK) can read/write
     match /waitlist/{docId} {
       allow read: if false;
