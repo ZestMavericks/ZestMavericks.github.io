@@ -1,141 +1,191 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="utf-8" />
         <meta
             name="viewport"
-            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <title>Mark PDF App</title>
+
+        <title>About — Zest Mavericks</title>
+        <meta
+            name="description"
+            content="Zest Mavericks is a two-person studio of engineers and designers in India. Zest for energy, mavericks for doing it our own way."
+        />
+
+        <!-- TODO: replace zestmavericks.com with your live domain -->
+        <link rel="canonical" href="https://zestmavericks.com/about.html" />
+        <meta name="theme-color" content="#B7E0FF" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Zest Mavericks" />
+        <meta property="og:title" content="About — Zest Mavericks" />
+        <meta
+            property="og:description"
+            content="A two-person studio of engineers and designers building apps we'd want to use."
+        />
+        <meta property="og:url" content="https://zestmavericks.com/about.html" />
+        <meta property="og:image" content="https://zestmavericks.com/assets/zest.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@zestmavericks" />
+
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com"
+        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+
         <link rel="icon" type="image/png" href="assets/favicon.png" />
-        <!-- Fonts -->
+        <link rel="apple-touch-icon" href="assets/favicon.png" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="style.css" />
+        <script src="main.js" defer></script>
     </head>
 
     <body>
-        <div>
-            <nav class="navbar">
-                <a href="index.html">Home</a>
-                <a href="markpdf.html">MarkPDF</a>
-                <a href="about.html">About</a>
-                <a href="index.html#contact-us">Contact</a>
-            </nav>
-        </div>
-        <div class="spacer"></div>
-        <div class="tagline">
-            <div class="spacer"></div>
+        <a class="skip-link" href="#main">Skip to content</a>
 
-            <div class="app-icon">
-                <img src="assets/zest.png" class="app-img" />
-            </div>
-            <div class="spacer"></div>
-            <h1 class="heading">Zest Mavericks</h1>
-            <h2 class="subline">Zest means great energy with enthusiasm.</h2>
-            <br />
-            <h2 class="subline">
-                Mavericks means Induviduals who are independent and tend to have
-                highly unique values and unorthodox.
-            </h2>
-        </div>
-        <div class="spacer"></div>
+        <nav class="site-nav" aria-label="Primary">
+            <a href="index.html">Home</a>
+            <a href="markpdf.html">MarkPDF</a>
+            <a href="about.html" aria-current="page">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
 
-        <div class="about-div app-info" style="text-align: center">
-            <p>
-                We as Engineers, Designers, the one who codes and draws, We are
-                not just mere induviduals who do this just for the sake of doing
-                work.<br /><br />we innovate.<br /><br />
-                we work on hard problems so the next generations of engineers &
-                designers can do better.
-            </p>
-            <br />
-            <p>
-                We as a small team of Two work hard and MarkPDF is the Fruit of
-                that plant which we nurtured.
-            </p>
-            <br />
-            <p>
-                We will try to make a dent in the universe as Steve used to say.
-            </p>
-        </div>
+        <main id="main">
+            <!-- Hero -->
+            <section class="hero">
+                <div class="container">
+                    <img
+                        class="app-icon"
+                        src="assets/zest.png"
+                        alt="Zest Mavericks logo"
+                        width="128"
+                        height="128"
+                        fetchpriority="high"
+                    />
+                    <h1>Zest Mavericks</h1>
+                    <p class="lede">
+                        Two people, a lot of opinions about software, and a habit of
+                        rebuilding things until they feel right.
+                    </p>
+                </div>
+            </section>
 
-        <div class="spacer"></div>
-
-        <div class="wave-footer">
-            <section class="banner">
-                <div class="banner-content">
-                    <div class="center-txt">
-                        <a
-                            href="https://twitter.com/zestmavericks"
-                            style="text-decoration: none; color: white"
-                            ><img src="assets/Twitter.png" class="social-btn"
-                        /></a>
-
-                        <a
-                            href="mailto:zestmavericks@gmail.com"
-                            style="text-decoration: none; color: white"
-                            ><img src="assets/email.png" class="social-btn"
-                        /></a>
-                        <br />
-                        <br />
-
-                        <h4 class="center-txt footer-text">
-                            { } & Designed with 🤍 in India
-                        </h4>
-                        <br />
-                        <h5 class="footer-text">
-                            © 2026 ZestMavericks. All rights reserved.
-                        </h5>
+            <!-- Name -->
+            <section class="section bg-smoke">
+                <div class="container">
+                    <div class="card-grid">
+                        <article class="card">
+                            <h3>Zest</h3>
+                            <p>
+                                Great energy, done with enthusiasm. It's the part of
+                                the work you can feel in the finished thing.
+                            </p>
+                        </article>
+                        <article class="card">
+                            <h3>Mavericks</h3>
+                            <p>
+                                Independent people with their own values, happy to
+                                ignore the orthodox way of doing something when it
+                                doesn't hold up.
+                            </p>
+                        </article>
                     </div>
                 </div>
             </section>
 
+            <!-- Story -->
+            <section class="section bg-cream">
+                <div class="container container--narrow">
+                    <p class="eyebrow">What we're doing</p>
+                    <h2>We're not here to just ship work</h2>
+                    <div class="stack">
+                        <p class="lede">
+                            We're engineers and designers — the ones who write the code
+                            and draw the screens. We innovate, and we take on the hard
+                            problems so the next generation of engineers and designers
+                            can do better.
+                        </p>
+                        <p class="lede">
+                            We're a team of two. MarkPDF is the fruit of a plant we've
+                            spent a long time nurturing.
+                        </p>
+                        <p class="lede">
+                            And we'll keep trying to make a dent in the universe, as
+                            Steve used to say.
+                        </p>
+                    </div>
+                    <div class="btn-row">
+                        <a class="btn" href="markpdf.html">See what we've built</a>
+                        <a class="btn btn--ghost" href="contact.html">Say hello</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quote -->
+            <section class="section bg-sky center">
+                <div class="container">
+                    <blockquote class="quote">
+                        It's better to be a pirate than to join the navy.
+                        <cite>Steve Jobs</cite>
+                    </blockquote>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="social-row">
+                <a
+                    href="https://twitter.com/zestmavericks"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img src="assets/Twitter.png" alt="Zest Mavericks on X" width="28" height="28" />
+                </a>
+                <a href="mailto:zestmavericks@gmail.com">
+                    <img src="assets/email.png" alt="Email Zest Mavericks" width="28" height="28" />
+                </a>
+            </div>
+
+            <nav class="footer-links" aria-label="Footer">
+                <a href="index.html">Home</a>
+                <a href="markpdf.html">MarkPDF</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms &amp; Privacy</a>
+            </nav>
+
+            <p class="footer-note">{ } &amp; designed with 🤍 in India</p>
+            <p class="footer-fine">
+                © <span data-year>2026</span> Zest Mavericks. All rights reserved.
+            </p>
+
             <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                class="waves"
                 viewBox="0 24 150 28"
                 preserveAspectRatio="none"
+                aria-hidden="true"
+                focusable="false"
             >
                 <defs>
                     <path
                         id="gentle-wave"
-                        d="M-160 44c30 0
-                    58-18 88-18s
-                    58 18 88 18
-                    58-18 88-18
-                    58 18 88 18
-                    v44h-352z"
+                        d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"
                     />
                 </defs>
-                <g class="waves">
-                    <use
-                        xlink:href="#gentle-wave"
-                        x="50"
-                        y="0"
-                        fill="#03ffff"
-                        fill-opacity=".2"
-                    />
-                    <use
-                        xlink:href="#gentle-wave"
-                        x="50"
-                        y="3"
-                        fill="#03ffff"
-                        fill-opacity=".5"
-                    />
-                    <use
-                        xlink:href="#gentle-wave"
-                        x="50"
-                        y="6"
-                        fill="#03ffff"
-                        fill-opacity=".9"
-                    />
+                <g>
+                    <use href="#gentle-wave" x="50" y="0" fill="#03ffff" fill-opacity=".2" />
+                    <use href="#gentle-wave" x="50" y="3" fill="#03ffff" fill-opacity=".5" />
+                    <use href="#gentle-wave" x="50" y="6" fill="#03ffff" fill-opacity=".9" />
                 </g>
             </svg>
-        </div>
+        </footer>
     </body>
 </html>

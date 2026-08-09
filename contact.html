@@ -1,116 +1,225 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="utf-8" />
         <meta
             name="viewport"
-            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <title>Mark PDF App</title>
+
+        <title>Contact — Zest Mavericks</title>
+        <meta
+            name="description"
+            content="Questions, ideas, bug reports or a plain hello — write to Zest Mavericks, the two-person studio behind MarkPDF."
+        />
+
+        <!-- TODO: replace zestmavericks.com with your live domain -->
+        <link rel="canonical" href="https://zestmavericks.com/contact.html" />
+        <meta name="theme-color" content="#B7E0FF" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Zest Mavericks" />
+        <meta property="og:title" content="Contact — Zest Mavericks" />
+        <meta
+            property="og:description"
+            content="Write to the two-person studio behind MarkPDF."
+        />
+        <meta property="og:url" content="https://zestmavericks.com/contact.html" />
+        <meta property="og:image" content="https://zestmavericks.com/assets/zest.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@zestmavericks" />
+
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com"
+        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+
         <link rel="icon" type="image/png" href="assets/favicon.png" />
-        <!-- Fonts -->
+        <link rel="apple-touch-icon" href="assets/favicon.png" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="style.css" />
+        <script src="main.js" defer></script>
     </head>
 
     <body>
-        <div>
-            <nav class="navbar">
-                <a href="index.html">Home</a>
-                <a href="markpdf.html">MarkPDF</a>
-                <a href="about.html">About</a>
-                <a href="index.html#contact-us">Contact</a>
-            </nav>
-        </div>
-        <div class="spacer"></div>
-        <div class="tagline">
-            <div class="spacer"></div>
+        <a class="skip-link" href="#main">Skip to content</a>
 
-            <div class="app-icon">
-                <img src="assets/zest.png" class="app-img" />
-            </div>
-            <div class="spacer"></div>
-            <h1>
-                Introducing Mark PDF<br />
-                We create absurdly intuitive, meaningful and creative apps which
-                we believe we enjoy to use and you will too.
-            </h1>
-        </div>
-        <div class="wave-footer">
-            <section class="banner">
-                <div class="banner-content">
-                    <div class="center-txt">
+        <nav class="site-nav" aria-label="Primary">
+            <a href="index.html">Home</a>
+            <a href="markpdf.html">MarkPDF</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" aria-current="page">Contact</a>
+        </nav>
+
+        <main id="main">
+            <section class="hero">
+                <div class="container container--narrow">
+                    <p class="eyebrow">Contact</p>
+                    <h1>Let's get in touch</h1>
+                    <p class="lede">
+                        Want to work with us, found a bug, have a suggestion, or just
+                        fancy saying hi 👋🏼 — we read everything and usually reply
+                        within a couple of days.
+                    </p>
+                    <p class="contact-direct">
+                        <a href="mailto:zestmavericks@gmail.com">zestmavericks@gmail.com</a>
                         <a
                             href="https://twitter.com/zestmavericks"
-                            style="text-decoration: none; color: white"
-                            ><img src="assets/Twitter.png" class="social-btn"
-                        /></a>
-
-                        <a
-                            href="mailto:zestmavericks@gmail.com"
-                            style="text-decoration: none; color: white"
-                            ><img src="assets/email.png" class="social-btn"
-                        /></a>
-                        <br />
-                        <br />
-
-                        <h4 class="center-txt footer-text">
-                            { } & Designed with 🤍 in India
-                        </h4>
-                        <br />
-                        <h5 class="footer-text">
-                            © 2026 ZestMavericks. All rights reserved.
-                        </h5>
-                    </div>
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >@zestmavericks</a
+                        >
+                    </p>
                 </div>
             </section>
 
+            <section class="section bg-sky" id="contact-form">
+                <div class="container">
+                    <div class="form-card">
+                        <form
+                            id="contactForm"
+                            data-endpoint="https://script.google.com/macros/s/AKfycbwPNf8XE1PY-w1IpVXwule93wypgxeB3f0GrdcPSZH_1RBD30AXRPUbt2rAoYZxVwSG/exec"
+                            novalidate
+                        >
+                            <div class="field">
+                                <label for="subject">Subject</label>
+                                <input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    maxlength="120"
+                                    autocomplete="off"
+                                    aria-describedby="subjectError"
+                                    required
+                                />
+                                <span class="field-error" id="subjectError" aria-live="polite"></span>
+                            </div>
+
+                            <div class="field">
+                                <label for="name">Name</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    maxlength="80"
+                                    autocomplete="name"
+                                    aria-describedby="nameError"
+                                    required
+                                />
+                                <span class="field-error" id="nameError" aria-live="polite"></span>
+                            </div>
+
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    maxlength="254"
+                                    autocomplete="email"
+                                    inputmode="email"
+                                    aria-describedby="emailError"
+                                    required
+                                />
+                                <span class="field-error" id="emailError" aria-live="polite"></span>
+                            </div>
+
+                            <div class="field">
+                                <label for="message">Message</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    maxlength="2000"
+                                    aria-describedby="messageError"
+                                    required
+                                ></textarea>
+                                <span class="field-error" id="messageError" aria-live="polite"></span>
+                            </div>
+
+                            <!-- Spam trap: hidden from people, tempting to bots -->
+                            <div class="hp" aria-hidden="true">
+                                <label for="company">Company</label>
+                                <input
+                                    type="text"
+                                    id="company"
+                                    name="company"
+                                    tabindex="-1"
+                                    autocomplete="off"
+                                />
+                            </div>
+
+                            <div class="form-actions">
+                                <button class="btn" type="submit">Send message</button>
+                            </div>
+
+                            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                        </form>
+
+                        <div class="form-done" id="formDone" tabindex="-1" hidden>
+                            <h3>Message sent</h3>
+                            <p>
+                                Thanks for writing in — we'll get back to you at the
+                                address you gave us.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="social-row">
+                <a
+                    href="https://twitter.com/zestmavericks"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img src="assets/Twitter.png" alt="Zest Mavericks on X" width="28" height="28" />
+                </a>
+                <a href="mailto:zestmavericks@gmail.com">
+                    <img src="assets/email.png" alt="Email Zest Mavericks" width="28" height="28" />
+                </a>
+            </div>
+
+            <nav class="footer-links" aria-label="Footer">
+                <a href="index.html">Home</a>
+                <a href="markpdf.html">MarkPDF</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms &amp; Privacy</a>
+            </nav>
+
+            <p class="footer-note">{ } &amp; designed with 🤍 in India</p>
+            <p class="footer-fine">
+                © <span data-year>2026</span> Zest Mavericks. All rights reserved.
+            </p>
+
             <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                class="waves"
                 viewBox="0 24 150 28"
                 preserveAspectRatio="none"
+                aria-hidden="true"
+                focusable="false"
             >
                 <defs>
                     <path
                         id="gentle-wave"
-                        d="M-160 44c30 0
-                    58-18 88-18s
-                    58 18 88 18
-                    58-18 88-18
-                    58 18 88 18
-                    v44h-352z"
+                        d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"
                     />
                 </defs>
-                <g class="waves">
-                    <use
-                        xlink:href="#gentle-wave"
-                        x="50"
-                        y="0"
-                        fill="#03ffff"
-                        fill-opacity=".2"
-                    />
-                    <use
-                        xlink:href="#gentle-wave"
-                        x="50"
-                        y="3"
-                        fill="#03ffff"
-                        fill-opacity=".5"
-                    />
-                    <use
-                        xlink:href="#gentle-wave"
-                        x="50"
-                        y="6"
-                        fill="#03ffff"
-                        fill-opacity=".9"
-                    />
+                <g>
+                    <use href="#gentle-wave" x="50" y="0" fill="#03ffff" fill-opacity=".2" />
+                    <use href="#gentle-wave" x="50" y="3" fill="#03ffff" fill-opacity=".5" />
+                    <use href="#gentle-wave" x="50" y="6" fill="#03ffff" fill-opacity=".9" />
                 </g>
             </svg>
-        </div>
+        </footer>
     </body>
 </html>
