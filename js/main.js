@@ -1,16 +1,14 @@
-/* Zest Mavericks — main.js
-   External so the site can run under a strict Content-Security-Policy
-   (no 'unsafe-inline'). Everything is defensive: if an element is
-   missing the script exits quietly instead of throwing. */
+/* Zest Mavericks - main.js
+ *
+ * Page behaviour that isn't a component. Right now that's the contact
+ * form and nothing else. Kept external so the site can run under a strict
+ * Content-Security-Policy with no 'unsafe-inline'.
+ *
+ * Everything is defensive: if an element is missing, the script exits
+ * quietly instead of throwing. */
 
 (function () {
     "use strict";
-
-    /* ---- Footer copyright year ---- */
-    var year = String(new Date().getFullYear());
-    document.querySelectorAll("[data-year]").forEach(function (el) {
-        el.textContent = year;
-    });
 
     /* ---- Contact form ---- */
     var form = document.getElementById("contactForm");
@@ -73,7 +71,7 @@
             setError("email", "We need an email address to reply to.");
             ok = false;
         } else if (!EMAIL_RE.test(values.email) || values.email.length > LIMITS.email) {
-            setError("email", "Check the email address — it doesn't look right.");
+            setError("email", "That email address doesn't look right.");
             ok = false;
         }
 

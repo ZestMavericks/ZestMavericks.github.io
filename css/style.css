@@ -1,9 +1,9 @@
 /* =========================================================
-   Zest Mavericks — style.css
+   Zest Mavericks - css/style.css
    Plain CSS, no build step. Organised as:
-   1 Tokens · 2 Base · 3 Layout · 4 Type · 5 Buttons · 6 Nav
-   7 Hero · 8 Showcase · 9 Pricing · 10 Form · 11 Legal
-   12 Footer · 13 Motion & print
+   1 Tokens, 2 Base, 3 Layout, 4 Type, 5 Buttons, 6 Nav,
+   7 Hero, 8 Showcase, 9 Pricing, 10 Form, 11 Legal,
+   12 Footer, 13 Motion and print
    ========================================================= */
 
 /* ---------- 1. Tokens ---------- */
@@ -637,6 +637,16 @@ p {
     opacity: 1;
 }
 
+.plan-fineprint {
+    max-width: 62ch;
+    margin: 2rem auto 0;
+    font-size: var(--text-sm);
+}
+
+.section--dark .plan-fineprint {
+    color: rgba(255, 255, 255, 0.72);
+}
+
 /* ---------- 10. Form ---------- */
 .form-card {
     max-width: 680px;
@@ -667,7 +677,7 @@ p {
     background: var(--mist);
     border: 1.5px solid rgba(9, 16, 87, 0.12);
     border-radius: var(--radius-sm);
-    font-size: 16px; /* prevents iOS zoom on focus */
+    font-size: 16px; /* stops iOS Safari zooming on focus */
     transition:
         border-color 0.2s var(--ease),
         background-color 0.2s var(--ease);
@@ -704,7 +714,7 @@ p {
     color: var(--crimson);
 }
 
-/* Honeypot — hidden from people, visible to naive bots */
+/* Honeypot: hidden from people, visible to naive bots */
 .hp {
     position: absolute;
     left: -9999px;
@@ -828,7 +838,59 @@ p {
     font-weight: 500;
 }
 
+.legal .summary {
+    margin-top: 2.5rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    background: rgba(255, 255, 255, 0.72);
+    border-radius: var(--radius);
+}
+
+.legal .summary h2 {
+    margin-top: 0;
+    font-size: var(--text-lg);
+}
+
+.legal .summary p:first-of-type {
+    margin-top: 0.75rem;
+}
+
+.legal .note {
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--ink);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* Marks a value the studio still has to fill in before publishing.
+   Search the HTML for "todo" and every one of them lights up. */
+.todo {
+    padding: 0.1em 0.4em;
+    background: var(--yellow);
+    border-radius: 4px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
 /* ---------- 12. Footer ---------- */
+site-footer {
+    display: block;
+    background: var(--night);
+    color: var(--white);
+}
+
+/* Shown only when JavaScript is off, so the page never ends on nothing */
+.footer-fallback {
+    padding: 2.5rem var(--gutter);
+    text-align: center;
+    font-size: var(--text-sm);
+}
+
+.footer-fallback a {
+    color: var(--white);
+    text-underline-offset: 4px;
+}
+
 .site-footer {
     position: relative;
     isolation: isolate;
