@@ -59,7 +59,7 @@
             "</div>",
             '<nav class="footer-links" aria-label="Footer">' + links + "</nav>",
             '<p class="footer-note">{ } &amp; designed with \u{1F90D} in India</p>',
-            '<p class="footer-fine">&copy; ' + year + " Zest Mavericks. All rights reserved.</p>",
+            '<p class="footer-fine">&copy; ' + year + " Zest Mavericks Pvt. Ltd. All rights reserved.</p>",
             '<svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" aria-hidden="true" focusable="false">',
             '<defs><path id="gentle-wave" d="' + WAVE_PATH + '"></path></defs>',
             "<g>" + waves + "</g>",

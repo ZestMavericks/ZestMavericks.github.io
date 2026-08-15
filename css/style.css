@@ -1,20 +1,50 @@
 /* =========================================================
    Zest Mavericks - css/style.css
    Plain CSS, no build step. Organised as:
-   1 Tokens, 2 Base, 3 Layout, 4 Type, 5 Buttons, 6 Nav,
-   7 Hero, 8 Showcase, 9 Pricing, 10 Form, 11 Legal,
-   12 Footer, 13 Motion and print
+   1 Tokens, 2 Base, 3 Layout, 4 Type, 5 Buttons, 6 Header,
+   7 Theme toggle, 8 Hero, 9 Showcase, 10 Pricing, 11 Form,
+   12 Legal, 13 Footer, 14 Motion and print
+
+   Colour rule for this file, in one line:
+   a component never hardcodes a colour, and any element that
+   paints its own background also declares the text tokens that
+   belong on it. That is what stops white-on-white text.
    ========================================================= */
 
 /* ---------- 1. Tokens ---------- */
 :root {
     color-scheme: light;
 
-    /* Brand palette (unchanged from the original site) */
-    --sky: #b7e0ff;
+    /* Invariants. These mean the same thing in both themes and must
+       never be redefined, because dark sections rely on them. */
+    --white: #ffffff;
+    --cyan: #03ffff;
+    --ink-static: #091057; /* text that sits on an always-white chip */
+
+    /* Surfaces */
+    --sky: #b7e0ff; /* page background */
+    --surface: #ffffff; /* cards, plans, form */
+    --surface-soft: rgba(255, 255, 255, 0.62);
+    --surface-line: rgba(9, 16, 87, 0.12);
+    --field-bg: #f4f6ff;
+
+    /* Text on the page background */
     --ink: #091057;
     --ink-70: rgba(9, 16, 87, 0.72);
     --ink-55: rgba(9, 16, 87, 0.56);
+    --on-ink: #ffffff; /* text on a solid --ink fill */
+    --focus: #091057;
+
+    /* Text on a card surface. Components that paint a surface reset the
+       four tokens above to these, so they stay legible no matter what
+       the surrounding section did. */
+    --ink-card: #091057;
+    --ink-card-70: rgba(9, 16, 87, 0.72);
+    --ink-card-55: rgba(9, 16, 87, 0.56);
+    --on-ink-card: #ffffff;
+    --focus-card: #091057;
+
+    /* Section washes */
     --yellow: #ffeb00;
     --cream: #fff5cd;
     --lavender: #cdc1ff;
@@ -23,8 +53,19 @@
     --mist: #f4f6ff;
     --smoke: #f7f7f7;
     --night: #181c14;
-    --cyan: #03ffff;
-    --white: #ffffff;
+
+    /* Status. Separate from --crimson on purpose: one is a section
+       background, the other is error text, and they need to move
+       independently in dark mode. */
+    --danger: #b8001f;
+    --ok: #0a7a4f;
+
+    /* Chrome */
+    --nav-bg: rgba(255, 255, 255, 0.6);
+    --nav-bg-solid: rgba(255, 255, 255, 0.92);
+    --nav-line: rgba(255, 255, 255, 0.7);
+    --nav-hover: rgba(255, 255, 255, 0.9);
+    --hero-glow: rgba(255, 255, 255, 0.9);
 
     /* Fluid type scale */
     --text-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.85rem);
@@ -53,6 +94,54 @@
 
     --nav-h: 56px;
     --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Dark theme. js/theme.js sets data-theme on <html> before first paint,
+   from the saved choice or, failing that, the operating system. */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --sky: #0d131c;
+    --surface: #161d29;
+    --surface-soft: rgba(255, 255, 255, 0.06);
+    --surface-line: rgba(233, 238, 251, 0.14);
+    --field-bg: rgba(255, 255, 255, 0.05);
+
+    --ink: #e9eefb;
+    --ink-70: rgba(233, 238, 251, 0.74);
+    --ink-55: rgba(233, 238, 251, 0.58);
+    --on-ink: #0d131c;
+    --focus: #e9eefb;
+
+    --ink-card: #e9eefb;
+    --ink-card-70: rgba(233, 238, 251, 0.74);
+    --ink-card-55: rgba(233, 238, 251, 0.58);
+    --on-ink-card: #0d131c;
+    --focus-card: #e9eefb;
+
+    /* The washes keep their hue and lose their brightness, so the
+       page still reads as the same site with the lights off. */
+    --yellow: #2b2405;
+    --cream: #241d0c;
+    --lavender: #1c1a2b;
+    --navy: #131c2a;
+    --crimson: #2b0a12;
+    --mist: #0f1621;
+    --smoke: #101722;
+    --night: #080b10;
+
+    --danger: #ff8a94;
+    --ok: #45d39a;
+
+    --nav-bg: rgba(22, 29, 41, 0.62);
+    --nav-bg-solid: rgba(22, 29, 41, 0.94);
+    --nav-line: rgba(255, 255, 255, 0.1);
+    --nav-hover: rgba(255, 255, 255, 0.12);
+    --hero-glow: rgba(96, 150, 255, 0.14);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.36);
+    --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 28px 64px rgba(0, 0, 0, 0.55);
 }
 
 /* ---------- 2. Base ---------- */
@@ -98,25 +187,41 @@ a {
 
 button,
 input,
-textarea {
+textarea,
+select {
     font: inherit;
     color: inherit;
 }
 
+/* Outline only. No border-radius here: setting one squared off the
+   pill buttons and rounded cards the moment they took focus. */
 :focus-visible {
-    outline: 3px solid var(--ink);
+    outline: 3px solid var(--focus);
     outline-offset: 3px;
-    border-radius: 6px;
-}
-
-.section--dark :focus-visible,
-.site-footer :focus-visible {
-    outline-color: var(--cyan);
 }
 
 ::selection {
     background: var(--ink);
-    color: var(--white);
+    color: var(--on-ink);
+}
+
+/* Inline SVG. Carries a class so it beats any bare `svg` rule left in an
+   old stylesheet that a browser may still have cached, and resets every
+   property such a rule sets. */
+.icon {
+    position: static;
+    left: auto;
+    bottom: auto;
+    display: block;
+    width: 20px;
+    height: 20px;
+    max-height: none;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 /* ---------- 3. Layout utilities ---------- */
@@ -133,12 +238,16 @@ textarea {
     padding-block: var(--section-y);
 }
 
+/* A dark section swaps the text tokens rather than restyling each child.
+   Anything inside it inherits the right colour automatically, and light
+   surfaces inside it swap them back (see .card, .plan, .form-card). */
 .section--dark {
-    color: var(--white);
-}
-
-.section--dark .lede {
-    color: rgba(255, 255, 255, 0.82);
+    --ink: var(--white);
+    --ink-70: rgba(255, 255, 255, 0.82);
+    --ink-55: rgba(255, 255, 255, 0.7);
+    --on-ink: var(--ink-static);
+    --focus: var(--cyan);
+    color: var(--ink);
 }
 
 .bg-sky { background-color: var(--sky); }
@@ -175,12 +284,13 @@ textarea {
     z-index: 200;
     padding: 0.75rem 1.25rem;
     background: var(--ink);
-    color: var(--white);
+    color: var(--on-ink);
     border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     text-decoration: none;
     transition: transform 0.2s var(--ease);
 }
 
+.skip-link:focus,
 .skip-link:focus-visible {
     transform: translate(-50%, 0);
 }
@@ -193,6 +303,10 @@ main {
 /* Anchor targets clear the fixed navbar */
 [id] {
     scroll-margin-top: calc(var(--nav-h) + 2rem);
+}
+
+[hidden] {
+    display: none !important;
 }
 
 /* ---------- 4. Typography ---------- */
@@ -223,10 +337,6 @@ p {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--ink-55);
-}
-
-.section--dark .eyebrow {
-    color: rgba(255, 255, 255, 0.7);
 }
 
 .lede {
@@ -265,7 +375,7 @@ p {
     border: 2px solid var(--ink);
     border-radius: var(--radius-pill);
     background: var(--ink);
-    color: var(--white);
+    color: var(--on-ink);
     font-size: var(--text-sm);
     font-weight: 500;
     text-decoration: none;
@@ -278,7 +388,7 @@ p {
 }
 
 .btn:hover {
-    background: var(--white);
+    background: transparent;
     color: var(--ink);
     box-shadow: var(--shadow-md);
     transform: translateY(-2px);
@@ -291,28 +401,7 @@ p {
 
 .btn--ghost:hover {
     background: var(--ink);
-    color: var(--white);
-}
-
-.section--dark .btn {
-    border-color: var(--white);
-    background: var(--white);
-    color: var(--ink);
-}
-
-.section--dark .btn:hover {
-    background: transparent;
-    color: var(--white);
-}
-
-.section--dark .btn--ghost {
-    background: transparent;
-    color: var(--white);
-}
-
-.section--dark .btn--ghost:hover {
-    background: var(--white);
-    color: var(--ink);
+    color: var(--on-ink);
 }
 
 .btn-row {
@@ -343,22 +432,45 @@ p {
     height: auto;
 }
 
-/* ---------- 6. Navbar ---------- */
-.site-nav {
+/* ---------- 6. Header and navbar ---------- */
+.site-header {
     position: fixed;
     top: max(12px, env(safe-area-inset-top, 12px));
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: max(12px, env(safe-area-inset-left, 12px));
+    padding-right: max(12px, env(safe-area-inset-right, 12px));
+    pointer-events: none; /* clicks fall through the empty strip */
+}
+
+.site-header > * {
+    pointer-events: auto;
+}
+
+/* Balances the toggle on the right so the nav pill stays optically
+   centred in the viewport rather than pushed off to the left. */
+.site-header::before {
+    content: "";
+    flex: 0 0 44px;
+}
+
+.site-nav {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.15rem;
-    width: min(660px, calc(100% - 1.5rem));
+    flex: 0 1 auto;
+    width: min(660px, 100%);
+    min-width: 0;
+    margin-inline: auto;
     min-height: var(--nav-h);
     padding: 0.35rem;
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: var(--nav-bg);
+    border: 1px solid var(--nav-line);
     border-radius: var(--radius-pill);
     box-shadow: var(--shadow-sm);
     -webkit-backdrop-filter: blur(14px) saturate(150%);
@@ -367,7 +479,7 @@ p {
 
 @supports not (backdrop-filter: blur(4px)) {
     .site-nav {
-        background: rgba(255, 255, 255, 0.92);
+        background: var(--nav-bg-solid);
     }
 }
 
@@ -377,7 +489,7 @@ p {
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    padding: 0 clamp(0.6rem, 2.4vw, 1.1rem);
+    padding: 0 clamp(0.45rem, 2.4vw, 1.1rem);
     border-radius: var(--radius-pill);
     color: var(--ink-70);
     font-size: clamp(0.8rem, 0.72rem + 0.4vw, 0.95rem);
@@ -391,16 +503,129 @@ p {
 }
 
 .site-nav a:hover {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--nav-hover);
     color: var(--ink);
 }
 
 .site-nav a[aria-current="page"] {
     background: var(--ink);
-    color: var(--white);
+    color: var(--on-ink);
 }
 
-/* ---------- 7. Hero ---------- */
+/* Below this width the balancer costs more than the centring is worth */
+@media (max-width: 620px) {
+    .site-header::before {
+        display: none;
+    }
+
+    .site-header {
+        gap: 0.35rem;
+    }
+
+    .site-nav {
+        flex: 1 1 auto;
+        margin-inline: 0;
+    }
+}
+
+/* ---------- 7. Theme toggle ---------- */
+.theme-toggle {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: var(--nav-bg);
+    border: 1px solid var(--nav-line);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-sm);
+    color: var(--ink-70);
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(150%);
+    transition:
+        background-color 0.2s var(--ease),
+        color 0.2s var(--ease),
+        transform 0.2s var(--ease);
+}
+
+@supports not (backdrop-filter: blur(4px)) {
+    .theme-toggle {
+        background: var(--nav-bg-solid);
+    }
+}
+
+.theme-toggle:hover {
+    background: var(--nav-hover);
+    color: var(--ink);
+    transform: translateY(-1px);
+}
+
+.theme-toggle .icon--moon {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon--sun {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon--moon {
+    display: block;
+}
+
+/* --- The wave --- */
+
+/* Preferred path: the browser snapshots the page, we flip the theme, and
+   the new page is wiped in on a circle growing out of the top right
+   corner, right where the button sits. Scoped to data-wave so no other
+   view transition on the site inherits this animation. */
+:root[data-wave="on"]::view-transition-old(root),
+:root[data-wave="on"]::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+:root[data-wave="on"]::view-transition-old(root) {
+    z-index: 1;
+}
+
+:root[data-wave="on"]::view-transition-new(root) {
+    z-index: 2;
+    animation: theme-wave 620ms var(--ease) both;
+}
+
+/* Fallback for browsers without view transitions: a plain overlay in the
+   incoming background colour sweeps across from the same corner, and the
+   theme flips underneath it while it covers the screen. */
+.theme-wave {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    pointer-events: none;
+    animation:
+        theme-wave 300ms var(--ease) forwards,
+        theme-wave-clear 380ms var(--ease) 320ms forwards;
+}
+
+/* The incoming page background, so these are the one pair of literals in
+   the file: each one is the other theme's --sky, by definition. */
+.theme-wave[data-to="dark"] { background: #0d131c; }
+.theme-wave[data-to="light"] { background: #b7e0ff; }
+
+/* 150% covers the far corner: from a corner the longest reach is about
+   141% of the radius a percentage resolves to. */
+@keyframes theme-wave {
+    from { clip-path: circle(0% at 100% 0%); }
+    to { clip-path: circle(150% at 100% 0%); }
+}
+
+@keyframes theme-wave-clear {
+    to { opacity: 0; }
+}
+
+/* ---------- 8. Hero ---------- */
 .hero {
     position: relative;
     isolation: isolate;
@@ -420,8 +645,8 @@ p {
     transform: translateX(-50%);
     background: radial-gradient(
         circle,
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(255, 255, 255, 0) 62%
+        var(--hero-glow) 0%,
+        transparent 62%
     );
 }
 
@@ -447,7 +672,7 @@ p {
     justify-content: center;
 }
 
-/* ---------- 8. Showcase ---------- */
+/* ---------- 9. Showcase ---------- */
 .showcase__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -524,10 +749,6 @@ p {
     opacity: 0.55;
 }
 
-.section--dark .feature-list li {
-    color: rgba(255, 255, 255, 0.82);
-}
-
 /* Values grid (About page) */
 .card-grid {
     display: grid;
@@ -536,9 +757,25 @@ p {
     margin-top: 2.5rem;
 }
 
+/* Every light surface resets the text tokens back to card values, so it
+   stays readable inside a dark section and in dark mode alike. */
+.card,
+.plan,
+.form-card,
+.legal .toc,
+.legal .summary,
+.legal .note {
+    --ink: var(--ink-card);
+    --ink-70: var(--ink-card-70);
+    --ink-55: var(--ink-card-55);
+    --on-ink: var(--on-ink-card);
+    --focus: var(--focus-card);
+    color: var(--ink);
+}
+
 .card {
     padding: clamp(1.5rem, 4vw, 2.25rem);
-    background: var(--white);
+    background: var(--surface);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
 }
@@ -553,7 +790,7 @@ p {
     color: var(--ink-70);
 }
 
-/* ---------- 9. Pricing ---------- */
+/* ---------- 10. Pricing ---------- */
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
@@ -565,8 +802,7 @@ p {
 .plan {
     position: relative;
     padding: clamp(1.75rem, 4vw, 2.25rem);
-    background: var(--white);
-    color: var(--ink);
+    background: var(--surface);
     border: 2px solid transparent;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
@@ -588,7 +824,7 @@ p {
     transform: translateX(-50%);
     padding: 0.25rem 1rem;
     background: var(--ink);
-    color: var(--white);
+    color: var(--on-ink);
     border-radius: var(--radius-pill);
     font-size: var(--text-xs);
     font-weight: 600;
@@ -608,6 +844,7 @@ p {
     font-size: clamp(2rem, 1.4rem + 2.4vw, 2.75rem);
     font-weight: 700;
     letter-spacing: -0.03em;
+    color: var(--ink);
 }
 
 .plan__price span {
@@ -623,6 +860,10 @@ p {
 
 .plan .feature-list {
     margin-top: 1.5rem;
+}
+
+.plan .feature-list li {
+    color: var(--ink-70);
 }
 
 .plan .feature-list li::before {
@@ -643,20 +884,15 @@ p {
     font-size: var(--text-sm);
 }
 
-.section--dark .plan-fineprint {
-    color: rgba(255, 255, 255, 0.72);
-}
-
-/* ---------- 10. Form ---------- */
+/* ---------- 11. Form ---------- */
 .form-card {
     max-width: 680px;
     margin: 2.5rem auto 0;
     padding: clamp(1.5rem, 5vw, 2.75rem);
-    background: var(--white);
+    background: var(--surface);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     text-align: left;
-    color: var(--ink);
 }
 
 .field + .field {
@@ -674,8 +910,8 @@ p {
 .field textarea {
     width: 100%;
     padding: 0.85rem 1rem;
-    background: var(--mist);
-    border: 1.5px solid rgba(9, 16, 87, 0.12);
+    background: var(--field-bg);
+    border: 1.5px solid var(--surface-line);
     border-radius: var(--radius-sm);
     font-size: 16px; /* stops iOS Safari zooming on focus */
     transition:
@@ -685,14 +921,14 @@ p {
 
 .field input:focus,
 .field textarea:focus {
-    background: var(--white);
+    background: var(--surface);
     border-color: var(--ink);
     outline: none;
 }
 
 .field input:focus-visible,
 .field textarea:focus-visible {
-    outline: 3px solid var(--ink);
+    outline: 3px solid var(--focus);
     outline-offset: 2px;
 }
 
@@ -703,7 +939,7 @@ p {
 
 .field input[aria-invalid="true"],
 .field textarea[aria-invalid="true"] {
-    border-color: var(--crimson);
+    border-color: var(--danger);
 }
 
 .field-error {
@@ -711,7 +947,7 @@ p {
     margin-top: 0.35rem;
     min-height: 1.2em;
     font-size: var(--text-xs);
-    color: var(--crimson);
+    color: var(--danger);
 }
 
 /* Honeypot: hidden from people, visible to naive bots */
@@ -733,11 +969,11 @@ p {
 }
 
 .form-status[data-state="error"] {
-    color: var(--crimson);
+    color: var(--danger);
 }
 
 .form-status[data-state="success"] {
-    color: #0a7a4f;
+    color: var(--ok);
 }
 
 .form-done {
@@ -754,10 +990,6 @@ p {
     color: var(--ink-70);
 }
 
-[hidden] {
-    display: none !important;
-}
-
 .contact-direct {
     display: flex;
     flex-wrap: wrap;
@@ -771,7 +1003,7 @@ p {
     text-underline-offset: 4px;
 }
 
-/* ---------- 11. Legal pages ---------- */
+/* ---------- 12. Legal pages ---------- */
 .legal {
     width: min(100% - (var(--gutter) * 2), 72ch);
     margin-inline: auto;
@@ -811,7 +1043,7 @@ p {
 .legal hr {
     margin-top: 1.5rem;
     border: 0;
-    border-top: 1px solid rgba(9, 16, 87, 0.15);
+    border-top: 1px solid var(--surface-line);
 }
 
 .legal a {
@@ -829,7 +1061,7 @@ p {
 .legal .toc {
     margin-top: 2rem;
     padding: 1.25rem 1.5rem;
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--surface-soft);
     border-radius: var(--radius);
     list-style: none;
 }
@@ -841,7 +1073,7 @@ p {
 .legal .summary {
     margin-top: 2.5rem;
     padding: clamp(1.25rem, 4vw, 2rem);
-    background: rgba(255, 255, 255, 0.72);
+    background: var(--surface-soft);
     border-radius: var(--radius);
 }
 
@@ -858,7 +1090,7 @@ p {
     margin-top: 2.5rem;
     padding: 1.25rem 1.5rem;
     border-left: 3px solid var(--ink);
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--surface-soft);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
@@ -866,13 +1098,13 @@ p {
    Search the HTML for "todo" and every one of them lights up. */
 .todo {
     padding: 0.1em 0.4em;
-    background: var(--yellow);
+    background: #ffeb00;
     border-radius: 4px;
     font-weight: 600;
-    color: var(--ink);
+    color: #091057;
 }
 
-/* ---------- 12. Footer ---------- */
+/* ---------- 13. Footer ---------- */
 site-footer {
     display: block;
     background: var(--night);
@@ -897,9 +1129,12 @@ site-footer {
     background: var(--night);
     color: var(--white);
     text-align: center;
-    padding: clamp(3rem, 8vw, 4.5rem) var(--gutter)
-        clamp(7rem, 20vw, 11rem);
+    padding: clamp(3rem, 8vw, 4.5rem) var(--gutter) clamp(7rem, 20vw, 11rem);
     overflow: hidden;
+}
+
+.site-footer :focus-visible {
+    outline-color: var(--cyan);
 }
 
 .social-row {
@@ -987,7 +1222,7 @@ site-footer {
     100% { transform: translateX(85px); }
 }
 
-/* ---------- 13. Motion & print ---------- */
+/* ---------- 14. Motion and print ---------- */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -1006,22 +1241,42 @@ site-footer {
     .btn:hover,
     .plan:hover,
     .badge-link:hover,
+    .theme-toggle:hover,
     .social-row a:hover {
         transform: none;
     }
 }
 
 @media print {
-    .site-nav,
+    .site-header,
     .site-footer,
+    .theme-toggle,
     .btn-row,
     .skip-link {
         display: none !important;
     }
 
+    /* Printers drop background colours by default, so a dark section
+       would otherwise print white text onto white paper. */
+    :root,
+    :root[data-theme="dark"],
+    .section--dark {
+        --ink: #000000;
+        --ink-70: #222222;
+        --ink-55: #444444;
+        --on-ink: #ffffff;
+        --ink-card: #000000;
+        --ink-card-70: #222222;
+        --ink-card-55: #444444;
+    }
+
     body {
         background: #fff;
         color: #000;
+    }
+
+    .section {
+        background: none !important;
     }
 
     main {
