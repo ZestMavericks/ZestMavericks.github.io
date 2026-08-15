@@ -1,272 +1,394 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="utf-8" />
         <meta
             name="viewport"
-            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <title>Mark PDF App</title>
+
+        <title>MarkPDF | A fresh way to work with PDFs</title>
+        <meta
+            name="description"
+            content="MarkPDF is an intuitive PDF editor for iPhone and iPad. Scan, merge, split, delete pages, lock documents and summarise long PDFs with AI."
+        />
+
+        <!-- TODO: replace zestmavericks.com with your live domain -->
+        <link rel="canonical" href="https://zestmavericks.com/markpdf.html" />
+        <meta name="theme-color" content="#B7E0FF" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0D131C" media="(prefers-color-scheme: dark)" />
+
+        <meta property="og:type" content="product" />
+        <meta property="og:site_name" content="Zest Mavericks" />
+        <meta property="og:title" content="MarkPDF | A fresh way to work with PDFs" />
+        <meta
+            property="og:description"
+            content="Scan, edit, lock and summarise your documents. Out now on the App Store."
+        />
+        <meta property="og:url" content="https://zestmavericks.com/markpdf.html" />
+        <meta property="og:image" content="https://zestmavericks.com/assets/MarkPDF.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@zestmavericks" />
+
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com"
+        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+
         <link rel="icon" type="image/png" href="assets/favicon.png" />
-        <!-- Fonts -->
+        <link rel="apple-touch-icon" href="assets/favicon.png" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="css/style.css" />
+
+        <!-- Not deferred: this has to set the theme before the first
+             paint, or dark mode visitors get a white flash. -->
+        <script src="js/theme.js"></script>
+        <script src="js/components/site-footer.js" defer></script>
     </head>
 
-    <body class="markpdf-page">
-        <div>
-            <nav class="navbar">
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+
+        <div class="site-header">
+            <nav class="site-nav" aria-label="Primary">
                 <a href="index.html">Home</a>
-                <a href="markpdf.html">MarkPDF</a>
+                <a href="markpdf.html" aria-current="page">MarkPDF</a>
                 <a href="about.html">About</a>
-                <a href="index.html#contact-us">Contact</a>
+                <a href="contact.html">Contact</a>
             </nav>
-        </div>
-        <div class="spacer"></div>
-        <div class="tagline">
-            <div class="spacer"></div>
 
-            <div class="app-icon">
-                <img src="assets/MarkPDF.png" class="app-img" />
-            </div>
-            <div class="spacer"></div>
-            <h1 class="heading">Mark PDF</h1>
-
-            <h2 class="subline">
-                A fresh way to look & interact with PDFs & our Docs.<br />
-                Out now.
-            </h2>
-            <div class="spacer"></div>
-            <center>
-                <a href="https://apps.apple.com/in/app/id6737065841"
-                    ><img class="dowload-btn" src="assets/AppStore-Badge.png"
-                /></a>
-            </center>
-            <div class="spacer"></div>
-        </div>
-
-        <div class="mark-screen big-spacer app-showcase">
-            <div class="app-screenshot">
-                <img src="assets/Launch-Screen.png" alt="App Screenshot" />
-            </div>
-
-            <div class="app-info" style="align-items: flex-start">
-                <h2>MarkPDF</h2>
-                <br />
-                <p>A refreshing, Intuitive PDF editior for 21st Century.</p>
-                <br />
-            </div>
-        </div>
-
-        <div class="mark-features big-spacer app-showcase">
-            <div class="app-info" style="align-items: flex-start">
-                <h2>One App to Rule all Docs</h2>
-                <br />
-                <p>
-                    A refreshing intuitive UI which adds some zest to your
-                    experience. With Minimal design and usefull features. it's
-                    an app for people who love PDFs.
-                </p>
-                <br />
-            </div>
-
-            <div class="app-screenshot">
-                <img src="assets/Mark-Home-Screen.png" alt="App Screenshot" />
-            </div>
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-pressed="false"
+                aria-label="Switch to dark mode"
+                title="Switch to dark mode"
+                hidden
+            >
+                <svg
+                    class="icon icon--sun"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path
+                        d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+                    ></path>
+                </svg>
+                <svg
+                    class="icon icon--moon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6z"></path>
+                </svg>
+            </button>
         </div>
 
-        <div class="mark-problem big-spacer app-showcase">
-            <div class="app-screenshot">
-                <img src="assets/Scan-Screen.png" alt="App Screenshot" />
-            </div>
-
-            <div class="app-info" style="align-items: flex-start; color: white">
-                <h2>Scan, Scan and Scan again</h2>
-                <br />
-                <p>
-                    A powerfull scanner inbuilt to help you with all that long
-                    PDF you have to scan.
-                </p>
-                <br />
-            </div>
-        </div>
-
-        <div class="mark-lock big-spacer app-showcase">
-            <div class="app-info" style="align-items: flex-start">
-                <h2>
-                    Design that helps you,<br />
-                    Not hinder you
-                </h2>
-                <br />
-                <p>
-                    We crafted MarkPDF from keeping our design and app flow very
-                    intuitive from the beginning so everyone can use it.
-                </p>
-                <br />
-            </div>
-
-            <div class="app-screenshot">
-                <img src="assets/Design-Screen.png" alt="App Screenshot" />
-            </div>
-        </div>
-
-        <div class="mark-screenshots big-spacer app-showcase">
-            <div class="app-info" style="align-items: flex-start">
-                <h2>Delete Pages like a Pro</h2>
-                <br />
-                <p>Manage your Documents and edit pages on-the-go!</p>
-                <br />
-            </div>
-
-            <div class="app-screenshot">
-                <img src="assets/Delete-Screen.png" alt="App Screenshot" />
-            </div>
-        </div>
-        <div class="mark-price big-spacer app-showcase">
-            <div class="app-screenshot">
-                <img src="assets/Lock-Screen.png" alt="App Screenshot" />
-            </div>
-
-            <div class="app-info" style="align-items: flex-start">
-                <h2>Lock & Unclock your important Docs</h2>
-                <br />
-                <p>
-                    Using MarkPDF you can easily manage all your critical
-                    documents.<br />
-                    All at one place. Very fast.
-                </p>
-                <br />
-            </div>
-        </div>
-
-        <div class="mark-app big-spacer app-showcase">
-            <div class="app-info" style="align-items: flex-start; color: white">
-                <h2>MarkPDF PRO</h2>
-                <br />
-                <p>
-                    We believe there's an opportunity in making a complete reset
-                    in how we as humans see and interact with documents in our
-                    life. <br />And here we are. We call it MarkPDF PRO.
-                </p>
-                <br />
-            </div>
-
-            <div class="pricing-container">
-                <div class="pricing-card">
-                    <div class="plan-name">Monthly Plan</div>
-                    <div class="price">$9.99<span>/month</span></div>
-                    <div class="billing-period">Billed monthly</div>
-                    <ul class="features">
-                        <li>Access to all premium features</li>
-                        <li>Priority customer support</li>
-                        <li>Fast updates and improvements</li>
-                    </ul>
-                    <!-- <a href="#" class="cta-button">Get Started</a> -->
-                </div>
-
-                <div class="pricing-card popular">
-                    <div class="plan-name">Annual Plan</div>
-                    <div class="price">$89.99<span>/year</span></div>
-                    <div class="billing-period">
-                        Save 25% with annual billing
-                    </div>
-                    <ul class="features">
-                        <li>All monthly plan features plus new AI features</li>
-                        <li>First two weeks free</li>
-                        <li>Exclusive annual member perks</li>
-                    </ul>
-                    <!-- <a href="#" class="cta-button">Get Started</a> -->
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <center>
-                <div class="spacer"></div>
-                <div class="cntr-d spacer">
-                    <a href="terms.html" class="hover-btn"
-                        >Terms of use & Privacy Policy</a
-                    >
-                </div>
-                <div class="spacer"></div>
-            </center>
-        </div>
-
-        <div class="wave-footer">
-            <section class="banner">
-                <div class="banner-content">
-                    <div class="center-txt">
+        <main id="main">
+            <!-- Hero -->
+            <section class="hero">
+                <div class="container">
+                    <img
+                        class="app-icon"
+                        src="assets/MarkPDF.png"
+                        alt="MarkPDF app icon"
+                        width="128"
+                        height="128"
+                        fetchpriority="high"
+                    />
+                    <h1>MarkPDF</h1>
+                    <p class="lede">
+                        A fresh way to see and handle the documents you deal with every
+                        day. Out now.
+                    </p>
+                    <div class="btn-row">
                         <a
-                            href="https://twitter.com/zestmavericks"
-                            style="text-decoration: none; color: white"
-                            ><img src="assets/Twitter.png" class="social-btn"
-                        /></a>
-
-                        <a
-                            href="mailto:zestmavericks@gmail.com"
-                            style="text-decoration: none; color: white"
-                            ><img src="assets/email.png" class="social-btn"
-                        /></a>
-                        <br />
-                        <br />
-
-                        <h4 class="center-txt footer-text">
-                            { } & Designed with 🤍 in India
-                        </h4>
-                        <br />
-                        <h5 class="footer-text">
-                            © 2026 ZestMavericks. All rights reserved.
-                        </h5>
+                            class="badge-link"
+                            href="https://apps.apple.com/in/app/id6737065841"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                src="assets/AppStore-Badge.png"
+                                alt="Download MarkPDF on the App Store"
+                            />
+                        </a>
                     </div>
                 </div>
             </section>
 
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 24 150 28"
-                preserveAspectRatio="none"
+            <!-- Overview -->
+            <section class="section bg-smoke">
+                <div class="container">
+                    <div class="showcase__grid">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="assets/Launch-Screen.png"
+                                alt="MarkPDF launch screen on iPhone"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">The idea</p>
+                            <h2>A PDF editor for the 21st century</h2>
+                            <p class="lede">
+                                Everything you actually do with a document, in one
+                                place, without the clutter that usually comes with it.
+                            </p>
+                            <ul class="feature-list">
+                                <li>Scan, merge, split and reorder pages</li>
+                                <li>Annotate, fill and sign</li>
+                                <li>Compress, watermark and extract images</li>
+                                <li>Lock the documents that matter</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Home screen -->
+            <section class="section bg-yellow">
+                <div class="container">
+                    <div class="showcase__grid showcase--flip">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="assets/Mark-Home-Screen.png"
+                                alt="The MarkPDF home screen listing saved documents"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">Home</p>
+                            <h2>One app to rule all docs</h2>
+                            <p class="lede">
+                                A refreshing, intuitive interface with minimal design
+                                and genuinely useful features. Built for people who
+                                love PDFs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scan -->
+            <section class="section section--dark bg-navy">
+                <div class="container">
+                    <div class="showcase__grid">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="assets/Scan-Screen.png"
+                                alt="Scanning a page into MarkPDF with the camera"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">Scanner</p>
+                            <h2>Scan, scan and scan again</h2>
+                            <p class="lede">
+                                A powerful scanner is built in, so that stack of paper
+                                becomes a clean PDF without leaving the app.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Design -->
+            <section class="section bg-lavender">
+                <div class="container">
+                    <div class="showcase__grid showcase--flip">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="assets/Design-Screen.png"
+                                alt="MarkPDF's document editing interface"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">Design</p>
+                            <h2>Design that helps you, not hinders you</h2>
+                            <p class="lede">
+                                We kept the flow deliberately simple from day one, so
+                                everyone can pick it up and get straight to work.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pages -->
+            <section class="section bg-mist">
+                <div class="container">
+                    <div class="showcase__grid">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="assets/Delete-Screen.png"
+                                alt="Selecting and deleting pages in MarkPDF"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">Pages</p>
+                            <h2>Delete pages like a pro</h2>
+                            <p class="lede">
+                                Manage documents and edit pages on the go. Tap, pick,
+                                done.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lock -->
+            <section class="section bg-cream">
+                <div class="container">
+                    <div class="showcase__grid showcase--flip">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="assets/Lock-Screen.png"
+                                alt="Locking a document with a password in MarkPDF"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">Privacy</p>
+                            <h2>Lock and unlock your important docs</h2>
+                            <p class="lede">
+                                Keep your critical documents in one place, protected,
+                                and still fast to open.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summarise -->
+            <section class="section bg-smoke">
+                <div class="container">
+                    <div class="showcase__grid">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="assets/Mark-Summarise-Screen.png"
+                                alt="MarkPDF summarising a document with AI"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">AI</p>
+                            <h2>Summarise long PDFs in seconds</h2>
+                            <p class="lede">
+                                Get the shape of a document first, then spend your
+                                attention on the part that needs it.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing -->
+            <section class="section section--dark bg-crimson" id="pricing">
+                <div class="container">
+                    <div class="center">
+                        <p class="eyebrow">Subscriptions</p>
+                        <h2>MarkPDF PRO</h2>
+                        <p class="lede">
+                            There's room to reset how we look at documents. This is our
+                            attempt at it.
+                        </p>
+                    </div>
+
+                    <div class="pricing-grid">
+                        <div class="plan">
+                            <p class="plan__name">Weekly</p>
+                            <p class="plan__price">$5.99<span>/Week</span></p>
+                            <p class="plan__note">Billed weekly</p>
+                            <ul class="feature-list">
+                                <li>Every Pro feature</li>
+                                <li>Good for a one off job</li>
+                                <li>No free trial on this plan</li>
+                            </ul>
+                        </div>
+
+                        <div class="plan plan--featured">
+                            <p class="plan__badge">Best value</p>
+                            <p class="plan__name">Monthly</p>
+                            <p class="plan__price">$9.99<span>/month</span></p>
+                            <p class="plan__note">7 day free trial</p>
+                            <ul class="feature-list">
+                                <li>Every Pro feature</li>
+                                <li>AI summaries and web page to PDF</li>
+                                <li>Priority support</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <p class="lede center plan-fineprint">
+                        Prices shown in US dollars. Your local price and billing period
+                        appear in the App before you confirm. Subscriptions renew
+                        automatically until cancelled in your Apple Account settings.
+                    </p>
+
+                    <div class="center">
+                        <div class="btn-row">
+                            <a
+                                class="badge-link"
+                                href="https://apps.apple.com/in/app/id6737065841"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img
+                                    src="assets/AppStore-Badge.png"
+                                    alt="Download MarkPDF on the App Store"
+                                    loading="lazy"
+                                />
+                            </a>
+                            <a class="btn btn--ghost" href="terms.html"
+                                >Terms and privacy</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <site-footer>
+            <noscript
+                ><p class="footer-fallback">
+                    &copy; Zest Mavericks.
+                    <a href="terms.html">Terms and privacy</a> ·
+                    <a href="mailto:zestmavericks@gmail.com">Email us</a>
+                </p></noscript
             >
-                <defs>
-                    <path
-                        id="gentle-wave"
-                        d="M-160 44c30 0
-                    58-18 88-18s
-                    58 18 88 18
-                    58-18 88-18
-                    58 18 88 18
-                    v44h-352z"
-                    />
-                </defs>
-                <g class="waves">
-                    <use
-                        xlink:href="#gentle-wave"
-                        x="50"
-                        y="0"
-                        fill="#03ffff"
-                        fill-opacity=".2"
-                    />
-                    <use
-                        xlink:href="#gentle-wave"
-                        x="50"
-                        y="3"
-                        fill="#03ffff"
-                        fill-opacity=".5"
-                    />
-                    <use
-                        xlink:href="#gentle-wave"
-                        x="50"
-                        y="6"
-                        fill="#03ffff"
-                        fill-opacity=".9"
-                    />
-                </g>
-            </svg>
-        </div>
+        </site-footer>
     </body>
 </html>
