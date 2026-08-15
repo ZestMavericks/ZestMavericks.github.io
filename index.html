@@ -15,7 +15,8 @@
 
         <!-- TODO: replace zestmavericks.com with your live domain -->
         <link rel="canonical" href="https://zestmavericks.com/" />
-        <meta name="theme-color" content="#B7E0FF" />
+        <meta name="theme-color" content="#B7E0FF" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0D131C" media="(prefers-color-scheme: dark)" />
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Zest Mavericks" />
@@ -46,18 +47,58 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="css/style.css" />
+
+        <!-- Not deferred: this has to set the theme before the first
+             paint, or dark mode visitors get a white flash. -->
+        <script src="js/theme.js"></script>
         <script src="js/components/site-footer.js" defer></script>
     </head>
 
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
 
-        <nav class="site-nav" aria-label="Primary">
-            <a href="index.html" aria-current="page">Home</a>
-            <a href="markpdf.html">MarkPDF</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+        <div class="site-header">
+            <nav class="site-nav" aria-label="Primary">
+                <a href="index.html" aria-current="page">Home</a>
+                <a href="markpdf.html">MarkPDF</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-pressed="false"
+                aria-label="Switch to dark mode"
+                title="Switch to dark mode"
+                hidden
+            >
+                <svg
+                    class="icon icon--sun"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path
+                        d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+                    ></path>
+                </svg>
+                <svg
+                    class="icon icon--moon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6z"></path>
+                </svg>
+            </button>
+        </div>
 
         <main id="main">
             <!-- Hero -->
