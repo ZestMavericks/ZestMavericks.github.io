@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+
+        <title>TopDrawer | Save it now, find it instantly</title>
+        <meta
+            name="description"
+            content="TopDrawer is a private vault for iPhone. Save text, links, screenshots, PDFs and files from anywhere, and find any of them with one search — including the words inside your screenshots."
+        />
+
+        <link rel="canonical" href="https://zestmavericks.com/topdrawer/" />
+        <meta name="theme-color" content="#B7E0FF" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0D131C" media="(prefers-color-scheme: dark)" />
+
+        <meta property="og:type" content="product" />
+        <meta property="og:site_name" content="Zest Mavericks" />
+        <meta property="og:title" content="TopDrawer | Save it now, find it instantly" />
+        <meta
+            property="og:description"
+            content="One drawer for everything you save. Screenshots become searchable by the words inside them, and nothing ever leaves your iPhone."
+        />
+        <meta property="og:url" content="https://zestmavericks.com/topdrawer/" />
+        <meta property="og:image" content="https://zestmavericks.com/assets/TopDrawer.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@zestmavericks" />
+
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com"
+        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+        <link rel="icon" type="image/png" href="/assets/favicon.png" />
+        <link rel="apple-touch-icon" href="/assets/favicon.png" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+
+        <!-- Not deferred: this has to set the theme before the first
+             paint, or dark mode visitors get a white flash. -->
+        <script src="/js/theme.js"></script>
+
+        <!--
+            DEPLOYMENT
+            ----------
+            This page and its two legal pages are written to live together in a
+            /topdrawer/ folder at the site root:
+
+                /topdrawer/index.html   <- rename this file, so /topdrawer resolves
+                /topdrawer/terms.html
+                /topdrawer/privacy.html
+
+            Shared assets are referenced root-absolute (/css, /js, /assets) so they
+            resolve from a subfolder. The footer is inlined for the same reason:
+            js/components/site-footer.js builds its links and images with relative
+            paths, which would resolve to /topdrawer/assets/... from here.
+
+            IMAGES STILL NEEDED (three screenshots plus the icon):
+                /assets/TopDrawer.png                  app icon, 1024 square
+                /assets/topdrawer/Drawer-Screen.png    the grid, a few saved items
+                /assets/topdrawer/Search-Screen.png    a search with results
+                /assets/topdrawer/Lock-Screen.png      the Face ID lock screen
+        -->
+    </head>
+
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+
+        <div class="site-header">
+            <nav class="site-nav" aria-label="Primary">
+                <a href="/index.html">Home</a>
+                <a href="/markpdf.html">MarkPDF</a>
+                <a href="/topdrawer/" aria-current="page">TopDrawer</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
+            </nav>
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-pressed="false"
+                aria-label="Switch to dark mode"
+                title="Switch to dark mode"
+                hidden
+            >
+                <svg
+                    class="icon icon--sun"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path
+                        d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+                    ></path>
+                </svg>
+                <svg
+                    class="icon icon--moon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <main id="main">
+            <!-- Hero -->
+            <section class="hero">
+                <div class="container">
+                    <img
+                        class="app-icon"
+                        src="/assets/TopDrawer.png"
+                        alt="TopDrawer app icon"
+                        width="128"
+                        height="128"
+                        fetchpriority="high"
+                    />
+                    <h1>TopDrawer</h1>
+                    <p class="lede">
+                        One drawer for everything you save. Put a screenshot, a link, a
+                        PDF or a stray password in it, and find any of them again with
+                        one search.
+                    </p>
+                    <div class="btn-row">
+                        <!-- TODO: swap this for the App Store badge once the listing is live.
+                             <a class="badge-link" href="https://apps.apple.com/app/idXXXXXXXXX"
+                                target="_blank" rel="noopener noreferrer">
+                                 <img src="/assets/AppStore-Badge.png"
+                                      alt="Download TopDrawer on the App Store" />
+                             </a> -->
+                        <a class="btn btn--ghost" href="#pricing">See what Ultra adds</a>
+                    </div>
+                    <p class="lede">Coming to iPhone. Requires iOS 26.</p>
+                </div>
+            </section>
+
+            <!-- The idea -->
+            <section class="section bg-smoke">
+                <div class="container">
+                    <div class="showcase__grid">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="/assets/topdrawer/Drawer-Screen.png"
+                                alt="The TopDrawer grid showing saved notes, links and documents"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">The idea</p>
+                            <h2>The things you save are never in one place</h2>
+                            <p class="lede">
+                                A screenshot of a Wi-Fi card goes to Photos. A link goes
+                                to a reading list you never open. A booking reference
+                                ends up in a note, or a message to yourself. When you
+                                need one of them, you go looking in four apps.
+                            </p>
+                            <ul class="feature-list">
+                                <li>Text, links, screenshots, images, PDFs and files</li>
+                                <li>Share to it from any app, or paste straight in</li>
+                                <li>Everything in one grid, newest and most used first</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search -->
+            <section class="section bg-yellow">
+                <div class="container">
+                    <div class="showcase__grid showcase--flip">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="/assets/topdrawer/Search-Screen.png"
+                                alt="Searching TopDrawer and finding a screenshot by text inside it"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">Search</p>
+                            <h2>It reads your screenshots, so you don't have to</h2>
+                            <p class="lede">
+                                Every image and document you save is read on your
+                                iPhone, and the words inside it become searchable. The
+                                Wi-Fi password in that photo is findable by typing the
+                                password, or the hotel, or the word "network".
+                            </p>
+                            <ul class="feature-list">
+                                <li>Results as you type, from the first few letters</li>
+                                <li>Searches titles, notes, tags and recognised text together</li>
+                                <li>Text recognition happens on the device, not on a server</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Previews -->
+            <section class="section bg-lavender">
+                <div class="container">
+                    <div class="center">
+                        <p class="eyebrow">Previews</p>
+                        <h2>Every kind of thing looks like itself</h2>
+                        <p class="lede">
+                            A wall of identical grey tiles is something you have to read.
+                            TopDrawer shows each item as what it actually is, so you can
+                            scan the drawer instead.
+                        </p>
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>Notes show their words</h3>
+                            <p>
+                                Not a file name and an icon. The first lines of what you
+                                saved, set the way it deserves.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Code looks like code</h3>
+                            <p>
+                                A command, a JSON blob or a snippet is set in a
+                                monospaced face, because alignment is half the meaning.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>A colour is the colour</h3>
+                            <p>
+                                Paste a hex value and you get the swatch, not six grey
+                                characters you have to imagine.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Links know where they go</h3>
+                            <p>
+                                The site, the path and a mark that stays the same every
+                                time, so you recognise it before you read it.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Documents open properly</h3>
+                            <p>
+                                A PDF is a PDF you can read and scroll, not a picture of
+                                its first page.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Pictures fill the frame</h3>
+                            <p>
+                                Full resolution, pinch to zoom, and one tap to copy
+                                whatever text was in them.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Outside the app -->
+            <section class="section section--dark bg-navy">
+                <div class="container">
+                    <div class="center">
+                        <p class="eyebrow">Everywhere else</p>
+                        <h2>You should not have to open it to use it</h2>
+                        <p class="lede">
+                            The fastest way to find something is the way that takes the
+                            fewest taps. Often that means not launching an app at all.
+                        </p>
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>iPhone search</h3>
+                            <p>
+                                Saved items appear in Spotlight, including by the text
+                                recognised inside them. One switch turns it off, and
+                                turning it off takes them back out again.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Siri and Shortcuts</h3>
+                            <p>
+                                Ask Siri to search TopDrawer, or open a saved item by
+                                name. Saving is a Shortcuts action, so anything you can
+                                automate can end up in the drawer.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>The share sheet</h3>
+                            <p>
+                                Share to TopDrawer from any app. It copies what you sent
+                                and gets out of the way, so it never stalls the app you
+                                were in.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lock -->
+            <section class="section bg-cream">
+                <div class="container">
+                    <div class="showcase__grid">
+                        <div class="showcase__media">
+                            <img
+                                class="shot"
+                                src="/assets/topdrawer/Lock-Screen.png"
+                                alt="TopDrawer locked behind Face ID"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="showcase__copy">
+                            <p class="eyebrow">Lock</p>
+                            <h2>Face ID, offered when it starts to matter</h2>
+                            <p class="lede">
+                                An unlocked phone handed over for a photo should not also
+                                hand over the passwords you saved. TopDrawer can sit
+                                behind Face ID, Touch ID or your passcode — and it asks
+                                the first time you save something that looks like a
+                                secret, rather than on the day you install it.
+                            </p>
+                            <ul class="feature-list">
+                                <li>Hidden in the app switcher while it is locked</li>
+                                <li>Stays open for a minute, so copying a password doesn't ask twice</li>
+                                <li>Falls back to your passcode, so you are never locked out</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Privacy -->
+            <section class="section bg-mist">
+                <div class="container">
+                    <div class="center">
+                        <p class="eyebrow">Privacy</p>
+                        <h2>There is no server to send it to</h2>
+                        <p class="lede">
+                            This is not a setting you have to find. TopDrawer has no
+                            account, no sync and nowhere to upload anything, because it
+                            was built without one.
+                        </p>
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>Nothing is uploaded</h3>
+                            <p>
+                                What you save stays in the app's own storage on your
+                                iPhone, protected by iOS and your passcode.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>The reading happens here</h3>
+                            <p>
+                                Text recognition and tagging run on the device, using
+                                what Apple already ships. No document is sent anywhere
+                                to be processed.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Nobody is counting</h3>
+                            <p>
+                                No analytics, no advertising, no tracking across other
+                                apps or sites. We do not know what you save.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing -->
+            <section class="section section--dark bg-crimson" id="pricing">
+                <div class="container">
+                    <div class="center">
+                        <p class="eyebrow">Ultra</p>
+                        <h2>Free to use. Ultra when you outgrow it.</h2>
+                        <p class="lede">
+                            The free drawer holds 30 items, and every feature above works
+                            in it. Ultra removes the limit.
+                        </p>
+                    </div>
+
+                    <div class="pricing-grid">
+                        <div class="plan">
+                            <p class="plan__name">Monthly</p>
+                            <p class="plan__price">$4.99<span>/month</span></p>
+                            <p class="plan__note">Billed monthly</p>
+                            <ul class="feature-list">
+                                <li>Unlimited items</li>
+                                <li>Everything in the free drawer</li>
+                                <li>Cancel any time</li>
+                            </ul>
+                        </div>
+
+                        <div class="plan plan--featured">
+                            <p class="plan__badge">Best value</p>
+                            <p class="plan__name">Yearly</p>
+                            <p class="plan__price">$24.99<span>/year</span></p>
+                            <p class="plan__note">Works out around $2.08 a month</p>
+                            <ul class="feature-list">
+                                <li>Unlimited items</li>
+                                <li>Everything in the free drawer</li>
+                                <li>Cancel any time</li>
+                            </ul>
+                        </div>
+
+                        <div class="plan">
+                            <p class="plan__name">Lifetime</p>
+                            <p class="plan__price">$59.99<span>/once</span></p>
+                            <p class="plan__note">One payment, no renewal</p>
+                            <ul class="feature-list">
+                                <li>Unlimited items, for good</li>
+                                <li>Not a subscription</li>
+                                <li>Yours on every device you sign in on</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p class="lede center plan-fineprint">
+                        Prices shown in US dollars. Your local price and billing period
+                        appear in the App before you confirm. Subscriptions renew
+                        automatically until cancelled in your Apple Account settings.
+                        Lifetime is a one off purchase and does not renew.
+                    </p>
+
+                    <div class="center">
+                        <div class="btn-row">
+                            <a class="btn btn--ghost" href="terms.html">Terms of Use</a>
+                            <a class="btn btn--ghost" href="privacy.html">Privacy Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Inlined rather than <site-footer>: that component builds its links and
+             images with relative paths, which resolve to /topdrawer/... from here.
+             Markup and classes are identical to the one it renders. -->
+        <site-footer class="site-footer" role="contentinfo" data-rendered="true">
+            <div class="social-row">
+                <a href="https://twitter.com/zestmavericks" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/Twitter.png" alt="Zest Mavericks on X" width="28" height="28" />
+                </a>
+                <a href="mailto:zestmavericks@gmail.com">
+                    <img src="/assets/email.png" alt="Email Zest Mavericks" width="28" height="28" />
+                </a>
+            </div>
+            <nav class="footer-links" aria-label="Footer">
+                <a href="/index.html">Home</a>
+                <a href="/markpdf.html">MarkPDF</a>
+                <a href="/topdrawer/">TopDrawer</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy</a>
+            </nav>
+            <p class="footer-note">{ } &amp; designed with 🩷 in India</p>
+            <p class="footer-fine">&copy; 2026 Zest Mavericks Pvt. Ltd. All rights reserved.</p>
+            <svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"></path>
+                </defs>
+                <g>
+                    <use href="#gentle-wave" x="50" y="0" fill="#03ffff" fill-opacity="0.2"></use>
+                    <use href="#gentle-wave" x="50" y="3" fill="#03ffff" fill-opacity="0.5"></use>
+                    <use href="#gentle-wave" x="50" y="6" fill="#03ffff" fill-opacity="0.9"></use>
+                </g>
+            </svg>
+        </site-footer>
+    </body>
+</html>
