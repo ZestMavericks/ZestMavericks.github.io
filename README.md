@@ -4,14 +4,33 @@ Proud to be Open Source our website
 # Zest Mavericks — site notes
 
 Still plain HTML, CSS and JS. No build step, no dependencies, no framework.
-Drop these files next to your existing `assets/` folder and it runs.
+
+Every page is a folder with an `index.html`, so URLs have no `.html` on the end:
 
 ```
-index.html  markpdf.html  about.html  contact.html  terms.html
-style.css   main.js
-_headers    robots.txt    sitemap.xml
-assets/     (unchanged — every filename is referenced exactly as before)
+/                     index.html
+/markpdf/             markpdf/index.html
+/markpdf/terms/       markpdf/terms/index.html
+/topdrawer/           topdrawer/index.html
+/topdrawer/terms/     topdrawer/terms/index.html
+/topdrawer/privacy/   topdrawer/privacy/index.html
+/about/               about/index.html
+/contact/             contact/index.html
+404.html              served by GitHub Pages for any missing path
 ```
+
+The old `.html` addresses (`about.html`, `terms.html`, `topdrawer/privacy.html`, ...)
+are small redirect stubs that forward to the new URL, so App Store listings and
+old links keep working. Don't delete them.
+
+All links and resources are root-relative (`/css/style.css`, `/about/`), so the
+site has to be served from a domain root. To preview locally:
+
+```
+python3 -m http.server 8000     # then open http://localhost:8000/
+```
+
+Opening a file straight from Finder (`file://`) won't load CSS or images.
 
 ## Before you deploy
 
