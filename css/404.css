@@ -14,8 +14,6 @@
     --nf-accent-deep: #0aa8c9;
     --nf-shadow: 0 30px 60px -20px rgba(9, 16, 87, 0.35);
     --nf-chip: rgba(255, 255, 255, 0.25);
-    --nf-btn-bg: #000000;
-    --nf-btn-ink: #ffffff;
 
     background-color: var(--nf-bg);
     color: var(--nf-ink);
@@ -32,8 +30,6 @@
     --nf-accent-deep: #03ffff;
     --nf-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
     --nf-chip: rgba(255, 255, 255, 0.08);
-    --nf-btn-bg: #ffffff;
-    --nf-btn-ink: #000000;
 }
 
 /* Dark theme: OS setting when no saved choice says light */
@@ -48,8 +44,6 @@
         --nf-accent-deep: #03ffff;
         --nf-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
         --nf-chip: rgba(255, 255, 255, 0.08);
-        --nf-btn-bg: #ffffff;
-        --nf-btn-ink: #000000;
     }
 }
 
@@ -231,34 +225,6 @@
     animation: nf-fade 700ms ease 550ms both;
 }
 
-.nf__primary {
-    background-color: var(--nf-btn-bg);
-    color: var(--nf-btn-ink);
-}
-
-.nf__primary:hover {
-    background-color: var(--nf-btn-ink);
-    color: var(--nf-btn-bg);
-}
-
-.nf__ghost {
-    display: inline-block;
-    padding: 13.5px 38.5px; /* matches .hover-sml-btn size with the border */
-    border-radius: 25px;
-    font-size: 18px;
-    text-decoration: none;
-    color: var(--nf-ink);
-    border: 1.5px solid currentColor;
-    transition: all 0.3s ease;
-}
-
-.nf__ghost:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-}
-
-.nf__primary:focus-visible,
-.nf__ghost:focus-visible,
 .nf__more a:focus-visible {
     outline: 2px solid var(--nf-accent-deep);
     outline-offset: 3px;
@@ -334,5 +300,4 @@
     .nf__code { font-size: 60px; }
     .nf__text { font-size: 16px; }
     .nf__actions { flex-direction: column; width: 100%; max-width: 300px; }
-    .nf__primary, .nf__ghost { text-align: center; }
 }

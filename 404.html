@@ -19,10 +19,8 @@
         />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-        <!-- Sets data-theme before first paint (no defer, on purpose) -->
-        <script src="/js/theme.js?v=1"></script>
-
         <link rel="icon" type="image/png" href="/assets/favicon.png" />
+        <link rel="apple-touch-icon" href="/assets/favicon.png" />
 
         <!-- Self-hosted Poppins (see css/style.css). crossorigin is required:
              fonts are fetched in CORS mode, so without it the preload is wasted. -->
@@ -30,22 +28,22 @@
         <link rel="preload" href="/fonts/poppins/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
 
         <!-- Root-relative so it works at any depth GitHub Pages serves it from -->
-        <link rel="stylesheet" type="text/css" href="/css/style.css?v=1" />
-        <link rel="stylesheet" type="text/css" href="/css/404.css?v=1" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/404.css" />
+
+        <!-- Not deferred: these set the theme and draw the header before
+             the first paint, so there's no white flash and no late nav. -->
+        <script src="/js/theme.js"></script>
+        <script src="/js/components/site-header.js"></script>
+        <script src="/js/components/site-footer.js" defer></script>
     </head>
 
     <body class="page-404">
-        <div>
-            <nav class="navbar">
-                <a href="/">Home</a>
-                <a href="/markpdf/">MarkPDF</a>
-                <a href="/topdrawer/">TopDrawer</a>
-                <a href="/about/">About</a>
-                <a href="/contact/">Contact</a>
-            </nav>
-        </div>
+        <a class="skip-link" href="#main">Skip to content</a>
 
-        <main class="nf">
+        <site-header></site-header>
+
+        <main class="nf" id="main">
             <div class="nf__stage" aria-hidden="true">
                 <div class="nf__sheet nf__sheet--back"></div>
                 <div class="nf__sheet nf__sheet--mid"></div>
@@ -73,8 +71,8 @@
             </p>
 
             <div class="nf__actions">
-                <a href="/" class="hover-sml-btn nf__primary">Back to Home</a>
-                <a href="/markpdf/" class="nf__ghost">Explore MarkPDF</a>
+                <a href="/" class="btn">Back to Home</a>
+                <a href="/markpdf/" class="btn btn--ghost">Explore MarkPDF</a>
             </div>
 
             <p class="nf__more">
@@ -84,64 +82,14 @@
             </p>
         </main>
 
-        <div class="wave-footer">
-            <section class="banner">
-                <div class="banner-content">
-                    <div class="center-txt">
-                        <a
-                            href="https://twitter.com/zestmavericks"
-                            class="social-link"
-                            aria-label="Zest Mavericks on Twitter"
-                            ><img
-                                src="/assets/icons/twitter-84.webp"
-                                srcset="/assets/icons/twitter-56.webp 56w, /assets/icons/twitter-84.webp 84w"
-                                sizes="28px"
-                                class="social-btn"
-                                alt=""
-                        /></a>
-                        <a
-                            href="mailto:zestmavericks@gmail.com"
-                            class="social-link"
-                            aria-label="Email Zest Mavericks"
-                            ><img
-                                src="/assets/icons/email-84.webp"
-                                srcset="/assets/icons/email-56.webp 56w, /assets/icons/email-84.webp 84w"
-                                sizes="28px"
-                                class="social-btn"
-                                alt=""
-                        /></a>
-                        <br />
-                        <br />
-                        <h4 class="center-txt footer-text">
-                            { } &amp; Designed with 🤍 in India
-                        </h4>
-                        <br />
-                        <h5 class="footer-text">
-                            © 2026 ZestMavericks. All rights reserved.
-                        </h5>
-                    </div>
-                </div>
-            </section>
-
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 24 150 28"
-                preserveAspectRatio="none"
-                aria-hidden="true"
+        <site-footer>
+            <noscript
+                ><p class="footer-fallback">
+                    &copy; Zest Mavericks.
+                    <a href="/markpdf/terms/">Terms and privacy</a> &middot;
+                    <a href="mailto:zestmavericks@gmail.com">Email us</a>
+                </p></noscript
             >
-                <defs>
-                    <path
-                        id="gentle-wave"
-                        d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-                    />
-                </defs>
-                <g class="waves">
-                    <use xlink:href="#gentle-wave" x="50" y="0" fill="#03ffff" fill-opacity=".2" />
-                    <use xlink:href="#gentle-wave" x="50" y="3" fill="#03ffff" fill-opacity=".5" />
-                    <use xlink:href="#gentle-wave" x="50" y="6" fill="#03ffff" fill-opacity=".9" />
-                </g>
-            </svg>
-        </div>
+        </site-footer>
     </body>
 </html>
