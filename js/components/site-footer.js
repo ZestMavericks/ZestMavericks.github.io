@@ -86,6 +86,22 @@
         ].join("");
     }
 
+    /* Trusted Types. The page CSP (require-trusted-types-for 'script') blocks
+       any string written to innerHTML unless it comes from a named policy
+       the CSP lists. This policy only ever sees this file's own template. */
+    var policy =
+        window.trustedTypes && window.trustedTypes.createPolicy
+            ? window.trustedTypes.createPolicy("zm-footer", {
+                  createHTML: function (html) {
+                      return html;
+                  }
+              })
+            : null;
+
+    function toHTML(html) {
+        return policy ? policy.createHTML(html) : html;
+    }
+
     if (!("customElements" in window)) return;
 
     customElements.define(
@@ -100,7 +116,7 @@
                    why innerHTML is safe here and keeps this to one file.
                    data-product only selects a key from LEGAL; it is never
                    written into the markup. */
-                this.innerHTML = template(this.dataset.product);
+                this.innerHTML = toHTML(template(this.dataset.product));
             }
         }
     );

@@ -61,6 +61,22 @@
         ].join("");
     }
 
+    /* Trusted Types. The page CSP (require-trusted-types-for 'script') blocks
+       any string written to innerHTML unless it comes from a named policy
+       the CSP lists. This policy only ever sees this file's own template. */
+    var policy =
+        window.trustedTypes && window.trustedTypes.createPolicy
+            ? window.trustedTypes.createPolicy("zm-header", {
+                  createHTML: function (html) {
+                      return html;
+                  }
+              })
+            : null;
+
+    function toHTML(html) {
+        return policy ? policy.createHTML(html) : html;
+    }
+
     if (!("customElements" in window)) return;
 
     customElements.define(
@@ -71,7 +87,7 @@
                 this.dataset.rendered = "true";
                 this.classList.add("site-header");
                 /* Fixed literals only; the path is compared, never written. */
-                this.innerHTML = template();
+                this.innerHTML = toHTML(template());
             }
         }
     );

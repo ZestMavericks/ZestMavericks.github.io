@@ -13,6 +13,12 @@
         />
         <title>Page Not Found | Zest Mavericks</title>
 
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; require-trusted-types-for 'script'; trusted-types zm-header zm-footer zm-pricing; upgrade-insecure-requests"
+        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+
         <!-- Sets data-theme before first paint (no defer, on purpose) -->
         <script src="/js/theme.js?v=1"></script>
 
