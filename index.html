@@ -48,58 +48,18 @@
         />
         <link rel="stylesheet" href="/css/style.css" />
 
-        <!-- Not deferred: this has to set the theme before the first
-             paint, or dark mode visitors get a white flash. -->
+        <!-- Not deferred: these set the theme and draw the header before
+             the first paint, so there's no white flash and no late nav. -->
         <script src="/js/theme.js"></script>
+        <script src="/js/components/site-header.js"></script>
         <script src="/js/components/site-footer.js" defer></script>
+        <script src="/js/components/app-screenshot.js" defer></script>
     </head>
 
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
 
-        <div class="site-header">
-            <nav class="site-nav" aria-label="Primary">
-                <a href="/" aria-current="page">Home</a>
-                <a href="/markpdf/">MarkPDF</a>
-                <a href="/topdrawer/">TopDrawer</a>
-                <a href="/about/">About</a>
-                <a href="/contact/">Contact</a>
-            </nav>
-
-            <button
-                class="theme-toggle"
-                id="themeToggle"
-                type="button"
-                aria-pressed="false"
-                aria-label="Switch to dark mode"
-                title="Switch to dark mode"
-                hidden
-            >
-                <svg
-                    class="icon icon--sun"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    focusable="false"
-                >
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <path
-                        d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
-                    ></path>
-                </svg>
-                <svg
-                    class="icon icon--moon"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    focusable="false"
-                >
-                    <path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6z"></path>
-                </svg>
-            </button>
-        </div>
+        <site-header></site-header>
 
         <main id="main">
             <!-- Hero -->
@@ -130,13 +90,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
+                            <app-screenshot
                                 src="/assets/Launch-Screen.png"
                                 alt="MarkPDF launch screen on iPhone"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="1320"
+                                height="2868"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Out now on the App Store</p>
@@ -170,13 +129,12 @@
                 <div class="container">
                     <div class="showcase__grid showcase--flip">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
+                            <app-screenshot
                                 src="/assets/Mark-Home-Screen.png"
                                 alt="The MarkPDF home screen listing saved documents"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="1419"
+                                height="2796"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">One app, every document</p>
@@ -199,13 +157,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
+                            <app-screenshot
                                 src="/assets/Mark-Summarise-Screen.png"
                                 alt="MarkPDF summarising a document with AI"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="1419"
+                                height="2796"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Built in</p>

@@ -46,58 +46,19 @@
         />
         <link rel="stylesheet" href="/css/style.css" />
 
-        <!-- Not deferred: this has to set the theme before the first
-             paint, or dark mode visitors get a white flash. -->
+        <!-- Not deferred: these set the theme and draw the header before
+             the first paint, so there's no white flash and no late nav. -->
         <script src="/js/theme.js"></script>
+        <script src="/js/components/site-header.js"></script>
         <script src="/js/components/site-footer.js" defer></script>
+        <script src="/js/components/app-screenshot.js" defer></script>
+        <script src="/js/components/site-pricing.js" defer></script>
     </head>
 
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
 
-        <div class="site-header">
-            <nav class="site-nav" aria-label="Primary">
-                <a href="/">Home</a>
-                <a href="/markpdf/">MarkPDF</a>
-                <a href="/topdrawer/" aria-current="page">TopDrawer</a>
-                <a href="/about/">About</a>
-                <a href="/contact/">Contact</a>
-            </nav>
-
-            <button
-                class="theme-toggle"
-                id="themeToggle"
-                type="button"
-                aria-pressed="false"
-                aria-label="Switch to dark mode"
-                title="Switch to dark mode"
-                hidden
-            >
-                <svg
-                    class="icon icon--sun"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    focusable="false"
-                >
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <path
-                        d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
-                    ></path>
-                </svg>
-                <svg
-                    class="icon icon--moon"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    focusable="false"
-                >
-                    <path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6z"></path>
-                </svg>
-            </button>
-        </div>
+        <site-header></site-header>
 
         <main id="main">
             <!-- Hero -->
@@ -135,13 +96,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
+                            <app-screenshot
                                 src="/assets/topdrawer/Drawer-Screen.png"
                                 alt="The TopDrawer grid showing saved notes, links and documents"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="1300"
+                                height="2716"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">The idea</p>
@@ -167,13 +127,12 @@
                 <div class="container">
                     <div class="showcase__grid showcase--flip">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
+                            <app-screenshot
                                 src="/assets/topdrawer/Search-Screen.png"
                                 alt="Searching TopDrawer and finding a screenshot by text inside it"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="1300"
+                                height="2716"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Search</p>
@@ -300,13 +259,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
+                            <app-screenshot
                                 src="/assets/topdrawer/TD-Lock-Screen.png"
                                 alt="TopDrawer locked behind Face ID"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="1300"
+                                height="2716"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Lock</p>
@@ -368,69 +326,7 @@
                 </div>
             </section>
 
-            <!-- Pricing -->
-            <section class="section bg-zest" id="pricing">
-                <div class="container">
-                    <div class="center">
-                        <p class="eyebrow">Ultra</p>
-                        <h2>Free to use. Ultra when you outgrow it.</h2>
-                        <p class="lede">
-                            The free drawer holds 30 items, and every feature above works
-                            in it. Ultra removes the limit.
-                        </p>
-                    </div>
-
-                    <div class="pricing-grid">
-                        <div class="plan">
-                            <p class="plan__name">Monthly</p>
-                            <p class="plan__price">$4.99<span>/month</span></p>
-                            <p class="plan__note">Billed monthly</p>
-                            <ul class="feature-list">
-                                <li>Unlimited items</li>
-                                <li>Everything in the free drawer</li>
-                                <li>Cancel any time</li>
-                            </ul>
-                        </div>
-
-                        <div class="plan plan--featured">
-                            <p class="plan__badge">Best value</p>
-                            <p class="plan__name">Yearly</p>
-                            <p class="plan__price">$24.99<span>/year</span></p>
-                            <p class="plan__note">Works out around $2.08 a month</p>
-                            <ul class="feature-list">
-                                <li>Unlimited items</li>
-                                <li>Everything in the free drawer</li>
-                                <li>Cancel any time</li>
-                            </ul>
-                        </div>
-
-                        <div class="plan">
-                            <p class="plan__name">Lifetime</p>
-                            <p class="plan__price">$59.99<span>/once</span></p>
-                            <p class="plan__note">One payment, no renewal</p>
-                            <ul class="feature-list">
-                                <li>Unlimited items, for good</li>
-                                <li>Not a subscription</li>
-                                <li>Yours on every device you sign in on</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <p class="lede center plan-fineprint">
-                        Prices shown in US dollars. Your local price and billing period
-                        appear in the App before you confirm. Subscriptions renew
-                        automatically until cancelled in your Apple Account settings.
-                        Lifetime is a one off purchase and does not renew.
-                    </p>
-
-                    <div class="center">
-                        <div class="btn-row">
-                            <a class="btn btn--ghost" href="/topdrawer/terms/">Terms of Use</a>
-                            <a class="btn btn--ghost" href="/topdrawer/privacy/">Privacy Policy</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <site-pricing id="pricing" data-product="topdrawer"></site-pricing>
         </main>
 
         <site-footer data-product="topdrawer">

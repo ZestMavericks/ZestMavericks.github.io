@@ -32,6 +32,22 @@ python3 -m http.server 8000     # then open http://localhost:8000/
 
 Opening a file straight from Finder (`file://`) won't load CSS or images.
 
+## Shared pieces
+
+Anything that repeats across pages is a small custom element in `js/components/`,
+so it's edited in one place. No build step: each file renders plain markup that
+`css/style.css` styles as usual.
+
+| Tag | What it is | Load it with |
+| --- | --- | --- |
+| `<site-header>` | nav pill and theme toggle; highlights the current page by itself | `<script src="/js/components/site-header.js">` in `<head>`, **not** deferred, right after `theme.js` |
+| `<site-footer>` | footer; `data-product="topdrawer"` swaps in TopDrawer's legal links | `site-footer.js`, `defer` |
+| `<site-pricing id="pricing" data-product="markpdf">` | the plans section; every product's prices live in `PRODUCTS` in the script | `site-pricing.js`, `defer` |
+| `<app-screenshot src alt width height>` | one app screenshot; width/height are the PNG's pixel size (`sips -g pixelWidth -g pixelHeight file.png`) | `app-screenshot.js`, `defer` |
+
+Run `python3 tools/check_links.py` after changing any of them: it checks the
+paths inside the scripts as well as the pages.
+
 ## Before you deploy
 
 1. Replace `zestmavericks.com` with your real domain in the `<link rel="canonical">`

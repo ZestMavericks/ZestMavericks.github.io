@@ -718,8 +718,14 @@ p {
     justify-content: center;
 }
 
+/* <app-screenshot> renders an img.shot and steps out of the layout itself */
+app-screenshot {
+    display: contents;
+}
+
 .shot {
     width: min(100%, 300px);
+    height: auto; /* the width/height attributes only set the aspect ratio */
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     transition: transform 0.4s var(--ease);
@@ -807,6 +813,10 @@ h2 + .lede {
 }
 
 /* ---------- 10. Pricing ---------- */
+site-pricing {
+    display: block;
+}
+
 /* One column per plan, so three plans sit in one row instead of leaving
    the third alone underneath. The count comes from the markup: add or
    remove a .plan and the grid follows. Below the breakpoints they stack
