@@ -830,8 +830,10 @@ p {
     justify-content: center;
 }
 
-/* <app-screenshot> renders an img.shot and steps out of the layout itself */
-app-screenshot {
+/* <app-screenshot> renders picture > img.shot; both wrappers step out of the
+   layout so the img is the grid item, sized by .shot */
+app-screenshot,
+app-screenshot picture {
     display: contents;
 }
 

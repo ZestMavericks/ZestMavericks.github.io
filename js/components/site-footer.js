@@ -70,10 +70,10 @@
         return [
             '<div class="social-row">',
             '<a href="' + TWITTER + '" target="_blank" rel="noopener noreferrer">',
-            '<img src="/assets/Twitter.png" alt="Zest Mavericks on X" width="28" height="28">',
+            '<img src="/assets/icons/twitter-84.webp" srcset="/assets/icons/twitter-56.webp 56w, /assets/icons/twitter-84.webp 84w" sizes="28px" alt="Zest Mavericks on X" width="28" height="28">',
             "</a>",
             '<a href="mailto:' + EMAIL + '">',
-            '<img src="/assets/email.png" alt="Email Zest Mavericks" width="28" height="28">',
+            '<img src="/assets/icons/email-84.webp" srcset="/assets/icons/email-56.webp 56w, /assets/icons/email-84.webp 84w" sizes="28px" alt="Email Zest Mavericks" width="28" height="28">',
             "</a>",
             "</div>",
             '<nav class="footer-links" aria-label="Footer">' + links + "</nav>",

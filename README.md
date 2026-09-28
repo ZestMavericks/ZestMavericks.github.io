@@ -43,10 +43,26 @@ so it's edited in one place. No build step: each file renders plain markup that
 | `<site-header>` | nav pill and theme toggle; highlights the current page by itself | `<script src="/js/components/site-header.js">` in `<head>`, **not** deferred, right after `theme.js` |
 | `<site-footer>` | footer; `data-product="topdrawer"` swaps in TopDrawer's legal links | `site-footer.js`, `defer` |
 | `<site-pricing id="pricing" data-product="markpdf">` | the plans section; every product's prices live in `PRODUCTS` in the script | `site-pricing.js`, `defer` |
-| `<app-screenshot src alt width height>` | one app screenshot; width/height are the PNG's pixel size (`sips -g pixelWidth -g pixelHeight file.png`); add `card` for opaque artwork | `app-screenshot.js` in `<head>`, **not** deferred, after `site-header.js` |
+| `<app-screenshot name alt width height>` | one app screenshot from `assets/shots/<name>-{600,900}.{avif,webp}`; width/height are the 900w file's size; add `card` for opaque artwork | `app-screenshot.js` in `<head>`, **not** deferred, after `site-header.js` |
 
 Run `python3 tools/check_links.py` after changing any of them: it checks the
 paths inside the scripts as well as the pages.
+
+## Images
+
+The PNGs in `assets/` are masters and aren't shown directly any more (except as
+`og:image` social previews, which stay PNG for link-preview compatibility).
+`tools/optimize_images.sh` builds what the pages actually load:
+
+- `assets/shots/`: screenshots as AVIF + WebP at 600 and 900px wide, since they're
+  shown at up to 300px (2x and 3x screens). The MarkPDF mockups are cropped to
+  the phone, dropping their transparent margin.
+- `assets/icons/`, `assets/badges/`: hero icons, App Store badge and footer icons
+  as WebP at 2x and 3x (AVIF is bigger than WebP at these sizes).
+
+To add a screenshot: put the PNG in `assets/`, add a line to the script, run it
+(needs `brew install webp libavif`), then add an `<app-screenshot name="...">`.
+`tools/check_links.py` checks that every `name` has all four files.
 
 ## Fonts
 
@@ -153,7 +169,4 @@ focus rings, form errors tied to inputs with `aria-describedby` and announced th
 
 ## Optional next steps
 
-- Serve the screenshots as WebP/AVIF through `<app-screenshot>`, crop the transparent
-  margin off the MarkPDF mockups, and shrink the App Store badge (2560px wide, shown at
-  168px).
 - Put a CDN in front of the site to turn on the headers in `_headers`.
