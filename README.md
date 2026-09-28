@@ -43,10 +43,22 @@ so it's edited in one place. No build step: each file renders plain markup that
 | `<site-header>` | nav pill and theme toggle; highlights the current page by itself | `<script src="/js/components/site-header.js">` in `<head>`, **not** deferred, right after `theme.js` |
 | `<site-footer>` | footer; `data-product="topdrawer"` swaps in TopDrawer's legal links | `site-footer.js`, `defer` |
 | `<site-pricing id="pricing" data-product="markpdf">` | the plans section; every product's prices live in `PRODUCTS` in the script | `site-pricing.js`, `defer` |
-| `<app-screenshot src alt width height>` | one app screenshot; width/height are the PNG's pixel size (`sips -g pixelWidth -g pixelHeight file.png`) | `app-screenshot.js`, `defer` |
+| `<app-screenshot src alt width height>` | one app screenshot; width/height are the PNG's pixel size (`sips -g pixelWidth -g pixelHeight file.png`); add `card` for opaque artwork | `app-screenshot.js` in `<head>`, **not** deferred, after `site-header.js` |
 
 Run `python3 tools/check_links.py` after changing any of them: it checks the
 paths inside the scripts as well as the pages.
+
+## Fonts
+
+Poppins is self-hosted in `fonts/poppins/`: the Latin subset files Google Fonts
+serves (v24), under the SIL Open Font License (`fonts/poppins/OFL.txt`). No
+request goes to Google, so the CSP allows fonts and styles from `'self'` only.
+
+`@font-face` rules are at the top of `css/style.css`, followed by a
+"Poppins Fallback" face: Arial resized with `size-adjust` and ascent/descent
+overrides so it takes the same space as Poppins, and the page doesn't jump when
+the web font arrives. Pages preload the 400 and 700 weights. To add a weight,
+download its Latin `.woff2` from the Google Fonts CSS and add an `@font-face`.
 
 ## Before you deploy
 

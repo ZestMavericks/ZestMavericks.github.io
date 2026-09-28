@@ -19,6 +19,9 @@
  *
  * The element itself is display: contents (css/style.css), so the image
  * sits in the layout exactly where the tag is.
+ *
+ * Load it in <head> WITHOUT defer, after site-header.js. Deferred, the
+ * images appear only after parsing and the text beside them jumps down.
  */
 
 (function () {

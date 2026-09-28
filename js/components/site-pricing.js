@@ -117,7 +117,8 @@
         var badge = product.appStore
             ? '<a class="badge-link" href="' + esc(product.appStore.href) +
               '" target="_blank" rel="noopener noreferrer">' +
-              '<img src="/assets/AppStore-Badge.png" alt="' + esc(product.appStore.alt) + '" loading="lazy"></a>'
+              '<img src="/assets/AppStore-Badge.png" alt="' + esc(product.appStore.alt) +
+              '" width="168" height="50" loading="lazy"></a>'
             : "";
 
         var links = product.links.map(function (link) {
