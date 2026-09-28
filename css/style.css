@@ -641,9 +641,33 @@ p {
         gap: 0.35rem;
     }
 
+    /* Five links only just fit a phone. Tighter spacing (and smaller text
+       below 430px) makes them fit down to 375px wide. Narrower than that,
+       "safe center" starts them at the left edge and the pill scrolls
+       sideways, instead of centring them off both ends where the first
+       link can't be reached. */
     .site-nav {
         flex: 1 1 auto;
+        gap: 0;
         margin-inline: 0;
+        padding: 0.25rem;
+        justify-content: safe center;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .site-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .site-nav a {
+        padding-inline: clamp(0.3rem, 1.3vw, 0.7rem);
+    }
+}
+
+@media (max-width: 430px) {
+    .site-nav a {
+        font-size: 0.75rem;
     }
 }
 
