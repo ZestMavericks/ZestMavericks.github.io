@@ -97,6 +97,10 @@
     --shadow-md: 0 12px 32px rgba(9, 16, 87, 0.12);
     --shadow-lg: 0 28px 64px rgba(9, 16, 87, 0.2);
 
+    /* Device mockups. Used in drop-shadow(), which takes one shadow each */
+    --shot-shadow-near: 0 6px 12px rgba(9, 16, 87, 0.14);
+    --shot-shadow-far: 0 28px 36px rgba(9, 16, 87, 0.2);
+
     --nav-h: 56px;
     --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -151,6 +155,9 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.36);
     --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
     --shadow-lg: 0 28px 64px rgba(0, 0, 0, 0.55);
+
+    --shot-shadow-near: 0 6px 12px rgba(0, 0, 0, 0.45);
+    --shot-shadow-far: 0 28px 40px rgba(0, 0, 0, 0.55);
 }
 
 /* ---------- 2. Base ---------- */
@@ -723,12 +730,22 @@ app-screenshot {
     display: contents;
 }
 
+/* The screenshots are phone mockups on a transparent background. A
+   box-shadow and border-radius would outline the image's rectangle, which
+   shows up as a pale box around the phone and wedges past its corners.
+   drop-shadow follows the alpha instead, so it hugs the phone itself. */
 .shot {
     width: min(100%, 300px);
     height: auto; /* the width/height attributes only set the aspect ratio */
+    filter: drop-shadow(var(--shot-shadow-near)) drop-shadow(var(--shot-shadow-far));
+    transition: transform 0.4s var(--ease);
+}
+
+/* Opaque artwork, like the launch poster, is a card rather than a device */
+.shot--card {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    transition: transform 0.4s var(--ease);
+    filter: none;
 }
 
 .shot:hover {
