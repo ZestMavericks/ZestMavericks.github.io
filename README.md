@@ -60,12 +60,16 @@ overrides so it takes the same space as Poppins, and the page doesn't jump when
 the web font arrives. Pages preload the 400 and 700 weights. To add a weight,
 download its Latin `.woff2` from the Google Fonts CSS and add an `@font-face`.
 
-## Before you deploy
+## Deploying
 
-1. Replace `zestmavericks.com` with your real domain in the `<link rel="canonical">`
-   and `og:` tags of each page, plus `robots.txt` and `sitemap.xml`.
-2. Delete the old `style.css` — this one replaces it entirely.
-3. If your host isn't Netlify or Cloudflare Pages, port `_headers` (see below).
+GitHub Pages publishes `main` at https://zestmavericks.com (see `CNAME`), with HTTPS
+enforced. Before pushing:
+
+1. `python3 tools/check_links.py` must pass.
+2. Preview with `python3 -m http.server 8000`.
+
+`_config.yml` keeps `Kairos/`, `tools/` and this README off the published site;
+Jekyll also skips anything starting with `.` or `_`.
 
 ## Bugs that were fixed
 
@@ -83,19 +87,37 @@ download its Latin `.woff2` from the Google Fonts CSS and add an `@font-face`.
 
 ## Security
 
-- **Content-Security-Policy.** All JavaScript moved out of the HTML into `main.js`,
-  and every `style="..."` attribute became a class, so the policy needs neither
-  `'unsafe-inline'` nor `'unsafe-eval'`. It's in a `<meta>` tag as a fallback and in
-  `_headers` for real (`frame-ancestors` only works as a real header).
-- **`rel="noopener noreferrer"`** on every external link, so the destination can't
-  reach back into your tab via `window.opener`.
-- **HSTS, `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`**
-  in `_headers`.
+**What's enforced today.** GitHub Pages can't send custom response headers, so each
+page's `<meta http-equiv="Content-Security-Policy">` is the policy that actually runs:
+
+- scripts, styles, fonts and images from this site only (`'self'`); no
+  `'unsafe-inline'` or `'unsafe-eval'` anywhere, because every script is an external
+  file and there are no `style="..."` attributes;
+- **Trusted Types** (`require-trusted-types-for 'script'`): the browser refuses any
+  string written to `innerHTML` and similar sinks unless it comes from one of the named
+  policies `zm-header`, `zm-footer` or `zm-pricing`. A new component that writes HTML
+  needs its own policy, and its name added to the CSP on every page and in `_headers`;
+- `upgrade-insecure-requests`, `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`;
+- `connect-src` allows the contact form's Google Apps Script endpoint and nothing else.
+
+Also:
+
+- **HTTPS**: GitHub Pages redirects `http://` to `https://` (Enforce HTTPS is on).
+- **No third-party requests**: fonts are self-hosted, so the only external call is the
+  contact form.
+- **`rel="noopener noreferrer"`** on every link that opens a new tab.
 - **Form input is length-capped** (subject 120, name 80, email 254, message 2000) on
   both the client and in the markup, and errors are written with `textContent`,
   never `innerHTML`.
 - **Spam:** a honeypot field (`company`) plus a two-second minimum time-on-page.
   A bot that fills the trap gets a fake success and nothing is sent.
+- **`/.well-known/security.txt`** tells researchers where to report issues. Its
+  `Expires` date must be renewed yearly.
+
+**Not possible on GitHub Pages alone:** `frame-ancestors` / `X-Frame-Options`
+(clickjacking), HSTS, `X-Content-Type-Options` and `Permissions-Policy` only work as
+real headers. `_headers` holds the full set, ready for when a CDN (Cloudflare,
+Netlify) sits in front of the site.
 
 ### One thing you can't fix in the browser
 
@@ -109,29 +131,6 @@ true of any client-side form endpoint. Worth adding inside the Apps Script itsel
 Because the request is `mode: "no-cors"`, the browser can never read the response —
 a resolved promise is the only success signal available, which is why the code treats
 it that way rather than pretending to check a status code.
-
-### Apache (`.htaccess`)
-
-```apache
-<IfModule mod_headers.c>
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; upgrade-insecure-requests"
-  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-  Header always set X-Content-Type-Options "nosniff"
-  Header always set X-Frame-Options "DENY"
-  Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=()"
-</IfModule>
-```
-
-### Nginx
-
-```nginx
-add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; upgrade-insecure-requests" always;
-add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
-add_header X-Content-Type-Options "nosniff" always;
-add_header X-Frame-Options "DENY" always;
-add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-```
 
 ## Mobile
 
@@ -154,8 +153,7 @@ focus rings, form errors tied to inputs with `aria-describedby` and announced th
 
 ## Optional next steps
 
-- Self-host the Poppins `.woff2` files to drop the two Google Fonts round-trips (and
-  then remove `fonts.googleapis.com` from the CSP).
-- Export the screenshots as WebP with `<picture>` fallbacks.
-- Add `width` and `height` attributes to the screenshot `<img>` tags once you know
-  their pixel dimensions — that removes the last bit of layout shift.
+- Serve the screenshots as WebP/AVIF through `<app-screenshot>`, crop the transparent
+  margin off the MarkPDF mockups, and shrink the App Store badge (2560px wide, shown at
+  168px).
+- Put a CDN in front of the site to turn on the headers in `_headers`.
