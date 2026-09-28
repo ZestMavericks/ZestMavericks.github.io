@@ -20,56 +20,29 @@
 
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com"
+            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; require-trusted-types-for 'script'; trusted-types zm-header zm-footer zm-pricing; upgrade-insecure-requests"
         />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
 
         <link rel="icon" type="image/png" href="/assets/favicon.png" />
         <link rel="apple-touch-icon" href="/assets/favicon.png" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
+        <!-- Self-hosted Poppins (see css/style.css). crossorigin is required:
+             fonts are fetched in CORS mode, so without it the preload is wasted. -->
+        <link rel="preload" href="/fonts/poppins/poppins-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/fonts/poppins/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
         <link rel="stylesheet" href="/css/style.css" />
 
-        <!-- Not deferred: this has to set the theme before the first
-             paint, or dark mode visitors get a white flash. -->
+        <!-- Not deferred: these set the theme and draw the header before
+             the first paint, so there's no white flash and no late nav. -->
         <script src="/js/theme.js"></script>
+        <script src="/js/components/site-header.js"></script>
         <script src="/js/components/site-footer.js" defer></script>
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
 
-        <div class="site-header">
-            <nav class="site-nav" aria-label="Primary">
-                <a href="/">Home</a>
-                <a href="/markpdf/">MarkPDF</a>
-                <a href="/topdrawer/">TopDrawer</a>
-                <a href="/about/">About</a>
-                <a href="/contact/">Contact</a>
-            </nav>
-
-            <button
-                class="theme-toggle"
-                id="themeToggle"
-                type="button"
-                aria-pressed="false"
-                aria-label="Switch to dark mode"
-                title="Switch to dark mode"
-                hidden
-            >
-                <svg class="icon icon--sun" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
-                </svg>
-                <svg class="icon icon--moon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6z"></path>
-                </svg>
-            </button>
-        </div>
+        <site-header></site-header>
 
         <main id="main">
             <article class="legal">

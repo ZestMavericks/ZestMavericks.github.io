@@ -1,0 +1,13 @@
+# GitHub Pages builds this repo with Jekyll. There is no Jekyll site here; the
+# only job of this file is to keep things that aren't the website off
+# zestmavericks.com. Jekyll already skips anything starting with "." or "_"
+# (so .DS_Store, _headers and this file are never served).
+
+exclude:
+  - Kairos          # separate Firebase project: function source, rules, config
+  - tools           # local dev scripts (check_links.py)
+  - README.md       # repo notes, not a page
+
+# Jekyll skips dot-folders unless told otherwise; this one holds security.txt.
+include:
+  - .well-known

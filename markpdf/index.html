@@ -13,7 +13,6 @@
             content="MarkPDF is an intuitive PDF editor for iPhone and iPad. Scan, merge, split, delete pages, lock documents and summarise long PDFs with AI."
         />
 
-        <!-- TODO: replace zestmavericks.com with your live domain -->
         <link rel="canonical" href="https://zestmavericks.com/markpdf/" />
         <meta name="theme-color" content="#B7E0FF" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#0D131C" media="(prefers-color-scheme: dark)" />
@@ -32,73 +31,33 @@
 
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com"
+            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; require-trusted-types-for 'script'; trusted-types zm-header zm-footer zm-pricing; upgrade-insecure-requests"
         />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
 
         <link rel="icon" type="image/png" href="/assets/favicon.png" />
         <link rel="apple-touch-icon" href="/assets/favicon.png" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
+        <!-- Self-hosted Poppins (see css/style.css). crossorigin is required:
+             fonts are fetched in CORS mode, so without it the preload is wasted. -->
+        <link rel="preload" href="/fonts/poppins/poppins-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/fonts/poppins/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
         <link rel="stylesheet" href="/css/style.css" />
 
-        <!-- Not deferred: this has to set the theme before the first
-             paint, or dark mode visitors get a white flash. -->
+        <!-- Not deferred: these set the theme, draw the header and size the
+             screenshots before the first paint, so there's no white flash,
+             no late nav and no content jumping as screenshots appear. -->
         <script src="/js/theme.js"></script>
+        <script src="/js/components/site-header.js"></script>
+        <script src="/js/components/app-screenshot.js"></script>
         <script src="/js/components/site-footer.js" defer></script>
+        <script src="/js/components/site-pricing.js" defer></script>
     </head>
 
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
 
-        <div class="site-header">
-            <nav class="site-nav" aria-label="Primary">
-                <a href="/">Home</a>
-                <a href="/markpdf/" aria-current="page">MarkPDF</a>
-                <a href="/topdrawer/">TopDrawer</a>
-                <a href="/about/">About</a>
-                <a href="/contact/">Contact</a>
-            </nav>
-
-            <button
-                class="theme-toggle"
-                id="themeToggle"
-                type="button"
-                aria-pressed="false"
-                aria-label="Switch to dark mode"
-                title="Switch to dark mode"
-                hidden
-            >
-                <svg
-                    class="icon icon--sun"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    focusable="false"
-                >
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <path
-                        d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
-                    ></path>
-                </svg>
-                <svg
-                    class="icon icon--moon"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    focusable="false"
-                >
-                    <path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6z"></path>
-                </svg>
-            </button>
-        </div>
+        <site-header></site-header>
 
         <main id="main">
             <!-- Hero -->
@@ -106,7 +65,9 @@
                 <div class="container">
                     <img
                         class="app-icon"
-                        src="/assets/MarkPDF.png"
+                        src="/assets/icons/markpdf-384.webp"
+                        srcset="/assets/icons/markpdf-256.webp 256w, /assets/icons/markpdf-384.webp 384w"
+                        sizes="128px"
                         alt="MarkPDF app icon"
                         width="128"
                         height="128"
@@ -125,7 +86,13 @@
                             rel="noopener noreferrer"
                         >
                             <img
-                                src="/assets/AppStore-Badge.png"
+                                src="/assets/badges/app-store-504.webp"
+
+                                srcset="/assets/badges/app-store-336.webp 336w, /assets/badges/app-store-504.webp 504w"
+
+                                sizes="168px"
+                                width="168"
+                                height="50"
                                 alt="Download MarkPDF on the App Store"
                             />
                         </a>
@@ -138,13 +105,13 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
-                                src="/assets/Launch-Screen.png"
+                            <app-screenshot
+                                card
+                                name="markpdf/launch"
                                 alt="MarkPDF launch screen on iPhone"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="900"
+                                height="1955"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">The idea</p>
@@ -169,13 +136,12 @@
                 <div class="container">
                     <div class="showcase__grid showcase--flip">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
-                                src="/assets/Mark-Home-Screen.png"
+                            <app-screenshot
+                                name="markpdf/home"
                                 alt="The MarkPDF home screen listing saved documents"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="900"
+                                height="1848"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Home</p>
@@ -195,13 +161,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
-                                src="/assets/Scan-Screen.png"
+                            <app-screenshot
+                                name="markpdf/scan"
                                 alt="Scanning a page into MarkPDF with the camera"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="900"
+                                height="1848"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Scanner</p>
@@ -220,13 +185,12 @@
                 <div class="container">
                     <div class="showcase__grid showcase--flip">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
-                                src="/assets/Design-Screen.png"
+                            <app-screenshot
+                                name="markpdf/design"
                                 alt="MarkPDF's document editing interface"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="900"
+                                height="1848"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Design</p>
@@ -245,13 +209,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
-                                src="/assets/Delete-Screen.png"
+                            <app-screenshot
+                                name="markpdf/delete"
                                 alt="Selecting and deleting pages in MarkPDF"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="900"
+                                height="1848"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Pages</p>
@@ -270,13 +233,12 @@
                 <div class="container">
                     <div class="showcase__grid showcase--flip">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
-                                src="/assets/Lock-Screen.png"
+                            <app-screenshot
+                                name="markpdf/lock"
                                 alt="Locking a document with a password in MarkPDF"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="900"
+                                height="1848"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Privacy</p>
@@ -295,13 +257,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <img
-                                class="shot"
-                                src="/assets/Mark-Summarise-Screen.png"
+                            <app-screenshot
+                                name="markpdf/summarise"
                                 alt="MarkPDF summarising a document with AI"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                                width="900"
+                                height="1848"
+                            ></app-screenshot>
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">AI</p>
@@ -315,71 +276,7 @@
                 </div>
             </section>
 
-            <!-- Pricing -->
-            <section class="section section--dark bg-crimson" id="pricing">
-                <div class="container">
-                    <div class="center">
-                        <p class="eyebrow">Subscriptions</p>
-                        <h2>MarkPDF PRO</h2>
-                        <p class="lede">
-                            There's room to reset how we look at documents. This is our
-                            attempt at it.
-                        </p>
-                    </div>
-
-                    <div class="pricing-grid">
-                        <div class="plan">
-                            <p class="plan__name">Weekly</p>
-                            <p class="plan__price">$5.99<span>/Week</span></p>
-                            <p class="plan__note">Billed weekly</p>
-                            <ul class="feature-list">
-                                <li>Every Pro feature</li>
-                                <li>Good for a one off job</li>
-                                <li>No free trial on this plan</li>
-                            </ul>
-                        </div>
-
-                        <div class="plan plan--featured">
-                            <p class="plan__badge">Best value</p>
-                            <p class="plan__name">Monthly</p>
-                            <p class="plan__price">$9.99<span>/month</span></p>
-                            <p class="plan__note">7 day free trial</p>
-                            <ul class="feature-list">
-                                <li>Every Pro feature</li>
-                                <li>AI summaries and web page to PDF</li>
-                                <li>Priority support</li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                    <p class="lede center plan-fineprint">
-                        Prices shown in US dollars. Your local price and billing period
-                        appear in the App before you confirm. Subscriptions renew
-                        automatically until cancelled in your Apple Account settings.
-                    </p>
-
-                    <div class="center">
-                        <div class="btn-row">
-                            <a
-                                class="badge-link"
-                                href="https://apps.apple.com/in/app/id6737065841"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <img
-                                    src="/assets/AppStore-Badge.png"
-                                    alt="Download MarkPDF on the App Store"
-                                    loading="lazy"
-                                />
-                            </a>
-                            <a class="btn btn--ghost" href="/markpdf/terms/"
-                                >Terms and privacy</a
-                            >
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <site-pricing id="pricing" data-product="markpdf"></site-pricing>
         </main>
 
         <site-footer>

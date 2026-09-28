@@ -1,17 +1,32 @@
-# Security headers for Netlify / Cloudflare Pages.
-# Apache and Nginx equivalents are in README.md.
+# Response headers, in Netlify / Cloudflare Pages format.
+#
+# NOT ACTIVE: GitHub Pages ignores this file (Jekyll never publishes files
+# starting with "_", and Pages can't set custom headers). Until the site sits
+# behind a CDN that can, the <meta> CSP in each page is the only enforced
+# policy, and it can't do frame-ancestors, HSTS or nosniff.
+#
+# Kept ready for when a CDN goes in front of the site. On Cloudflare Pages or
+# Netlify this file works as-is; with Cloudflare proxying GitHub Pages, set
+# the same headers with a Transform Rule. Keep the CSP in sync with the pages.
+#
+# HSTS: two years, subdomains included. Only add "preload" (and submit at
+# hstspreload.org) once every subdomain is served over HTTPS for good;
+# preloading is hard to undo.
 
 /*
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; upgrade-insecure-requests
-  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; require-trusted-types-for 'script'; trusted-types zm-header zm-footer zm-pricing; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
 
 /assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
 /css/*

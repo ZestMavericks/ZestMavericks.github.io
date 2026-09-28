@@ -70,10 +70,10 @@
         return [
             '<div class="social-row">',
             '<a href="' + TWITTER + '" target="_blank" rel="noopener noreferrer">',
-            '<img src="/assets/Twitter.png" alt="Zest Mavericks on X" width="28" height="28">',
+            '<img src="/assets/icons/twitter-84.webp" srcset="/assets/icons/twitter-56.webp 56w, /assets/icons/twitter-84.webp 84w" sizes="28px" alt="Zest Mavericks on X" width="28" height="28">',
             "</a>",
             '<a href="mailto:' + EMAIL + '">',
-            '<img src="/assets/email.png" alt="Email Zest Mavericks" width="28" height="28">',
+            '<img src="/assets/icons/email-84.webp" srcset="/assets/icons/email-56.webp 56w, /assets/icons/email-84.webp 84w" sizes="28px" alt="Email Zest Mavericks" width="28" height="28">',
             "</a>",
             "</div>",
             '<nav class="footer-links" aria-label="Footer">' + links + "</nav>",
@@ -84,6 +84,22 @@
             "<g>" + waves + "</g>",
             "</svg>"
         ].join("");
+    }
+
+    /* Trusted Types. The page CSP (require-trusted-types-for 'script') blocks
+       any string written to innerHTML unless it comes from a named policy
+       the CSP lists. This policy only ever sees this file's own template. */
+    var policy =
+        window.trustedTypes && window.trustedTypes.createPolicy
+            ? window.trustedTypes.createPolicy("zm-footer", {
+                  createHTML: function (html) {
+                      return html;
+                  }
+              })
+            : null;
+
+    function toHTML(html) {
+        return policy ? policy.createHTML(html) : html;
     }
 
     if (!("customElements" in window)) return;
@@ -100,7 +116,7 @@
                    why innerHTML is safe here and keeps this to one file.
                    data-product only selects a key from LEGAL; it is never
                    written into the markup. */
-                this.innerHTML = template(this.dataset.product);
+                this.innerHTML = toHTML(template(this.dataset.product));
             }
         }
     );

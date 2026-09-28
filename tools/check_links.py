@@ -49,6 +49,11 @@ class Page(HTMLParser):
         if attrs.get("srcset"):
             for part in attrs["srcset"].split(","):
                 self.refs.append((f"<{tag} srcset>", part.split()[0]))
+        if tag == "app-screenshot" and attrs.get("name"):
+            # js/components/app-screenshot.js builds these URLs from name
+            for width in (600, 900):
+                for fmt in ("avif", "webp"):
+                    self.refs.append(("<app-screenshot name>", f"/assets/shots/{attrs['name']}-{width}.{fmt}"))
         if tag == "meta":
             prop = attrs.get("property") or attrs.get("name") or ""
             if prop in ("og:url", "og:image", "twitter:image") and attrs.get("content"):
