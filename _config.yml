@@ -7,3 +7,7 @@ exclude:
   - Kairos          # separate Firebase project: function source, rules, config
   - tools           # local dev scripts (check_links.py)
   - README.md       # repo notes, not a page
+
+# Jekyll skips dot-folders unless told otherwise; this one holds security.txt.
+include:
+  - .well-known
