@@ -49,14 +49,19 @@
     --cream: #fff5cd;
     --lavender: #cdc1ff;
     --navy: #384b70;
-    --crimson: #b8001f;
     --mist: #f4f6ff;
     --smoke: #f7f7f7;
     --night: #181c14;
 
-    /* Status. Separate from --crimson on purpose: one is a section
-       background, the other is error text, and they need to move
-       independently in dark mode. */
+    /* Zest: the pricing wash. A sunset, pale apricot at the top deepening
+       to tangerine where it meets the night footer. The 55% ink is a touch
+       stronger here, since 56% navy on tangerine falls short of 4.5:1. */
+    --zest-top: #ffe8cc;
+    --zest: #ffbf94;
+    --zest-glow: rgba(255, 235, 0, 0.24);
+    --zest-ink-55: rgba(9, 16, 87, 0.7);
+
+    /* Status */
     --danger: #b8001f;
     --ok: #0a7a4f;
 
@@ -125,10 +130,14 @@
     --cream: #241d0c;
     --lavender: #1c1a2b;
     --navy: #131c2a;
-    --crimson: #2b0a12;
     --mist: #0f1621;
     --smoke: #101722;
     --night: #080b10;
+
+    --zest-top: #1e150e;
+    --zest: #3a200f;
+    --zest-glow: rgba(255, 150, 60, 0.1);
+    --zest-ink-55: rgba(233, 238, 251, 0.62);
 
     --danger: #ff8a94;
     --ok: #45d39a;
@@ -257,7 +266,13 @@ select {
 .bg-lavender { background-color: var(--lavender); }
 .bg-mist { background-color: var(--mist); }
 .bg-navy { background-color: var(--navy); }
-.bg-crimson { background-color: var(--crimson); }
+.bg-zest {
+    --ink-55: var(--zest-ink-55);
+    background-color: var(--zest);
+    background-image:
+        radial-gradient(70% 45% at 50% 18%, var(--zest-glow), transparent 72%),
+        linear-gradient(180deg, var(--zest-top), var(--zest));
+}
 
 .center { text-align: center; }
 .center .lede,
@@ -718,7 +733,8 @@ p {
     max-width: var(--measure);
 }
 
-.showcase__copy h2 + p {
+.showcase__copy h2 + p,
+h2 + .lede {
     margin-top: 1rem;
 }
 
@@ -791,16 +807,48 @@ p {
 }
 
 /* ---------- 10. Pricing ---------- */
+/* One column per plan, so three plans sit in one row instead of leaving
+   the third alone underneath. The count comes from the markup: add or
+   remove a .plan and the grid follows. Below the breakpoints they stack
+   in a single centred column. */
 .pricing-grid {
+    --plans: 2;
+    --plan-max: 340px;
+    --plan-gap: clamp(1.25rem, 3vw, 2rem);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-    gap: clamp(1.25rem, 3vw, 2rem);
-    max-width: 780px;
+    grid-template-columns: repeat(var(--plans), minmax(0, 1fr));
+    gap: var(--plan-gap);
+    max-width: calc(var(--plans) * var(--plan-max) + (var(--plans) - 1) * var(--plan-gap));
     margin: 2.5rem auto 0;
 }
 
+.pricing-grid:has(> .plan:nth-child(3)) {
+    --plans: 3;
+}
+
+@media (max-width: 960px) {
+    .pricing-grid:has(> .plan:nth-child(3)) {
+        --plans: 1;
+        --plan-max: 440px;
+    }
+}
+
+@media (max-width: 640px) {
+    .pricing-grid {
+        --plans: 1;
+        --plan-max: 440px;
+    }
+}
+
+/* Each plan borrows the grid's rows (name, price, note, list), so the
+   prices and lists line up across cards even when one note wraps. */
 .plan {
     position: relative;
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+    align-content: start;
     padding: clamp(1.75rem, 4vw, 2.25rem);
     background: var(--surface);
     border: 2px solid transparent;
@@ -860,6 +908,7 @@ p {
 
 .plan .feature-list {
     margin-top: 1.5rem;
+    align-content: start; /* shorter lists keep their spacing in a taller row */
 }
 
 .plan .feature-list li {
