@@ -56,6 +56,10 @@ PAGES = {
     "index.html": "/",
     "markpdf/index.html": "/markpdf/",
     "markpdf/how-to/index.html": "/markpdf/how-to/",
+    "markpdf/compare/preview/index.html": "/markpdf/compare/preview/",
+    "markpdf/compare/pdf-expert-acrobat/index.html": "/markpdf/compare/pdf-expert-acrobat/",
+    "markpdf/whats-new/index.html": "/markpdf/whats-new/",
+    "hi/markpdf/index.html": "/hi/markpdf/",
     "topdrawer/index.html": "/topdrawer/",
     "topdrawer/how-to/index.html": "/topdrawer/how-to/",
     "press/index.html": "/press/",
@@ -93,6 +97,23 @@ NAV = [
 # In the footer only; the header nav is already full on phones
 def footer_extra(product):
     return [(f"/{product}/how-to/", "Guides"), ("/press/", "Press")]
+
+# Pages with a translation: English URL -> {language: URL}. Each side gets hreflang links.
+TRANSLATIONS = {"/markpdf/": {"hi": "/hi/markpdf/"}}
+
+LABELS_HI = {
+    "Home": "होम", "About": "हमारे बारे में", "Contact": "संपर्क", "Guides": "गाइड", "Press": "प्रेस",
+    "Terms and privacy": "शर्तें और गोपनीयता", "Primary": "मुख्य", "Footer": "फ़ुटर",
+}
+
+
+def lang_of(url):
+    return "hi" if url and url.startswith("/hi/") else "en"
+
+
+def label(text, lang):
+    return LABELS_HI.get(text, text) if lang == "hi" else text
+
 
 LEGAL = {
     "markpdf": [("/markpdf/terms/", "Terms and privacy")],
@@ -266,13 +287,14 @@ def webp_size(path):
 
 
 def header(url):
+    lang = lang_of(url)
     links = []
-    for href, label in NAV:
+    for href, text in NAV:
         current = ' aria-current="page"' if href == url else ""
-        links.append(f'    <a href="{href}"{current}>{label}</a>')
+        links.append(f'    <a href="{href}"{current}>{label(text, lang)}</a>')
     return [
         '<header class="site-header">',
-        '<nav class="site-nav" aria-label="Primary">',
+        f'<nav class="site-nav" aria-label="{label("Primary", lang)}">',
         *links,
         "</nav>",
         "<!-- Ships hidden; js/theme.js reveals it, so it never sits there dead without JavaScript -->",
@@ -285,9 +307,10 @@ def header(url):
     ]
 
 
-def footer(product="markpdf"):
+def footer(product="markpdf", lang="en"):
     legal = LEGAL.get(product, LEGAL["markpdf"])
-    links = [f'    <a href="{href}">{esc(label)}</a>' for href, label in NAV + footer_extra(product if product in LEGAL else "markpdf") + legal]
+    links = [f'    <a href="{href}">{esc(label(text, lang))}</a>'
+             for href, text in NAV + footer_extra(product if product in LEGAL else "markpdf") + legal]
 
     def icon(slug, alt):
         return (
@@ -306,7 +329,7 @@ def footer(product="markpdf"):
         f'    <a href="{X_URL}" target="_blank" rel="noopener noreferrer">{icon("twitter", "Zest Mavericks on X")}</a>',
         f'    <a href="mailto:{EMAIL}">{icon("email", "Email Zest Mavericks")}</a>',
         "</div>",
-        '<nav class="footer-links" aria-label="Footer">',
+        f'<nav class="footer-links" aria-label="{label("Footer", lang)}">',
         *links,
         "</nav>",
         '<p class="footer-note">{ } &amp; designed with &#x1F90D; in India</p>',
@@ -414,6 +437,19 @@ def pricing(product):
         "    </div>",
         "</section>",
     ]
+    return out
+
+
+PLAN_NAMES_HI = {"Weekly": ("साप्ताहिक", "सप्ताह"), "Monthly": ("मासिक", "महीना"), "Yearly": ("वार्षिक", "साल")}
+
+
+def price_list(app_key, lang):
+    plans = PRICING[app_key]["plans"]
+    out = ['<ul class="price-list">']
+    for plan in plans:
+        name, per = PLAN_NAMES_HI.get(plan["name"], (plan["name"], plan["per"])) if lang == "hi" else (plan["name"], plan["per"])
+        out.append(f'    <li><span>{esc(name)}</span> <strong>{esc(plan["price"])}</strong>/{esc(per)}</li>')
+    out.append("</ul>")
     return out
 
 
@@ -555,7 +591,7 @@ OG_CARDS = {
 
 
 def og_card(url):
-    if url.startswith("/markpdf/"):
+    if url.startswith("/markpdf/") or url.startswith("/hi/markpdf/"):
         return OG_CARDS["markpdf"]
     if url.startswith("/topdrawer/"):
         return OG_CARDS["topdrawer"]
@@ -664,6 +700,27 @@ def structured_data(url):
             breadcrumbs(home, (app["name"], app["url"]), ("Guides", hub_url)),
         ]
     graphs.update({
+        "/markpdf/compare/preview/": [
+            {"@type": "WebPage", "url": SITE + "/markpdf/compare/preview/",
+             "name": "MarkPDF vs Preview on iPhone", "about": {"@id": SITE + "/markpdf/#app"}, "publisher": org},
+            breadcrumbs(home, ("MarkPDF", "/markpdf/"), ("MarkPDF vs Preview", "/markpdf/compare/preview/")),
+        ],
+        "/markpdf/compare/pdf-expert-acrobat/": [
+            {"@type": "WebPage", "url": SITE + "/markpdf/compare/pdf-expert-acrobat/",
+             "name": "MarkPDF vs PDF Expert vs Adobe Acrobat on iPhone", "about": {"@id": SITE + "/markpdf/#app"},
+             "publisher": org},
+            breadcrumbs(home, ("MarkPDF", "/markpdf/"),
+                        ("MarkPDF vs PDF Expert vs Acrobat", "/markpdf/compare/pdf-expert-acrobat/")),
+        ],
+        "/markpdf/whats-new/": [
+            {"@type": "WebPage", "url": SITE + "/markpdf/whats-new/", "name": "What's new in MarkPDF",
+             "about": {"@id": SITE + "/markpdf/#app"}, "publisher": org},
+            breadcrumbs(home, ("MarkPDF", "/markpdf/"), ("What's new", "/markpdf/whats-new/")),
+        ],
+        "/hi/markpdf/": [
+            {"@type": "WebPage", "url": SITE + "/hi/markpdf/", "inLanguage": "hi", "name": "MarkPDF",
+             "about": {"@id": SITE + "/markpdf/#app"}, "publisher": org},
+        ],
         "/press/": [
             {"@type": "WebPage", "url": SITE + "/press/", "name": "Zest Mavericks press kit", "about": org},
             breadcrumbs(home, ("Press", "/press/")),
@@ -703,8 +760,15 @@ def meta(url):
         f'<meta property="og:image:alt" content="{esc(alt)}" />',
         f'<meta name="twitter:image" content="{SITE}{image}" />',
     ]
+    # hreflang: every language version lists all of them, plus x-default (English)
+    for english, others in TRANSLATIONS.items():
+        if url == english or url in others.values():
+            out.append(f'<link rel="alternate" hreflang="en" href="{SITE}{english}" />')
+            for lang, other in others.items():
+                out.append(f'<link rel="alternate" hreflang="{lang}" href="{SITE}{other}" />')
+            out.append(f'<link rel="alternate" hreflang="x-default" href="{SITE}{english}" />')
     # Safari on iPhone shows a native "Get" bar for the app this page is about
-    banner_app = {"/": "markpdf", "/markpdf/": "markpdf", "/topdrawer/": "topdrawer"}.get(url)
+    banner_app = {"/": "markpdf", "/markpdf/": "markpdf", "/hi/markpdf/": "markpdf", "/topdrawer/": "topdrawer"}.get(url)
     if banner_app and APPS[banner_app]["app_store_id"] and APPS[banner_app]["launch"] != "coming":
         out.append(f'<meta name="apple-itunes-app" content="app-id={APPS[banner_app]["app_store_id"]}" />')
     data = json.dumps(structured_data(url), indent=2, ensure_ascii=False).replace("</", "<\\/")
@@ -729,7 +793,7 @@ def render_block(kind, args, url):
     if kind == "header":
         return header(url)
     if kind == "footer":
-        return footer(args.get("product", "markpdf"))
+        return footer(args.get("product", "markpdf"), lang_of(url))
     if kind == "pricing":
         return pricing(args["product"])
     if kind == "screenshot":
@@ -738,6 +802,10 @@ def render_block(kind, args, url):
         return meta(url)
     if kind == "guides":
         return guides_list(args.get("app", "markpdf"))
+    if kind == "store-button":
+        return store_button(args["app"], args.get("alt", f"Download {APPS[args['app']]['name']} on the App Store"))
+    if kind == "price-list":
+        return price_list(args["app"], args.get("lang", "en"))
     if kind == "hero-cta":
         return hero_cta(args["app"])
     if kind == "guide-cta":
@@ -813,6 +881,10 @@ def llms_txt():
     lines += [
         "## Optional",
         "",
+        f"- [MarkPDF vs Preview on iPhone]({SITE}/markpdf/compare/preview/)",
+        f"- [MarkPDF vs PDF Expert vs Adobe Acrobat]({SITE}/markpdf/compare/pdf-expert-acrobat/)",
+        f"- [What's new in MarkPDF]({SITE}/markpdf/whats-new/)",
+        f"- [MarkPDF in Hindi]({SITE}/hi/markpdf/)",
         f"- [Press kit]({SITE}/press/): fact sheets, logos and screenshots",
         f"- [About]({SITE}/about/)",
         f"- [Contact]({SITE}/contact/)",

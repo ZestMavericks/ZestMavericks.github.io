@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="hi">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+
+        <title>MarkPDF: iPhone के लिए PDF एडिटर और स्कैनर | Zest Mavericks</title>
+        <meta
+            name="description"
+            content="MarkPDF iPhone के लिए PDF एडिटर और स्कैनर है। दस्तावेज़ स्कैन करें, PDF पर साइन करें, उन्हें जोड़ें, पन्ने हटाएँ, पासवर्ड से लॉक करें और लंबी PDF का AI से सारांश पाएँ।"
+        />
+
+        <link rel="canonical" href="https://zestmavericks.com/hi/markpdf/" />
+        <meta name="theme-color" content="#B7E0FF" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0D131C" media="(prefers-color-scheme: dark)" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Zest Mavericks" />
+        <meta property="og:locale" content="hi_IN" />
+        <meta property="og:title" content="MarkPDF: iPhone के लिए PDF एडिटर और स्कैनर" />
+        <meta
+            property="og:description"
+            content="MarkPDF iPhone के लिए PDF एडिटर और स्कैनर है। दस्तावेज़ स्कैन करें, PDF पर साइन करें, उन्हें जोड़ें, पन्ने हटाएँ, पासवर्ड से लॉक करें और लंबी PDF का AI से सारांश पाएँ।"
+        />
+        <meta property="og:url" content="https://zestmavericks.com/hi/markpdf/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@zestmavericks" />
+
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests"
+        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+        <link rel="icon" type="image/png" href="/assets/favicon.png" />
+        <link rel="apple-touch-icon" href="/assets/favicon.png" />
+
+        <!-- Self-hosted Poppins (see css/style.css). crossorigin is required:
+             fonts are fetched in CORS mode, so without it the preload is wasted. -->
+        <link rel="preload" href="/fonts/poppins/poppins-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/fonts/poppins/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="/css/style.css" />
+
+        <!-- Not deferred: sets the theme before the first paint, so dark
+             mode visitors never get a white flash. -->
+        <script src="/js/theme.js"></script>
+
+        <!-- render:meta -->
+        <meta property="og:image" content="https://zestmavericks.com/assets/og/markpdf.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="MarkPDF, the PDF editor and scanner for iPhone, by Zest Mavericks" />
+        <meta name="twitter:image" content="https://zestmavericks.com/assets/og/markpdf.jpg" />
+        <link rel="alternate" hreflang="en" href="https://zestmavericks.com/markpdf/" />
+        <link rel="alternate" hreflang="hi" href="https://zestmavericks.com/hi/markpdf/" />
+        <link rel="alternate" hreflang="x-default" href="https://zestmavericks.com/markpdf/" />
+        <meta name="apple-itunes-app" content="app-id=6737065841" />
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "url": "https://zestmavericks.com/hi/markpdf/",
+              "inLanguage": "hi",
+              "name": "MarkPDF",
+              "about": {
+                "@id": "https://zestmavericks.com/markpdf/#app"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "@id": "https://zestmavericks.com/#organization",
+                "name": "Zest Mavericks",
+                "url": "https://zestmavericks.com/"
+              }
+            }
+          ]
+        }
+        </script>
+        <!-- /render:meta -->
+    </head>
+
+    <body>
+        <a class="skip-link" href="#main">सामग्री पर जाएँ</a>
+
+        <!-- render:header -->
+        <header class="site-header">
+        <nav class="site-nav" aria-label="मुख्य">
+            <a href="/">होम</a>
+            <a href="/markpdf/">MarkPDF</a>
+            <a href="/topdrawer/">TopDrawer</a>
+            <a href="/about/">हमारे बारे में</a>
+            <a href="/contact/">संपर्क</a>
+        </nav>
+        <!-- Ships hidden; js/theme.js reveals it, so it never sits there dead without JavaScript -->
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode" hidden>
+            <svg class="icon icon--sun" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+            <svg class="icon icon--moon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6z"></path></svg>
+        </button>
+        </header>
+        <!-- /render:header -->
+
+        <main id="main">
+            <article class="guide">
+                <p class="eyebrow">Zest Mavericks</p>
+                <h1>MarkPDF</h1>
+                <p class="lede">iPhone के लिए PDF एडिटर और स्कैनर। रोज़ के दस्तावेज़ों को देखने और सँभालने का एक नया, आसान तरीका।</p>
+
+                <div class="btn-row">
+                    <!-- render:store-button app="markpdf" alt="App Store से MarkPDF डाउनलोड करें" -->
+                    <a class="badge-link" href="https://apps.apple.com/app/id6737065841" target="_blank" rel="noopener noreferrer">
+                        <img src="/assets/badges/app-store-504.webp" srcset="/assets/badges/app-store-336.webp 336w, /assets/badges/app-store-504.webp 504w" sizes="168px" alt="App Store से MarkPDF डाउनलोड करें" width="168" height="50" loading="lazy" />
+                    </a>
+                    <!-- /render:store-button -->
+                </div>
+                <p class="lang-switch"><a href="/markpdf/" hreflang="en" lang="en">Read in English</a></p>
+
+                <h2>MarkPDF क्या कर सकता है</h2>
+                <ul>
+                    <li>कैमरे से कागज़ स्कैन करके PDF बनाएँ।</li>
+                    <li>PDF पर साइन करें, फ़ॉर्म भरें और नोट्स जोड़ें।</li>
+                    <li>कई PDF जोड़ें, बाँटें, और पन्ने हटाएँ या क्रम बदलें।</li>
+                    <li>ज़रूरी दस्तावेज़ों को पासवर्ड से लॉक करें।</li>
+                    <li>बड़ी फ़ाइलों को कंप्रेस करें, और PDF का मौजूदा टेक्स्ट बदलें।</li>
+                    <li>लंबी PDF का AI से सारांश पाएँ, ताकि पहले पता चले कि उसमें क्या है।</li>
+                </ul>
+                <p>स्कैन करना मुफ़्त है। बाकी सभी सुविधाएँ MarkPDF Pro में हैं। ऐप हिंदी समेत आठ भाषाओं में उपलब्ध है।</p>
+
+                <h2>कीमत</h2>
+                <!-- render:price-list app="markpdf" lang="hi" -->
+                <ul class="price-list">
+                    <li><span>साप्ताहिक</span> <strong>$7.99</strong>/सप्ताह</li>
+                    <li><span>मासिक</span> <strong>$12.99</strong>/महीना</li>
+                    <li><span>वार्षिक</span> <strong>$39.99</strong>/साल</li>
+                </ul>
+                <!-- /render:price-list -->
+                <p>कीमतें अमेरिकी डॉलर में हैं; आपके देश की कीमत खरीदने से पहले App Store में दिखेगी। मासिक और वार्षिक प्लान पर एक बार 7 दिन का मुफ़्त ट्रायल मिलता है। सब्सक्रिप्शन अपने-आप रिन्यू होता है, जब तक आप उसे अपनी Apple Account सेटिंग्स में रद्द न करें।</p>
+
+                <h2>आपकी गोपनीयता</h2>
+                <p>आपके दस्तावेज़ आपके iPhone पर ही रहते हैं। सिर्फ़ AI सारांश के लिए, उसी एक दस्तावेज़ का टेक्स्ट हमारे AI प्रदाता को भेजा जाता है, और सारांश बनने के बाद रखा नहीं जाता। पूरी जानकारी <a href="/markpdf/terms/" hreflang="en">शर्तों और गोपनीयता नीति</a> में है (अंग्रेज़ी में)।</p>
+
+                <h2>ज़रूरतें</h2>
+                <p>iOS 16.0 या उसके बाद के वर्ज़न वाला iPhone।</p>
+            </article>
+        </main>
+
+        <!-- render:footer -->
+        <footer class="site-footer">
+        <div class="social-row">
+            <a href="https://x.com/zestmavericks" target="_blank" rel="noopener noreferrer"><img src="/assets/icons/twitter-84.webp" srcset="/assets/icons/twitter-56.webp 56w, /assets/icons/twitter-84.webp 84w" sizes="28px" alt="Zest Mavericks on X" width="28" height="28" /></a>
+            <a href="mailto:zestmavericks@gmail.com"><img src="/assets/icons/email-84.webp" srcset="/assets/icons/email-56.webp 56w, /assets/icons/email-84.webp 84w" sizes="28px" alt="Email Zest Mavericks" width="28" height="28" /></a>
+        </div>
+        <nav class="footer-links" aria-label="फ़ुटर">
+            <a href="/">होम</a>
+            <a href="/markpdf/">MarkPDF</a>
+            <a href="/topdrawer/">TopDrawer</a>
+            <a href="/about/">हमारे बारे में</a>
+            <a href="/contact/">संपर्क</a>
+            <a href="/markpdf/how-to/">गाइड</a>
+            <a href="/press/">प्रेस</a>
+            <a href="/markpdf/terms/">शर्तें और गोपनीयता</a>
+        </nav>
+        <p class="footer-note">{ } &amp; designed with &#x1F90D; in India</p>
+        <p class="footer-fine">&copy; 2026 Zest Mavericks Pvt. Ltd. All rights reserved.</p>
+        <svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"></path></defs>
+            <g>
+                <use href="#gentle-wave" x="50" y="0" fill="#03ffff" fill-opacity="0.2"></use>
+                <use href="#gentle-wave" x="50" y="3" fill="#03ffff" fill-opacity="0.5"></use>
+                <use href="#gentle-wave" x="50" y="6" fill="#03ffff" fill-opacity="0.9"></use>
+            </g>
+        </svg>
+        </footer>
+        <!-- /render:footer -->
+    </body>
+</html>

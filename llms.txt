@@ -38,6 +38,10 @@ TopDrawer is a private vault for iPhone. Save text, links, screenshots, PDFs and
 
 ## Optional
 
+- [MarkPDF vs Preview on iPhone](https://zestmavericks.com/markpdf/compare/preview/)
+- [MarkPDF vs PDF Expert vs Adobe Acrobat](https://zestmavericks.com/markpdf/compare/pdf-expert-acrobat/)
+- [What's new in MarkPDF](https://zestmavericks.com/markpdf/whats-new/)
+- [MarkPDF in Hindi](https://zestmavericks.com/hi/markpdf/)
 - [Press kit](https://zestmavericks.com/press/): fact sheets, logos and screenshots
 - [About](https://zestmavericks.com/about/)
 - [Contact](https://zestmavericks.com/contact/)

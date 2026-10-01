@@ -1495,6 +1495,118 @@ h2 + .lede {
     text-underline-offset: 3px;
 }
 
+/* Comparison tables: the only wide element on a guide page, so it scrolls
+   in its own box on phones instead of pushing the page sideways */
+.guide--wide {
+    width: min(100% - (var(--gutter) * 2), 980px);
+}
+
+.compare-wrap {
+    margin-top: 1.25rem;
+    overflow-x: auto;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.compare {
+    --ink: var(--ink-card);
+    --ink-70: var(--ink-card-70);
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+}
+
+.compare th,
+.compare td {
+    padding: 0.75rem 0.9rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--surface-line);
+    color: var(--ink-70);
+}
+
+.compare thead th,
+.compare tbody th {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.compare tbody th {
+    width: 22%;
+}
+
+.compare tr:last-child th,
+.compare tr:last-child td {
+    border-bottom: 0;
+}
+
+.compare th:nth-child(2),
+.compare td:nth-child(2) {
+    background: var(--surface-soft);
+}
+
+.compare .is-free {
+    color: var(--ok);
+    font-weight: 600;
+}
+
+/* Release notes */
+.changelog {
+    margin-top: 2rem;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1.75rem;
+}
+
+.changelog li + li {
+    margin-top: 0;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--surface-line);
+}
+
+.changelog h2 {
+    margin-top: 0;
+    font-size: var(--text-lg);
+}
+
+.changelog .updated {
+    margin-top: 0.25rem;
+}
+
+/* Prices on translated pages */
+.price-list {
+    list-style: none;
+    padding-left: 0 !important;
+}
+
+.price-list strong {
+    color: var(--ink);
+}
+
+/* A row of related links under a section */
+.more-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1.75rem;
+    font-size: var(--text-sm);
+}
+
+.more-links a,
+.lang-switch a {
+    color: var(--ink);
+    text-underline-offset: 3px;
+}
+
+.lang-switch {
+    font-size: var(--text-sm);
+}
+
 /* Press kit */
 .press .press-copy {
     font-size: var(--text-base);
