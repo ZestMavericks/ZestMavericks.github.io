@@ -1,3 +1,6 @@
+# Every crawler is welcome, search engines and AI alike, including the ones
+# that train models (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended):
+# a small studio wants to be known.
 User-agent: *
 Allow: /
 
