@@ -34,19 +34,31 @@ Opening a file straight from Finder (`file://`) won't load CSS or images.
 
 ## Shared pieces
 
-Anything that repeats across pages is a small custom element in `js/components/`,
-so it's edited in one place. No build step: each file renders plain markup that
-`css/style.css` styles as usual.
+Anything that repeats across pages (header, footer, pricing, screenshots, the
+structured data in each `<head>`, and `sitemap.xml`) is written into the HTML by
+`tools/render_site.py`. Pages mark where each piece goes, and everything between
+the markers is regenerated on every run:
 
-| Tag | What it is | Load it with |
-| --- | --- | --- |
-| `<site-header>` | nav pill and theme toggle; highlights the current page by itself | `<script src="/js/components/site-header.js">` in `<head>`, **not** deferred, right after `theme.js` |
-| `<site-footer>` | footer; `data-product="topdrawer"` swaps in TopDrawer's legal links | `site-footer.js`, `defer` |
-| `<site-pricing id="pricing" data-product="markpdf">` | the plans section; every product's prices live in `PRODUCTS` in the script | `site-pricing.js`, `defer` |
-| `<app-screenshot name alt width height>` | one app screenshot from `assets/shots/<name>-{600,900}.{avif,webp}`; width/height are the 900w file's size; add `card` for opaque artwork | `app-screenshot.js` in `<head>`, **not** deferred, after `site-header.js` |
+```html
+<!-- render:header --> ... <!-- /render:header -->
+<!-- render:footer product="topdrawer" --> ... <!-- /render:footer -->
+<!-- render:pricing product="markpdf" --> ... <!-- /render:pricing -->
+<!-- render:screenshot name="markpdf/scan" alt="..." card --> ... <!-- /render:screenshot -->
+<!-- render:meta --> ... <!-- /render:meta -->   (JSON-LD and the Smart App Banner)
+```
 
-Run `python3 tools/check_links.py` after changing any of them: it checks the
-paths inside the scripts as well as the pages.
+Edit the data and templates in the script, never the generated HTML, then run:
+
+```
+python3 tools/render_site.py           # rewrite pages and sitemap.xml
+python3 tools/render_site.py --check   # fails if a page is out of date
+```
+
+Why not JavaScript components: AI crawlers (GPTBot, ClaudeBot, PerplexityBot)
+never run JavaScript, so anything drawn in the browser, prices included, was
+invisible to them. Now the committed HTML is complete, and there's still nothing
+to build at deploy. Prices and app facts live once in the script and feed the
+visible page, the structured data and the sitemap alike.
 
 ## Images
 
@@ -61,8 +73,8 @@ The PNGs in `assets/` are masters and aren't shown directly any more (except as
   as WebP at 2x and 3x (AVIF is bigger than WebP at these sizes).
 
 To add a screenshot: put the PNG in `assets/`, add a line to the script, run it
-(needs `brew install webp libavif`), then add an `<app-screenshot name="...">`.
-`tools/check_links.py` checks that every `name` has all four files.
+(needs `brew install webp libavif`), then add a `render:screenshot` marker and run
+`tools/render_site.py`; it reads the width and height from the WebP itself.
 
 ## Fonts
 
@@ -81,7 +93,7 @@ download its Latin `.woff2` from the Google Fonts CSS and add an `@font-face`.
 GitHub Pages publishes `main` at https://zestmavericks.com (see `CNAME`), with HTTPS
 enforced. Before pushing:
 
-1. `python3 tools/check_links.py` must pass.
+1. `python3 tools/render_site.py --check` and `python3 tools/check_links.py` must pass.
 2. Preview with `python3 -m http.server 8000`.
 
 `_config.yml` keeps `Kairos/`, `tools/` and this README off the published site;
@@ -109,10 +121,10 @@ page's `<meta http-equiv="Content-Security-Policy">` is the policy that actually
 - scripts, styles, fonts and images from this site only (`'self'`); no
   `'unsafe-inline'` or `'unsafe-eval'` anywhere, because every script is an external
   file and there are no `style="..."` attributes;
-- **Trusted Types** (`require-trusted-types-for 'script'`): the browser refuses any
-  string written to `innerHTML` and similar sinks unless it comes from one of the named
-  policies `zm-header`, `zm-footer` or `zm-pricing`. A new component that writes HTML
-  needs its own policy, and its name added to the CSP on every page and in `_headers`;
+- **Trusted Types** (`require-trusted-types-for 'script'; trusted-types 'none'`): no
+  script on the site writes HTML from strings, so the browser refuses every
+  `innerHTML`-style write and no script can create a policy to get around it. Build
+  DOM with `createElement` and `textContent`;
 - `upgrade-insecure-requests`, `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`;
 - `connect-src` allows the contact form's Google Apps Script endpoint and nothing else.
 
