@@ -854,10 +854,9 @@ p {
     justify-content: center;
 }
 
-/* <app-screenshot> renders picture > img.shot; both wrappers step out of the
-   layout so the img is the grid item, sized by .shot */
-app-screenshot,
-app-screenshot picture {
+/* tools/render_site.py wraps each screenshot in picture.shot-picture; the
+   picture steps out of the layout so the img is the grid item, sized by .shot */
+.shot-picture {
     display: contents;
 }
 
@@ -961,10 +960,6 @@ h2 + .lede {
 }
 
 /* ---------- 10. Pricing ---------- */
-site-pricing {
-    display: block;
-}
-
 /* One column per plan, so three plans sit in one row instead of leaving
    the third alone underneath. The count comes from the markup: add or
    remove a .plan and the grid follows. Below the breakpoints they stack
@@ -1312,24 +1307,6 @@ site-pricing {
 }
 
 /* ---------- 13. Footer ---------- */
-site-footer {
-    display: block;
-    background: var(--night);
-    color: var(--white);
-}
-
-/* Shown only when JavaScript is off, so the page never ends on nothing */
-.footer-fallback {
-    padding: 2.5rem var(--gutter);
-    text-align: center;
-    font-size: var(--text-sm);
-}
-
-.footer-fallback a {
-    color: var(--white);
-    text-underline-offset: 4px;
-}
-
 .site-footer {
     position: relative;
     isolation: isolate;

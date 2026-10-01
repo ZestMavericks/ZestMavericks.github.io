@@ -7,10 +7,10 @@
             content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
 
-        <title>MarkPDF | A fresh way to work with PDFs</title>
+        <title>MarkPDF: PDF Editor &amp; Scanner for iPhone | Zest Mavericks</title>
         <meta
             name="description"
-            content="MarkPDF is an intuitive PDF editor for iPhone and iPad. Scan, merge, split, delete pages, lock documents and summarise long PDFs with AI."
+            content="MarkPDF (Mark PDF on the App Store) is a PDF editor and scanner for iPhone. Scan, sign, merge, split and lock PDFs, delete pages and summarise long PDFs with AI."
         />
 
         <link rel="canonical" href="https://zestmavericks.com/markpdf/" />
@@ -19,7 +19,7 @@
 
         <meta property="og:type" content="product" />
         <meta property="og:site_name" content="Zest Mavericks" />
-        <meta property="og:title" content="MarkPDF | A fresh way to work with PDFs" />
+        <meta property="og:title" content="MarkPDF: PDF Editor &amp; Scanner for iPhone" />
         <meta
             property="og:description"
             content="Scan, edit, lock and summarise your documents. Out now on the App Store."
@@ -31,7 +31,7 @@
 
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; require-trusted-types-for 'script'; trusted-types zm-header zm-footer zm-pricing; upgrade-insecure-requests"
+            content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests"
         />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -44,20 +44,112 @@
         <link rel="preload" href="/fonts/poppins/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
         <link rel="stylesheet" href="/css/style.css" />
 
-        <!-- Not deferred: these set the theme, draw the header and size the
-             screenshots before the first paint, so there's no white flash,
-             no late nav and no content jumping as screenshots appear. -->
+        <!-- Not deferred: sets the theme before the first paint, so dark
+             mode visitors never get a white flash. -->
         <script src="/js/theme.js"></script>
-        <script src="/js/components/site-header.js"></script>
-        <script src="/js/components/app-screenshot.js"></script>
-        <script src="/js/components/site-footer.js" defer></script>
-        <script src="/js/components/site-pricing.js" defer></script>
+
+        <!-- render:meta -->
+        <meta name="apple-itunes-app" content="app-id=6737065841" />
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "MobileApplication",
+              "@id": "https://zestmavericks.com/markpdf/#app",
+              "name": "MarkPDF",
+              "alternateName": [
+                "Mark PDF",
+                "Mark PDF: PDF Editor & Scanner"
+              ],
+              "url": "https://zestmavericks.com/markpdf/",
+              "description": "MarkPDF (Mark PDF on the App Store) is a PDF editor and scanner for iPhone. Scan documents, sign, merge, split and lock PDFs, delete pages, and summarise long PDFs with AI.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "iOS 16.0 or later",
+              "image": "https://zestmavericks.com/assets/MarkPDF.png",
+              "screenshot": [
+                "https://zestmavericks.com/assets/shots/markpdf/home-900.webp",
+                "https://zestmavericks.com/assets/shots/markpdf/scan-900.webp",
+                "https://zestmavericks.com/assets/shots/markpdf/design-900.webp",
+                "https://zestmavericks.com/assets/shots/markpdf/lock-900.webp",
+                "https://zestmavericks.com/assets/shots/markpdf/summarise-900.webp"
+              ],
+              "inLanguage": [
+                "en",
+                "ar",
+                "fr",
+                "hi",
+                "ja",
+                "pt",
+                "zh-Hans",
+                "es"
+              ],
+              "publisher": {
+                "@type": "Organization",
+                "@id": "https://zestmavericks.com/#organization",
+                "name": "Zest Mavericks",
+                "url": "https://zestmavericks.com/"
+              },
+              "author": {
+                "@type": "Organization",
+                "@id": "https://zestmavericks.com/#organization",
+                "name": "Zest Mavericks",
+                "url": "https://zestmavericks.com/"
+              },
+              "installUrl": "https://apps.apple.com/app/id6737065841",
+              "downloadUrl": "https://apps.apple.com/app/id6737065841",
+              "sameAs": [
+                "https://apps.apple.com/app/id6737065841"
+              ],
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "url": "https://apps.apple.com/app/id6737065841"
+              }
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://zestmavericks.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "MarkPDF",
+                  "item": "https://zestmavericks.com/markpdf/"
+                }
+              ]
+            }
+          ]
+        }
+        </script>
+        <!-- /render:meta -->
     </head>
 
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
 
-        <site-header></site-header>
+        <!-- render:header -->
+        <header class="site-header">
+        <nav class="site-nav" aria-label="Primary">
+            <a href="/">Home</a>
+            <a href="/markpdf/" aria-current="page">MarkPDF</a>
+            <a href="/topdrawer/">TopDrawer</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+        </nav>
+        <!-- Ships hidden; js/theme.js reveals it, so it never sits there dead without JavaScript -->
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode" hidden>
+            <svg class="icon icon--sun" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+            <svg class="icon icon--moon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6z"></path></svg>
+        </button>
+        </header>
+        <!-- /render:header -->
 
         <main id="main">
             <!-- Hero -->
@@ -81,7 +173,7 @@
                     <div class="btn-row">
                         <a
                             class="badge-link"
-                            href="https://apps.apple.com/in/app/id6737065841"
+                            href="https://apps.apple.com/app/id6737065841"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -105,13 +197,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <app-screenshot
-                                card
-                                name="markpdf/launch"
-                                alt="MarkPDF launch screen on iPhone"
-                                width="900"
-                                height="1955"
-                            ></app-screenshot>
+                            <!-- render:screenshot name="markpdf/launch" alt="MarkPDF launch screen on iPhone" card -->
+                            <picture class="shot-picture">
+                                <source type="image/avif" srcset="/assets/shots/markpdf/launch-600.avif 600w, /assets/shots/markpdf/launch-900.avif 900w" sizes="300px" />
+                                <img class="shot shot--card" src="/assets/shots/markpdf/launch-900.webp" srcset="/assets/shots/markpdf/launch-600.webp 600w, /assets/shots/markpdf/launch-900.webp 900w" sizes="300px" alt="MarkPDF launch screen on iPhone" width="900" height="1955" loading="lazy" decoding="async" />
+                            </picture>
+                            <!-- /render:screenshot -->
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">The idea</p>
@@ -136,12 +227,12 @@
                 <div class="container">
                     <div class="showcase__grid showcase--flip">
                         <div class="showcase__media">
-                            <app-screenshot
-                                name="markpdf/home"
-                                alt="The MarkPDF home screen listing saved documents"
-                                width="900"
-                                height="1848"
-                            ></app-screenshot>
+                            <!-- render:screenshot name="markpdf/home" alt="The MarkPDF home screen listing saved documents" -->
+                            <picture class="shot-picture">
+                                <source type="image/avif" srcset="/assets/shots/markpdf/home-600.avif 600w, /assets/shots/markpdf/home-900.avif 900w" sizes="300px" />
+                                <img class="shot" src="/assets/shots/markpdf/home-900.webp" srcset="/assets/shots/markpdf/home-600.webp 600w, /assets/shots/markpdf/home-900.webp 900w" sizes="300px" alt="The MarkPDF home screen listing saved documents" width="900" height="1848" loading="lazy" decoding="async" />
+                            </picture>
+                            <!-- /render:screenshot -->
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Home</p>
@@ -161,12 +252,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <app-screenshot
-                                name="markpdf/scan"
-                                alt="Scanning a page into MarkPDF with the camera"
-                                width="900"
-                                height="1848"
-                            ></app-screenshot>
+                            <!-- render:screenshot name="markpdf/scan" alt="Scanning a page into MarkPDF with the camera" -->
+                            <picture class="shot-picture">
+                                <source type="image/avif" srcset="/assets/shots/markpdf/scan-600.avif 600w, /assets/shots/markpdf/scan-900.avif 900w" sizes="300px" />
+                                <img class="shot" src="/assets/shots/markpdf/scan-900.webp" srcset="/assets/shots/markpdf/scan-600.webp 600w, /assets/shots/markpdf/scan-900.webp 900w" sizes="300px" alt="Scanning a page into MarkPDF with the camera" width="900" height="1848" loading="lazy" decoding="async" />
+                            </picture>
+                            <!-- /render:screenshot -->
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Scanner</p>
@@ -185,12 +276,12 @@
                 <div class="container">
                     <div class="showcase__grid showcase--flip">
                         <div class="showcase__media">
-                            <app-screenshot
-                                name="markpdf/design"
-                                alt="MarkPDF's document editing interface"
-                                width="900"
-                                height="1848"
-                            ></app-screenshot>
+                            <!-- render:screenshot name="markpdf/design" alt="MarkPDF's document editing interface" -->
+                            <picture class="shot-picture">
+                                <source type="image/avif" srcset="/assets/shots/markpdf/design-600.avif 600w, /assets/shots/markpdf/design-900.avif 900w" sizes="300px" />
+                                <img class="shot" src="/assets/shots/markpdf/design-900.webp" srcset="/assets/shots/markpdf/design-600.webp 600w, /assets/shots/markpdf/design-900.webp 900w" sizes="300px" alt="MarkPDF&#x27;s document editing interface" width="900" height="1848" loading="lazy" decoding="async" />
+                            </picture>
+                            <!-- /render:screenshot -->
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Design</p>
@@ -209,12 +300,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <app-screenshot
-                                name="markpdf/delete"
-                                alt="Selecting and deleting pages in MarkPDF"
-                                width="900"
-                                height="1848"
-                            ></app-screenshot>
+                            <!-- render:screenshot name="markpdf/delete" alt="Selecting and deleting pages in MarkPDF" -->
+                            <picture class="shot-picture">
+                                <source type="image/avif" srcset="/assets/shots/markpdf/delete-600.avif 600w, /assets/shots/markpdf/delete-900.avif 900w" sizes="300px" />
+                                <img class="shot" src="/assets/shots/markpdf/delete-900.webp" srcset="/assets/shots/markpdf/delete-600.webp 600w, /assets/shots/markpdf/delete-900.webp 900w" sizes="300px" alt="Selecting and deleting pages in MarkPDF" width="900" height="1848" loading="lazy" decoding="async" />
+                            </picture>
+                            <!-- /render:screenshot -->
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Pages</p>
@@ -233,12 +324,12 @@
                 <div class="container">
                     <div class="showcase__grid showcase--flip">
                         <div class="showcase__media">
-                            <app-screenshot
-                                name="markpdf/lock"
-                                alt="Locking a document with a password in MarkPDF"
-                                width="900"
-                                height="1848"
-                            ></app-screenshot>
+                            <!-- render:screenshot name="markpdf/lock" alt="Locking a document with a password in MarkPDF" -->
+                            <picture class="shot-picture">
+                                <source type="image/avif" srcset="/assets/shots/markpdf/lock-600.avif 600w, /assets/shots/markpdf/lock-900.avif 900w" sizes="300px" />
+                                <img class="shot" src="/assets/shots/markpdf/lock-900.webp" srcset="/assets/shots/markpdf/lock-600.webp 600w, /assets/shots/markpdf/lock-900.webp 900w" sizes="300px" alt="Locking a document with a password in MarkPDF" width="900" height="1848" loading="lazy" decoding="async" />
+                            </picture>
+                            <!-- /render:screenshot -->
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">Privacy</p>
@@ -257,12 +348,12 @@
                 <div class="container">
                     <div class="showcase__grid">
                         <div class="showcase__media">
-                            <app-screenshot
-                                name="markpdf/summarise"
-                                alt="MarkPDF summarising a document with AI"
-                                width="900"
-                                height="1848"
-                            ></app-screenshot>
+                            <!-- render:screenshot name="markpdf/summarise" alt="MarkPDF summarising a document with AI" -->
+                            <picture class="shot-picture">
+                                <source type="image/avif" srcset="/assets/shots/markpdf/summarise-600.avif 600w, /assets/shots/markpdf/summarise-900.avif 900w" sizes="300px" />
+                                <img class="shot" src="/assets/shots/markpdf/summarise-900.webp" srcset="/assets/shots/markpdf/summarise-600.webp 600w, /assets/shots/markpdf/summarise-900.webp 900w" sizes="300px" alt="MarkPDF summarising a document with AI" width="900" height="1848" loading="lazy" decoding="async" />
+                            </picture>
+                            <!-- /render:screenshot -->
                         </div>
                         <div class="showcase__copy">
                             <p class="eyebrow">AI</p>
@@ -276,17 +367,89 @@
                 </div>
             </section>
 
-            <site-pricing id="pricing" data-product="markpdf"></site-pricing>
+            <!-- render:pricing product="markpdf" -->
+            <section class="section bg-zest" id="pricing">
+                <div class="container">
+                    <div class="center">
+                        <p class="eyebrow">Subscriptions</p>
+                        <h2>MarkPDF PRO</h2>
+                        <p class="lede">There&#x27;s room to reset how we look at documents. This is our attempt at it.</p>
+                    </div>
+
+                    <div class="pricing-grid">
+                        <div class="plan">
+                            <p class="plan__name">Weekly</p>
+                            <p class="plan__price">$7.99<span>/week</span></p>
+                            <p class="plan__note">Billed weekly</p>
+                            <ul class="feature-list">
+                                <li>Every Pro feature</li>
+                                <li>Good for a one off job</li>
+                                <li>No free trial on this plan</li>
+                            </ul>
+                        </div>
+                        <div class="plan">
+                            <p class="plan__name">Monthly</p>
+                            <p class="plan__price">$12.99<span>/month</span></p>
+                            <p class="plan__note">7 day free trial</p>
+                            <ul class="feature-list">
+                                <li>Every Pro feature</li>
+                                <li>AI summaries and web page to PDF</li>
+                                <li>Cancel any time</li>
+                            </ul>
+                        </div>
+                        <div class="plan plan--featured">
+                            <p class="plan__badge">Best value</p>
+                            <p class="plan__name">Yearly</p>
+                            <p class="plan__price">$39.99<span>/year</span></p>
+                            <p class="plan__note">7 day free trial, about $3.33 a month</p>
+                            <ul class="feature-list">
+                                <li>Every Pro feature</li>
+                                <li>Save 74% compared with monthly</li>
+                                <li>Cancel any time</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p class="lede center plan-fineprint">Prices shown in US dollars. Your local price and billing period appear in the App before you confirm. The 7 day free trial is a one time offer on the Monthly and Yearly plans. Subscriptions renew automatically until cancelled in your Apple Account settings.</p>
+
+                    <div class="center">
+                        <div class="btn-row">
+                            <a class="badge-link" href="https://apps.apple.com/app/id6737065841" target="_blank" rel="noopener noreferrer">
+                                <img src="/assets/badges/app-store-504.webp" srcset="/assets/badges/app-store-336.webp 336w, /assets/badges/app-store-504.webp 504w" sizes="168px" alt="Download MarkPDF on the App Store" width="168" height="50" loading="lazy" />
+                            </a>
+                            <a class="btn btn--ghost" href="/markpdf/terms/">Terms and privacy</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /render:pricing -->
         </main>
 
-        <site-footer>
-            <noscript
-                ><p class="footer-fallback">
-                    &copy; Zest Mavericks.
-                    <a href="/markpdf/terms/">Terms and privacy</a> ·
-                    <a href="mailto:zestmavericks@gmail.com">Email us</a>
-                </p></noscript
-            >
-        </site-footer>
+        <!-- render:footer -->
+        <footer class="site-footer">
+        <div class="social-row">
+            <a href="https://x.com/zestmavericks" target="_blank" rel="noopener noreferrer"><img src="/assets/icons/twitter-84.webp" srcset="/assets/icons/twitter-56.webp 56w, /assets/icons/twitter-84.webp 84w" sizes="28px" alt="Zest Mavericks on X" width="28" height="28" /></a>
+            <a href="mailto:zestmavericks@gmail.com"><img src="/assets/icons/email-84.webp" srcset="/assets/icons/email-56.webp 56w, /assets/icons/email-84.webp 84w" sizes="28px" alt="Email Zest Mavericks" width="28" height="28" /></a>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+            <a href="/">Home</a>
+            <a href="/markpdf/">MarkPDF</a>
+            <a href="/topdrawer/">TopDrawer</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+            <a href="/markpdf/terms/">Terms and privacy</a>
+        </nav>
+        <p class="footer-note">{ } &amp; designed with &#x1F90D; in India</p>
+        <p class="footer-fine">&copy; 2026 Zest Mavericks Pvt. Ltd. All rights reserved.</p>
+        <svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"></path></defs>
+            <g>
+                <use href="#gentle-wave" x="50" y="0" fill="#03ffff" fill-opacity="0.2"></use>
+                <use href="#gentle-wave" x="50" y="3" fill="#03ffff" fill-opacity="0.5"></use>
+                <use href="#gentle-wave" x="50" y="6" fill="#03ffff" fill-opacity="0.9"></use>
+            </g>
+        </svg>
+        </footer>
+        <!-- /render:footer -->
     </body>
 </html>
