@@ -90,6 +90,16 @@ Only describe steps you've checked in the app.
 A `<dl class="faq">` on any page becomes `FAQPage` structured data the same way:
 the questions and answers are read from the visible list.
 
+## Comparisons, release notes and translations
+
+- `markpdf/compare/` holds the comparison pages. Every claim about another app
+  comes from its own App Store listing or Apple's documentation, with the date it
+  was checked on the page. Re-check prices before editing them.
+- `markpdf/whats-new/` lists every MarkPDF release; add one when a version ships.
+- `hi/markpdf/` is the Hindi MarkPDF page. `TRANSLATIONS` in `tools/render_site.py`
+  pairs it with `/markpdf/` and the script writes the `hreflang` links on both;
+  `/hi/` pages get a Hindi header and footer. Its prices come from the same data.
+
 ## Link previews and search pings
 
 - `tools/make_og_cards.sh` renders the 1200×630 cards in `assets/og/` from
