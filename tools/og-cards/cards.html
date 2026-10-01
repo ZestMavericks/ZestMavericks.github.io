@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- Source for the 1200x630 link-preview cards in assets/og/.
+     tools/make_og_cards.sh serves the repo and screenshots this page once per
+     card, picking the card with the URL fragment (#studio, #markpdf, ...). -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Link preview cards</title>
+<style>
+@font-face { font-family: "Poppins"; font-weight: 400; src: url("/fonts/poppins/poppins-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 600; src: url("/fonts/poppins/poppins-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 700; src: url("/fonts/poppins/poppins-latin-700-normal.woff2") format("woff2"); }
+
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body { font-family: "Poppins", sans-serif; color: #091057; background: #b7e0ff; }
+
+.card { display: none; position: relative; width: 1200px; height: 630px; overflow: hidden;
+        background: radial-gradient(70% 90% at 18% 20%, #ffffff 0%, rgba(255, 255, 255, 0) 70%), #b7e0ff; }
+.card:target { display: block; }
+
+.copy { position: absolute; left: 80px; top: 0; bottom: 0; width: 620px; display: flex; flex-direction: column; justify-content: center; }
+.icon { width: 132px; height: 132px; border-radius: 30px; box-shadow: 0 18px 40px rgba(9, 16, 87, 0.25); }
+.maker { margin-top: 34px; font-size: 22px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(9, 16, 87, 0.62); }
+h1 { margin-top: 6px; font-size: 92px; line-height: 1; font-weight: 700; letter-spacing: -0.03em; }
+.line { margin-top: 18px; font-size: 36px; line-height: 1.25; font-weight: 400; color: rgba(9, 16, 87, 0.82); }
+.url { margin-top: 34px; font-size: 22px; font-weight: 600; color: rgba(9, 16, 87, 0.62); }
+
+.phone { position: absolute; width: 330px; filter: drop-shadow(0 30px 40px rgba(9, 16, 87, 0.28)); }
+.phone--one { right: 90px; top: 70px; transform: rotate(-6deg); }
+.phone--back { right: 215px; top: 120px; transform: rotate(-10deg); width: 270px; }
+.phone--front { right: 30px; top: 70px; transform: rotate(5deg); width: 290px; }
+.studio-name { margin-top: 32px; font-size: 64px; }
+.studio-line { font-size: 30px; }
+.badge { display: inline-block; margin-top: 26px; padding: 8px 18px; border-radius: 999px; background: #091057; color: #ffffff; font-size: 20px; font-weight: 600; align-self: flex-start; }
+.apps { display: flex; gap: 22px; margin-top: 30px; }
+.apps img { width: 76px; height: 76px; border-radius: 18px; box-shadow: 0 10px 24px rgba(9, 16, 87, 0.2); }
+</style>
+</head>
+<body>
+
+<section class="card" id="studio">
+    <div class="copy">
+        <img class="icon" src="/assets/icons/zest-384.webp" alt="" />
+        <h1 class="studio-name">Zest Mavericks</h1>
+        <p class="line studio-line">Absurdly intuitive apps for iPhone</p>
+        <div class="apps">
+            <img src="/assets/icons/markpdf-384.webp" alt="" />
+            <img src="/assets/icons/topdrawer-384.webp" alt="" />
+        </div>
+        <p class="url">zestmavericks.com</p>
+    </div>
+    <img class="phone phone--back" src="/assets/shots/topdrawer/drawer-900.webp" alt="" />
+    <img class="phone phone--front" src="/assets/shots/markpdf/home-900.webp" alt="" />
+</section>
+
+<section class="card" id="markpdf">
+    <div class="copy">
+        <img class="icon" src="/assets/icons/markpdf-384.webp" alt="" />
+        <p class="maker">Zest Mavericks</p>
+        <h1>MarkPDF</h1>
+        <p class="line">PDF editor &amp; scanner for iPhone</p>
+        <p class="url">zestmavericks.com/markpdf</p>
+    </div>
+    <img class="phone phone--one" src="/assets/shots/markpdf/home-900.webp" alt="" />
+</section>
+
+<section class="card" id="topdrawer">
+    <div class="copy">
+        <img class="icon" src="/assets/icons/topdrawer-384.webp" alt="" />
+        <p class="maker">Zest Mavericks</p>
+        <h1>TopDrawer</h1>
+        <p class="line">Private vault &amp; search for iPhone</p>
+        <span class="badge">Coming soon</span>
+        <p class="url">zestmavericks.com/topdrawer</p>
+    </div>
+    <img class="phone phone--one" src="/assets/shots/topdrawer/drawer-900.webp" alt="" />
+</section>
+
+</body>
+</html>
