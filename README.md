@@ -44,8 +44,13 @@ the markers is regenerated on every run:
 <!-- render:footer product="topdrawer" --> ... <!-- /render:footer -->
 <!-- render:pricing product="markpdf" --> ... <!-- /render:pricing -->
 <!-- render:screenshot name="markpdf/scan" alt="..." card --> ... <!-- /render:screenshot -->
-<!-- render:meta --> ... <!-- /render:meta -->   (JSON-LD and the Smart App Banner)
+<!-- render:meta --> ... <!-- /render:meta -->   (JSON-LD, preview card, Smart App Banner)
+<!-- render:guides app="markpdf" --> ...             (list of how-to guides)
+<!-- render:factsheet app="markpdf" --> / <!-- render:downloads -->   (press kit)
 ```
+
+The script also writes `sitemap.xml` and `llms.txt` (a plain-text brief for AI
+agents, from the same data).
 
 Edit the data and templates in the script, never the generated HTML, then run:
 
@@ -59,6 +64,24 @@ never run JavaScript, so anything drawn in the browser, prices included, was
 invisible to them. Now the committed HTML is complete, and there's still nothing
 to build at deploy. Prices and app facts live once in the script and feed the
 visible page, the structured data and the sitemap alike.
+
+## Guides
+
+How-to guides live in `markpdf/how-to/<slug>/index.html` and are found
+automatically: the hub page, the list on the MarkPDF page, the sitemap and
+`llms.txt` all pick a new one up on the next render. Copy an existing guide
+and keep its three parts: a `p.guide-answer` that answers the question on its
+own in two sentences, an `ol.guide-steps`, and a screenshot. The `HowTo`
+structured data is read from those visible steps, so it can't drift from them.
+Only describe steps you've checked in the app.
+
+## Link previews and search pings
+
+- `tools/make_og_cards.sh` renders the 1200×630 cards in `assets/og/` from
+  `tools/og-cards/cards.html` in a headless browser (Helium or Chrome).
+- `tools/indexnow.py`, run after a push has deployed, tells Bing (which feeds
+  Copilot and ChatGPT search) and other IndexNow engines what changed. The key
+  file at the site root must stay.
 
 ## Images
 
