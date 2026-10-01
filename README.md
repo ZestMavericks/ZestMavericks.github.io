@@ -46,6 +46,7 @@ the markers is regenerated on every run:
 <!-- render:screenshot name="markpdf/scan" alt="..." card --> ... <!-- /render:screenshot -->
 <!-- render:meta --> ... <!-- /render:meta -->   (JSON-LD, preview card, Smart App Banner)
 <!-- render:guides app="markpdf" --> ...             (list of how-to guides)
+<!-- render:hero-cta app="topdrawer" --> / <!-- render:guide-cta app="markpdf" -->   (App Store buttons)
 <!-- render:factsheet app="markpdf" --> / <!-- render:downloads -->   (press kit)
 ```
 
@@ -65,15 +66,29 @@ invisible to them. Now the committed HTML is complete, and there's still nothing
 to build at deploy. Prices and app facts live once in the script and feed the
 visible page, the structured data and the sitemap alike.
 
+## Launching an app
+
+Each app in `APPS` (in `tools/render_site.py`) has a `launch` state: `coming`,
+`preorder` or `live`, plus its `app_store_id` once the listing exists. Change
+those two values and run the script: the hero buttons and status line, the
+guide and pricing buttons, the Smart App Banner, the structured data offer,
+the press-kit fact sheet and `llms.txt` all follow together. By hand you still
+update the TopDrawer FAQ's "When can I get it?" answer and the "Coming soon"
+badge on its preview card (`tools/og-cards/cards.html`, then
+`tools/make_og_cards.sh`).
+
 ## Guides
 
-How-to guides live in `markpdf/how-to/<slug>/index.html` and are found
-automatically: the hub page, the list on the MarkPDF page, the sitemap and
-`llms.txt` all pick a new one up on the next render. Copy an existing guide
+How-to guides live in `<app>/how-to/<slug>/index.html` (`markpdf` or
+`topdrawer`) and are found automatically: the hub page, the list on the app's
+page, the sitemap and `llms.txt` all pick a new one up on the next render. Copy an existing guide
 and keep its three parts: a `p.guide-answer` that answers the question on its
 own in two sentences, an `ol.guide-steps`, and a screenshot. The `HowTo`
 structured data is read from those visible steps, so it can't drift from them.
 Only describe steps you've checked in the app.
+
+A `<dl class="faq">` on any page becomes `FAQPage` structured data the same way:
+the questions and answers are read from the visible list.
 
 ## Link previews and search pings
 
