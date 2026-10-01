@@ -18,11 +18,18 @@ Each page marks where a piece goes:
     <!-- render:screenshot name="markpdf/scan" alt="..." card --> ...
     <!-- render:meta -->                ... <!-- /render:meta -->
     <!-- render:guides app="markpdf" --> ... (list of how-to guides)
+    <!-- render:hero-cta app="topdrawer" --> / <!-- render:guide-cta app="markpdf" -->
+        (App Store buttons that follow the app's launch state)
     <!-- render:factsheet app="markpdf" --> / <!-- render:downloads --> (press kit)
 
 It also writes sitemap.xml and llms.txt. How-to guides are discovered from
-markpdf/how-to/*/index.html; their HowTo structured data is read from the
-guide's own visible steps, so the two can never drift apart.
+<app>/how-to/*/index.html; their HowTo structured data is read from the
+guide's own visible steps, and a page's FAQPage data from its visible
+<dl class="faq">, so the structured data can never drift from the page.
+
+Launching an app: set its "launch" to "preorder" or "live" and its
+"app_store_id" in APPS, run this, and every App Store button, the Smart App
+Banner, the structured data, the press fact sheet and llms.txt follow.
 
 Everything between a pair of markers is replaced on every run, so edit the
 data and templates below, never the generated HTML. Prices, app facts and
@@ -50,6 +57,7 @@ PAGES = {
     "markpdf/index.html": "/markpdf/",
     "markpdf/how-to/index.html": "/markpdf/how-to/",
     "topdrawer/index.html": "/topdrawer/",
+    "topdrawer/how-to/index.html": "/topdrawer/how-to/",
     "press/index.html": "/press/",
     "about/index.html": "/about/",
     "contact/index.html": "/contact/",
@@ -59,16 +67,16 @@ PAGES = {
     "404.html": None,  # rendered, but never in the sitemap
 }
 
-def guide_files():
-    return sorted((ROOT / "markpdf/how-to").glob("*/index.html"))
+def guide_files(app):
+    return sorted((ROOT / app / "how-to").glob("*/index.html"))
 
 
 def all_pages():
     pages = {}
     for rel, url in PAGES.items():
         pages[rel] = url
-        if rel == "markpdf/how-to/index.html":
-            for f in guide_files():
+        if rel.endswith("/how-to/index.html"):
+            for f in guide_files(rel.split("/")[0]):
                 r = f.relative_to(ROOT).as_posix()
                 pages[r] = "/" + r[: -len("index.html")]
     return pages
@@ -83,7 +91,8 @@ NAV = [
 ]
 
 # In the footer only; the header nav is already full on phones
-FOOTER_EXTRA = [("/markpdf/how-to/", "Guides"), ("/press/", "Press")]
+def footer_extra(product):
+    return [(f"/{product}/how-to/", "Guides"), ("/press/", "Press")]
 
 LEGAL = {
     "markpdf": [("/markpdf/terms/", "Terms and privacy")],
@@ -129,7 +138,7 @@ APPS = {
         ),
         "icon": "/assets/MarkPDF.png",
         "store_category": "Business",
-        "status": "Available on the App Store",
+        "launch": "live",
         "platform": "iPhone",
         "screenshots": ["markpdf/home", "markpdf/scan", "markpdf/design", "markpdf/lock", "markpdf/summarise"],
         "languages": ["en", "ar", "fr", "hi", "ja", "pt", "zh-Hans", "es"],
@@ -147,12 +156,21 @@ APPS = {
         ),
         "icon": "/assets/TopDrawer.png",
         "store_category": None,
-        "status": "Coming soon to iPhone",
+        # "coming" -> "preorder" -> "live"; set app_store_id from "preorder" on
+        "launch": "coming",
         "platform": "iPhone",
         "screenshots": ["topdrawer/drawer", "topdrawer/search", "topdrawer/lock"],
         "languages": ["en"],
     },
 }
+
+
+def app_status(key):
+    return {
+        "coming": "Coming soon to iPhone",
+        "preorder": "Available to pre-order on the App Store",
+        "live": "Available on the App Store",
+    }[APPS[key]["launch"]]
 
 
 def app_store_url(app_id):
@@ -269,7 +287,7 @@ def header(url):
 
 def footer(product="markpdf"):
     legal = LEGAL.get(product, LEGAL["markpdf"])
-    links = [f'    <a href="{href}">{esc(label)}</a>' for href, label in NAV + FOOTER_EXTRA + legal]
+    links = [f'    <a href="{href}">{esc(label)}</a>' for href, label in NAV + footer_extra(product if product in LEGAL else "markpdf") + legal]
 
     def icon(slug, alt):
         return (
@@ -303,16 +321,55 @@ def footer(product="markpdf"):
     ]
 
 
-def app_store_badge(app_key, alt):
+def store_button(app_key, alt):
+    """The App Store button for an app's launch state (nothing while it's coming)."""
     app = APPS[app_key]
-    if not app["app_store_id"]:
+    if app["launch"] == "coming" or not app["app_store_id"]:
         return []
+    url = app_store_url(app["app_store_id"])
+    if app["launch"] == "preorder":
+        # Apple's "Pre-order on the App Store" badge isn't in assets/ yet; a text button is allowed
+        return [f'<a class="btn" href="{url}" target="_blank" rel="noopener noreferrer">Pre-order on the App Store</a>']
     return [
-        f'<a class="badge-link" href="{app_store_url(app["app_store_id"])}" target="_blank" rel="noopener noreferrer">',
+        f'<a class="badge-link" href="{url}" target="_blank" rel="noopener noreferrer">',
         '    <img src="/assets/badges/app-store-504.webp"'
         ' srcset="/assets/badges/app-store-336.webp 336w, /assets/badges/app-store-504.webp 504w"'
         f' sizes="168px" alt="{esc(alt)}" width="168" height="50" loading="lazy" />',
         "</a>",
+    ]
+
+
+def hero_cta(app_key):
+    """The hero's buttons and status line."""
+    app = APPS[app_key]
+    alt = f"Download {app['name']} on the App Store"
+    out = ['<div class="btn-row">', *["    " + l for l in store_button(app_key, alt)]]
+    if app_key == "topdrawer":
+        out.append('    <a class="btn btn--ghost" href="#pricing">See what Ultra adds</a>')
+    out.append("</div>")
+    requirement = "Requires " + app["os"].replace(" or later", "") + " or later."
+    line = {"coming": f"Coming to iPhone. {requirement}",
+            "preorder": f"Coming to iPhone, and open for pre-orders now. {requirement}",
+            "live": f"Free on the App Store for iPhone. {requirement}"}[app["launch"]]
+    out.append(f'<p class="lede hero-status">{esc(line)}</p>')
+    return out
+
+
+def guide_cta(app_key, hub=False):
+    """The call to action at the end of each guide and on the guides hub."""
+    app = APPS[app_key]
+    line = {"coming": f"{app['name']} is coming soon to iPhone.",
+            "preorder": f"{app['name']} is open for pre-orders on the App Store.",
+            "live": f"{app['name']} is free on the App Store for iPhone."}[app["launch"]]
+    return [
+        '<div class="guide-cta">',
+        f"    <p>{esc(line)}</p>",
+        '    <div class="btn-row">',
+        *["        " + l for l in store_button(app_key, f"Download {app['name']} on the App Store")],
+        f'        <a class="btn btn--ghost" href="{app["url"]}">About {esc(app["name"])}</a>',
+        *([] if hub else [f'        <a class="btn btn--ghost" href="{app["url"]}how-to/">More {esc(app["name"])} guides</a>']),
+        "    </div>",
+        "</div>",
     ]
 
 
@@ -350,7 +407,7 @@ def pricing(product):
         "",
         '        <div class="center">',
         '            <div class="btn-row">',
-        *["                " + line for line in app_store_badge(p["app"], p["badge_alt"])],
+        *["                " + line for line in store_button(p["app"], p["badge_alt"])],
         *[f'                <a class="btn btn--ghost" href="{href}">{esc(label)}</a>' for href, label in p["links"]],
         "            </div>",
         "        </div>",
@@ -406,7 +463,7 @@ def read_guide(path):
 
 def guides_list(app):
     out = ['<ul class="guide-list">']
-    for g in (read_guide(f) for f in guide_files()):
+    for g in (read_guide(f) for f in guide_files(app)):
         out += [
             "    <li>",
             f'        <a href="{g["url"]}">',
@@ -454,7 +511,7 @@ def factsheet(app_key):
     rows = [
         ("Name", app["name"] + (f' (listed as \u201c{app["alternate_names"][0]}\u201d on the App Store)'
                                 if app_key == "markpdf" else "")),
-        ("Status", app["status"]),
+        ("Status", app_status(app_key)),
         ("Platform", f'{app["platform"]}, {app["os"]}'),
         ("Price", price if app["app_store_id"] else "Free to use, with Ultra: " +
          ", ".join(f'{p["name"]} {p["price"]}' for p in plans) + " (US prices)."),
@@ -546,40 +603,67 @@ def mobile_app(key):
         node["sameAs"] = [store]
         # Free to download; the subscriptions are in-app purchases
         node["offers"] = {"@type": "Offer", "price": "0", "priceCurrency": "USD", "url": store}
+        if app["launch"] == "preorder":
+            node["offers"]["availability"] = "https://schema.org/PreOrder"
     return node
+
+
+def faq_page(url):
+    """FAQPage from the page's own visible <dl class="faq">, if it has one."""
+    rel = next((r for r, u in all_pages().items() if u == url), None)
+    if not rel:
+        return None
+    page = (ROOT / rel).read_text()
+    block = re.search(r'<dl class="faq">(.*?)</dl>', page, re.S)
+    if not block:
+        return None
+    pairs = re.findall(r"<dt>(.*?)</dt>\s*<dd>(.*?)</dd>", block[1], re.S)
+    return {
+        "@type": "FAQPage",
+        "url": SITE + url,
+        "mainEntity": [
+            {"@type": "Question", "name": text_of(q), "acceptedAnswer": {"@type": "Answer", "text": text_of(a)}}
+            for q, a in pairs
+        ],
+    }
 
 
 def structured_data(url):
     org = org_ref()
     home = ("Home", "/")
-    markpdf = ("MarkPDF", "/markpdf/")
-    hub = ("Guides", "/markpdf/how-to/")
-    if url.startswith("/markpdf/how-to/") and url != "/markpdf/how-to/":
+    guide = re.fullmatch(r"/(markpdf|topdrawer)/how-to/([a-z0-9-]+)/", url)
+    if guide:
+        key = guide[1]
+        app = APPS[key]
         g = read_guide(ROOT / url.lstrip("/") / "index.html")
         howto = {
             "@type": "HowTo",
             "name": g["title"],
             "description": g["answer"],
             "url": SITE + url,
-            "about": {"@id": SITE + "/markpdf/#app"},
-            "tool": {"@type": "HowToTool", "name": "MarkPDF for iPhone"},
+            "about": {"@id": SITE + app["url"] + "#app"},
+            "tool": {"@type": "HowToTool", "name": f"{app['name']} for iPhone"},
             "step": [{"@type": "HowToStep", "position": i + 1, "text": s} for i, s in enumerate(g["steps"])],
             "publisher": org,
         }
         if g["shot"]:
             howto["image"] = SITE + f"/assets/shots/{g['shot']}-900.webp"
-        return {"@context": "https://schema.org",
-                "@graph": [howto, breadcrumbs(home, markpdf, hub, (g["title"], url))]}
-    guides = [read_guide(f) for f in guide_files()]
-    graphs = {
-        "/markpdf/how-to/": [
-            {"@type": "CollectionPage", "url": SITE + "/markpdf/how-to/", "name": "MarkPDF guides",
-             "about": {"@id": SITE + "/markpdf/#app"}, "publisher": org,
+        trail = [home, (app["name"], app["url"]), ("Guides", app["url"] + "how-to/"), (g["title"], url)]
+        return {"@context": "https://schema.org", "@graph": [howto, breadcrumbs(*trail)]}
+
+    graphs = {}
+    for key, app in APPS.items():
+        hub_url = app["url"] + "how-to/"
+        guides = [read_guide(f) for f in guide_files(key)]
+        graphs[hub_url] = [
+            {"@type": "CollectionPage", "url": SITE + hub_url, "name": f"{app['name']} guides",
+             "about": {"@id": SITE + app["url"] + "#app"}, "publisher": org,
              "mainEntity": {"@type": "ItemList", "itemListElement": [
                  {"@type": "ListItem", "position": i + 1, "name": g["title"], "url": SITE + g["url"]}
                  for i, g in enumerate(guides)]}},
-            breadcrumbs(home, markpdf, hub),
-        ],
+            breadcrumbs(home, (app["name"], app["url"]), ("Guides", hub_url)),
+        ]
+    graphs.update({
         "/press/": [
             {"@type": "WebPage", "url": SITE + "/press/", "name": "Zest Mavericks press kit", "about": org},
             breadcrumbs(home, ("Press", "/press/")),
@@ -602,8 +686,12 @@ def structured_data(url):
         "/markpdf/terms/": [breadcrumbs(home, ("MarkPDF", "/markpdf/"), ("Terms and privacy", "/markpdf/terms/"))],
         "/topdrawer/terms/": [breadcrumbs(home, ("TopDrawer", "/topdrawer/"), ("Terms of Use", "/topdrawer/terms/"))],
         "/topdrawer/privacy/": [breadcrumbs(home, ("TopDrawer", "/topdrawer/"), ("Privacy Policy", "/topdrawer/privacy/"))],
-    }
-    return {"@context": "https://schema.org", "@graph": graphs[url]}
+    })
+    graph = list(graphs[url])
+    faq = faq_page(url)
+    if faq:
+        graph.append(faq)
+    return {"@context": "https://schema.org", "@graph": graph}
 
 
 def meta(url):
@@ -616,8 +704,8 @@ def meta(url):
         f'<meta name="twitter:image" content="{SITE}{image}" />',
     ]
     # Safari on iPhone shows a native "Get" bar for the app this page is about
-    banner_app = {"/": "markpdf", "/markpdf/": "markpdf"}.get(url)
-    if banner_app and APPS[banner_app]["app_store_id"]:
+    banner_app = {"/": "markpdf", "/markpdf/": "markpdf", "/topdrawer/": "topdrawer"}.get(url)
+    if banner_app and APPS[banner_app]["app_store_id"] and APPS[banner_app]["launch"] != "coming":
         out.append(f'<meta name="apple-itunes-app" content="app-id={APPS[banner_app]["app_store_id"]}" />')
     data = json.dumps(structured_data(url), indent=2, ensure_ascii=False).replace("</", "<\\/")
     out.append('<script type="application/ld+json">')
@@ -629,7 +717,7 @@ def meta(url):
 # ---------------------------------------------------------------- rendering
 
 BLOCK = re.compile(
-    r"^(?P<indent>[ \t]*)<!-- render:(?P<kind>[a-z]+)(?P<args>[^>]*?) -->\n"
+    r"^(?P<indent>[ \t]*)<!-- render:(?P<kind>[a-z-]+)(?P<args>[^>]*?) -->\n"
     r"(?:.*?\n)??"
     r"(?P=indent)<!-- /render:(?P=kind) -->$",
     re.M | re.S,
@@ -650,6 +738,10 @@ def render_block(kind, args, url):
         return meta(url)
     if kind == "guides":
         return guides_list(args.get("app", "markpdf"))
+    if kind == "hero-cta":
+        return hero_cta(args["app"])
+    if kind == "guide-cta":
+        return guide_cta(args["app"], hub="hub" in args)
     if kind == "factsheet":
         return factsheet(args["app"])
     if kind == "downloads":
@@ -704,7 +796,7 @@ def llms_txt():
         if key == "markpdf":
             lines.append(f"- Listed on the App Store as \u201c{app['alternate_names'][1]}\u201d.")
         lines += [
-            f"- Status: {app['status']}. Requires {app['os']}.",
+            f"- Status: {app_status(key)}. Requires {app['os']}.",
             "- Prices (US): " + ", ".join(f"{p['name']} {p['price']}/{p['per']}" for p in plans) + ".",
             f"- Languages: {', '.join(LANGUAGE_NAMES[l] for l in app['languages'])}.",
             f"- [{app['name']} page]({SITE}{app['url']})",
@@ -712,11 +804,12 @@ def llms_txt():
         if app["app_store_id"]:
             lines.append(f"- [App Store]({app_store_url(app['app_store_id'])})")
         lines.append("")
-    guides = [read_guide(f) for f in guide_files()]
-    if guides:
-        lines += ["## MarkPDF guides", ""]
-        lines += [f"- [{g['title']}]({SITE}{g['url']}): {g['answer']}" for g in guides]
-        lines.append("")
+    for key, app in APPS.items():
+        guides = [read_guide(f) for f in guide_files(key)]
+        if guides:
+            lines += [f"## {app['name']} guides", ""]
+            lines += [f"- [{g['title']}]({SITE}{g['url']}): {g['answer']}" for g in guides]
+            lines.append("")
     lines += [
         "## Optional",
         "",

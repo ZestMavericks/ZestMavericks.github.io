@@ -106,6 +106,76 @@
                   "item": "https://zestmavericks.com/topdrawer/"
                 }
               ]
+            },
+            {
+              "@type": "FAQPage",
+              "url": "https://zestmavericks.com/topdrawer/",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Is TopDrawer free?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. The free drawer holds 30 items, and every feature works in it. Ultra removes the limit, monthly, yearly or once for life: the plans are below."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Does TopDrawer upload what I save?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. There's no account, no sync and no server of ours to send it to. Everything stays in the app's own storage on your iPhone. The only connection the app makes is to our payments provider, to check whether you've bought Ultra."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can it find words inside my screenshots?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. TopDrawer reads the text in every image and document you save, on your iPhone, using Apple's own text recognition. Type a word you remember from a screenshot and it comes up."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Which iPhones does it work on?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Any iPhone running iOS 26 or later."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Does it sync to my iPad or Mac?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Your library stays on your iPhone. It's included in your iPhone's own iCloud or computer backups, which Apple encrypts and we can't see."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I lock it?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, with Face ID, Touch ID or your passcode. TopDrawer offers the lock the first time you save something that looks like a password, and it falls back to your passcode, so you're never locked out."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Does it read my clipboard?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Only when you tap Paste. Never when it opens, and never in the background."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "When can I get it?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "TopDrawer is coming soon to the App Store for iPhone. Follow @zestmavericks on X to hear the day it launches."
+                  }
+                }
+              ]
             }
           ]
         }
@@ -153,18 +223,12 @@
                         PDF or a stray password in it, and find any of them again with
                         one search.
                     </p>
+                    <!-- render:hero-cta app="topdrawer" -->
                     <div class="btn-row">
-                        <!-- TODO: swap this for the App Store badge once the listing is live.
-                             <a class="badge-link" href="https://apps.apple.com/app/idXXXXXXXXX"
-                                target="_blank" rel="noopener noreferrer">
-                                 <img src="/assets/badges/app-store-504.webp"
-                                      srcset="/assets/badges/app-store-336.webp 336w, /assets/badges/app-store-504.webp 504w"
-                                      sizes="168px" width="168" height="50"
-                                      alt="Download TopDrawer on the App Store" />
-                             </a> -->
                         <a class="btn btn--ghost" href="#pricing">See what Ultra adds</a>
                     </div>
-                    <p class="lede">Coming to iPhone. Requires iOS 26.</p>
+                    <p class="lede hero-status">Coming to iPhone. Requires iOS 26 or later.</p>
+                    <!-- /render:hero-cta -->
                 </div>
             </section>
 
@@ -403,6 +467,60 @@
                 </div>
             </section>
 
+            <!-- Guides -->
+            <section class="section bg-lavender" id="guides">
+                <div class="container container--narrow">
+                    <div class="center">
+                        <p class="eyebrow">Guides</p>
+                        <h2>How people use it</h2>
+                    </div>
+                    <!-- render:guides app="topdrawer" -->
+                    <ul class="guide-list">
+                        <li>
+                            <a href="/topdrawer/how-to/lock-passwords-and-notes-with-face-id-on-iphone/">
+                                <span class="guide-list__title">How to lock saved passwords and notes with Face ID on iPhone</span>
+                                <span class="guide-list__answer">Save them in TopDrawer and turn on its lock: Face ID, Touch ID or your passcode is then needed before TopDrawer opens. TopDrawer offers the lock the first time you save something that looks like a password, and it falls back to your passcode, so you can&#x27;t lock yourself out.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/topdrawer/how-to/search-text-inside-screenshots-on-iphone/">
+                                <span class="guide-list__title">How to search for text inside screenshots on iPhone</span>
+                                <span class="guide-list__answer">Save the screenshot to TopDrawer, then type any word you remember from it into Search everything. TopDrawer reads the text in every screenshot on your iPhone, so the one with that word comes up, even if you never gave it a name.</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /render:guides -->
+                </div>
+            </section>
+
+            <!-- Questions -->
+            <section class="section bg-sky" id="faq">
+                <div class="container container--narrow">
+                    <div class="center">
+                        <p class="eyebrow">Questions</p>
+                        <h2>Before you ask</h2>
+                    </div>
+                    <dl class="faq">
+                        <dt>Is TopDrawer free?</dt>
+                        <dd>Yes. The free drawer holds 30 items, and every feature works in it. Ultra removes the limit, monthly, yearly or once for life: the <a href="#pricing">plans are below</a>.</dd>
+                        <dt>Does TopDrawer upload what I save?</dt>
+                        <dd>No. There's no account, no sync and no server of ours to send it to. Everything stays in the app's own storage on your iPhone. The only connection the app makes is to our payments provider, to check whether you've bought Ultra.</dd>
+                        <dt>Can it find words inside my screenshots?</dt>
+                        <dd>Yes. TopDrawer reads the text in every image and document you save, on your iPhone, using Apple's own text recognition. Type a word you remember from a screenshot and it comes up.</dd>
+                        <dt>Which iPhones does it work on?</dt>
+                        <dd>Any iPhone running iOS 26 or later.</dd>
+                        <dt>Does it sync to my iPad or Mac?</dt>
+                        <dd>No. Your library stays on your iPhone. It's included in your iPhone's own iCloud or computer backups, which Apple encrypts and we can't see.</dd>
+                        <dt>Can I lock it?</dt>
+                        <dd>Yes, with Face ID, Touch ID or your passcode. TopDrawer offers the lock the first time you save something that looks like a password, and it falls back to your passcode, so you're never locked out.</dd>
+                        <dt>Does it read my clipboard?</dt>
+                        <dd>Only when you tap Paste. Never when it opens, and never in the background.</dd>
+                        <dt>When can I get it?</dt>
+                        <dd>TopDrawer is coming soon to the App Store for iPhone. Follow <a href="https://x.com/zestmavericks">@zestmavericks</a> on X to hear the day it launches.</dd>
+                    </dl>
+                </div>
+            </section>
+
             <!-- render:pricing product="topdrawer" -->
             <section class="section bg-zest" id="pricing">
                 <div class="container">
@@ -471,7 +589,7 @@
             <a href="/topdrawer/">TopDrawer</a>
             <a href="/about/">About</a>
             <a href="/contact/">Contact</a>
-            <a href="/markpdf/how-to/">Guides</a>
+            <a href="/topdrawer/how-to/">Guides</a>
             <a href="/press/">Press</a>
             <a href="/topdrawer/terms/">Terms</a>
             <a href="/topdrawer/privacy/">Privacy</a>

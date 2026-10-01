@@ -31,6 +31,11 @@ TopDrawer is a private vault for iPhone. Save text, links, screenshots, PDFs and
 - [How to scan documents to PDF on iPhone](https://zestmavericks.com/markpdf/how-to/scan-documents-to-pdf-on-iphone/): Open MarkPDF, tap Scan Document, then Scan Documents, and hold your iPhone over the page. MarkPDF finds the edges of the page and captures it; scan every page, tap Save, and they're saved together as a PDF.
 - [How to summarise a PDF with AI on iPhone](https://zestmavericks.com/markpdf/how-to/summarise-a-pdf-with-ai-on-iphone/): Open MarkPDF, tap Summarise PDF, then Choose a File and pick the document. MarkPDF gives you a short summary, so you can see what a long PDF covers before you read all of it.
 
+## TopDrawer guides
+
+- [How to lock saved passwords and notes with Face ID on iPhone](https://zestmavericks.com/topdrawer/how-to/lock-passwords-and-notes-with-face-id-on-iphone/): Save them in TopDrawer and turn on its lock: Face ID, Touch ID or your passcode is then needed before TopDrawer opens. TopDrawer offers the lock the first time you save something that looks like a password, and it falls back to your passcode, so you can't lock yourself out.
+- [How to search for text inside screenshots on iPhone](https://zestmavericks.com/topdrawer/how-to/search-text-inside-screenshots-on-iphone/): Save the screenshot to TopDrawer, then type any word you remember from it into Search everything. TopDrawer reads the text in every screenshot on your iPhone, so the one with that word comes up, even if you never gave it a name.
+
 ## Optional
 
 - [Press kit](https://zestmavericks.com/press/): fact sheets, logos and screenshots

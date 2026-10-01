@@ -1465,6 +1465,36 @@ h2 + .lede {
     color: var(--ink-70);
 }
 
+/* Questions and answers (TopDrawer). Plain text in the HTML on purpose:
+   tools/render_site.py turns this list into FAQPage structured data. */
+.faq {
+    display: grid;
+    gap: 0.5rem;
+    margin: 2rem 0 0;
+}
+
+.faq dt {
+    margin-top: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.faq dt:first-child {
+    margin-top: 0;
+}
+
+.faq dd {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: 1.75;
+    color: var(--ink-70);
+}
+
+.faq a {
+    color: var(--ink);
+    text-underline-offset: 3px;
+}
+
 /* Press kit */
 .press .press-copy {
     font-size: var(--text-base);
