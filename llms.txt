@@ -1,0 +1,40 @@
+# Zest Mavericks
+
+> A two person studio in Bangalore, India, building absurdly intuitive apps for iPhone: MarkPDF, a PDF editor and scanner, and TopDrawer, a private vault for everything you save.
+
+Contact: zestmavericks@gmail.com. Website: https://zestmavericks.com/
+
+## MarkPDF
+
+MarkPDF (Mark PDF on the App Store) is a PDF editor and scanner for iPhone. Scan documents, sign, merge, split and lock PDFs, delete pages, and summarise long PDFs with AI.
+
+- Listed on the App Store as “Mark PDF: PDF Editor & Scanner”.
+- Status: Available on the App Store. Requires iOS 16.0 or later.
+- Prices (US): Weekly $7.99/week, Monthly $12.99/month, Yearly $39.99/year.
+- Languages: English, Arabic, French, Hindi, Japanese, Portuguese, Simplified Chinese, Spanish.
+- [MarkPDF page](https://zestmavericks.com/markpdf/)
+- [App Store](https://apps.apple.com/app/id6737065841)
+
+## TopDrawer
+
+TopDrawer is a private vault for iPhone. Save text, links, screenshots, PDFs and files from anywhere, and find any of them with one search, including the words inside your screenshots. Nothing leaves the device.
+
+- Status: Coming soon to iPhone. Requires iOS 26 or later.
+- Prices (US): Monthly $4.99/month, Yearly $24.99/year, Lifetime $59.99/once.
+- Languages: English.
+- [TopDrawer page](https://zestmavericks.com/topdrawer/)
+
+## MarkPDF guides
+
+- [How to delete pages from a PDF on iPhone](https://zestmavericks.com/markpdf/how-to/delete-pages-from-a-pdf-on-iphone/): In MarkPDF, tap Delete Pages, choose the PDF, then tap each page you want to remove so it's ticked, and tap Delete. Tap Preview first to check the document without those pages.
+- [How to password-protect a PDF on iPhone](https://zestmavericks.com/markpdf/how-to/password-protect-a-pdf-on-iphone/): Open MarkPDF, tap Lock PDF, choose the document, type a password and tap Lock PDF. The PDF then asks for that password before it opens, and Remove Lock takes the password off again.
+- [How to scan documents to PDF on iPhone](https://zestmavericks.com/markpdf/how-to/scan-documents-to-pdf-on-iphone/): Open MarkPDF, tap Scan Document, then Scan Documents, and hold your iPhone over the page. MarkPDF finds the edges of the page and captures it; scan every page, tap Save, and they're saved together as a PDF.
+- [How to summarise a PDF with AI on iPhone](https://zestmavericks.com/markpdf/how-to/summarise-a-pdf-with-ai-on-iphone/): Open MarkPDF, tap Summarise PDF, then Choose a File and pick the document. MarkPDF gives you a short summary, so you can see what a long PDF covers before you read all of it.
+
+## Optional
+
+- [Press kit](https://zestmavericks.com/press/): fact sheets, logos and screenshots
+- [About](https://zestmavericks.com/about/)
+- [Contact](https://zestmavericks.com/contact/)
+- [MarkPDF terms and privacy](https://zestmavericks.com/markpdf/terms/)
+- [TopDrawer privacy policy](https://zestmavericks.com/topdrawer/privacy/)

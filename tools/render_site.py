@@ -17,6 +17,12 @@ Each page marks where a piece goes:
     <!-- render:pricing product="markpdf" -->  ... <!-- /render:pricing -->
     <!-- render:screenshot name="markpdf/scan" alt="..." card --> ...
     <!-- render:meta -->                ... <!-- /render:meta -->
+    <!-- render:guides app="markpdf" --> ... (list of how-to guides)
+    <!-- render:factsheet app="markpdf" --> / <!-- render:downloads --> (press kit)
+
+It also writes sitemap.xml and llms.txt. How-to guides are discovered from
+markpdf/how-to/*/index.html; their HowTo structured data is read from the
+guide's own visible steps, so the two can never drift apart.
 
 Everything between a pair of markers is replaced on every run, so edit the
 data and templates below, never the generated HTML. Prices, app facts and
@@ -38,11 +44,13 @@ ORG_ID = SITE + "/#organization"
 EMAIL = "zestmavericks@gmail.com"
 X_URL = "https://x.com/zestmavericks"
 
-# file -> URL path. Order is the sitemap order.
+# file -> URL path. Order is the sitemap order; guides are added after their hub.
 PAGES = {
     "index.html": "/",
     "markpdf/index.html": "/markpdf/",
+    "markpdf/how-to/index.html": "/markpdf/how-to/",
     "topdrawer/index.html": "/topdrawer/",
+    "press/index.html": "/press/",
     "about/index.html": "/about/",
     "contact/index.html": "/contact/",
     "markpdf/terms/index.html": "/markpdf/terms/",
@@ -51,6 +59,21 @@ PAGES = {
     "404.html": None,  # rendered, but never in the sitemap
 }
 
+def guide_files():
+    return sorted((ROOT / "markpdf/how-to").glob("*/index.html"))
+
+
+def all_pages():
+    pages = {}
+    for rel, url in PAGES.items():
+        pages[rel] = url
+        if rel == "markpdf/how-to/index.html":
+            for f in guide_files():
+                r = f.relative_to(ROOT).as_posix()
+                pages[r] = "/" + r[: -len("index.html")]
+    return pages
+
+
 NAV = [
     ("/", "Home"),
     ("/markpdf/", "MarkPDF"),
@@ -58,6 +81,9 @@ NAV = [
     ("/about/", "About"),
     ("/contact/", "Contact"),
 ]
+
+# In the footer only; the header nav is already full on phones
+FOOTER_EXTRA = [("/markpdf/how-to/", "Guides"), ("/press/", "Press")]
 
 LEGAL = {
     "markpdf": [("/markpdf/terms/", "Terms and privacy")],
@@ -102,6 +128,9 @@ APPS = {
             "Scan documents, sign, merge, split and lock PDFs, delete pages, and summarise long PDFs with AI."
         ),
         "icon": "/assets/MarkPDF.png",
+        "store_category": "Business",
+        "status": "Available on the App Store",
+        "platform": "iPhone",
         "screenshots": ["markpdf/home", "markpdf/scan", "markpdf/design", "markpdf/lock", "markpdf/summarise"],
         "languages": ["en", "ar", "fr", "hi", "ja", "pt", "zh-Hans", "es"],
     },
@@ -117,6 +146,9 @@ APPS = {
             "and find any of them with one search, including the words inside your screenshots. Nothing leaves the device."
         ),
         "icon": "/assets/TopDrawer.png",
+        "store_category": None,
+        "status": "Coming soon to iPhone",
+        "platform": "iPhone",
         "screenshots": ["topdrawer/drawer", "topdrawer/search", "topdrawer/lock"],
         "languages": ["en"],
     },
@@ -237,7 +269,7 @@ def header(url):
 
 def footer(product="markpdf"):
     legal = LEGAL.get(product, LEGAL["markpdf"])
-    links = [f'    <a href="{href}">{esc(label)}</a>' for href, label in NAV + legal]
+    links = [f'    <a href="{href}">{esc(label)}</a>' for href, label in NAV + FOOTER_EXTRA + legal]
 
     def icon(slug, alt):
         return (
@@ -346,6 +378,133 @@ def screenshot(name, alt, card=False):
     ]
 
 
+# ---------------------------------------------------------------- guides
+
+
+def text_of(fragment):
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", fragment))).strip()
+
+
+def read_guide(path):
+    """The visible facts of a guide page: title, answer, steps and screenshot."""
+    page = path.read_text()
+    title = re.search(r"<h1>(.*?)</h1>", page, re.S)
+    answer = re.search(r'<p class="guide-answer">(.*?)</p>', page, re.S)
+    steps = re.search(r'<ol class="guide-steps">(.*?)</ol>', page, re.S)
+    shot = re.search(r'<!-- render:screenshot name="([^"]+)"', page)
+    if not (title and answer and steps):
+        raise ValueError(f"{path}: a guide needs an h1, a p.guide-answer and an ol.guide-steps")
+    rel = path.relative_to(ROOT).as_posix()
+    return {
+        "url": "/" + rel[: -len("index.html")],
+        "title": text_of(title[1]),
+        "answer": text_of(answer[1]),
+        "steps": [text_of(s) for s in re.findall(r"<li>(.*?)</li>", steps[1], re.S)],
+        "shot": shot[1] if shot else None,
+    }
+
+
+def guides_list(app):
+    out = ['<ul class="guide-list">']
+    for g in (read_guide(f) for f in guide_files()):
+        out += [
+            "    <li>",
+            f'        <a href="{g["url"]}">',
+            f'            <span class="guide-list__title">{esc(g["title"])}</span>',
+            f'            <span class="guide-list__answer">{esc(g["answer"])}</span>',
+            "        </a>",
+            "    </li>",
+        ]
+    out.append("</ul>")
+    return out
+
+
+# ---------------------------------------------------------------- press kit
+
+LANGUAGE_NAMES = {"en": "English", "ar": "Arabic", "fr": "French", "hi": "Hindi", "ja": "Japanese",
+                  "pt": "Portuguese", "zh-Hans": "Simplified Chinese", "es": "Spanish"}
+
+# Masters journalists can download as they are (the site itself serves the WebP/AVIF copies)
+PRESS_ASSETS = [
+    ("Zest Mavericks logo", "/assets/zest.png"),
+    ("MarkPDF app icon", "/assets/MarkPDF.png"),
+    ("TopDrawer app icon", "/assets/TopDrawer.png"),
+    ("MarkPDF launch poster", "/assets/Launch-Screen.png"),
+    ("MarkPDF home screen", "/assets/Mark-Home-Screen.png"),
+    ("MarkPDF scanner", "/assets/Scan-Screen.png"),
+    ("MarkPDF delete pages", "/assets/Delete-Screen.png"),
+    ("MarkPDF lock PDF", "/assets/Lock-Screen.png"),
+    ("MarkPDF AI summary", "/assets/Mark-Summarise-Screen.png"),
+    ("TopDrawer drawer", "/assets/topdrawer/Drawer-Screen.png"),
+    ("TopDrawer search", "/assets/topdrawer/Search-Screen.png"),
+    ("TopDrawer lock", "/assets/topdrawer/TD-Lock-Screen.png"),
+]
+
+
+def png_size(path):
+    head = path.read_bytes()[:24]
+    if head[:8] != b"\x89PNG\r\n\x1a\n":
+        raise ValueError(f"{path} is not a PNG")
+    return int.from_bytes(head[16:20], "big"), int.from_bytes(head[20:24], "big")
+
+
+def factsheet(app_key):
+    app, plans = APPS[app_key], PRICING[app_key]["plans"]
+    price = "Free to download. " + ", ".join(f'{p["name"]} {p["price"]}' for p in plans) + " (US prices)."
+    rows = [
+        ("Name", app["name"] + (f' (listed as \u201c{app["alternate_names"][0]}\u201d on the App Store)'
+                                if app_key == "markpdf" else "")),
+        ("Status", app["status"]),
+        ("Platform", f'{app["platform"]}, {app["os"]}'),
+        ("Price", price if app["app_store_id"] else "Free to use, with Ultra: " +
+         ", ".join(f'{p["name"]} {p["price"]}' for p in plans) + " (US prices)."),
+        ("Languages", ", ".join(LANGUAGE_NAMES[l] for l in app["languages"])),
+        ("Developer", "Zest Mavericks, Bangalore, India"),
+        ("Web page", f'<a href="{app["url"]}">{SITE.replace("https://", "")}{app["url"]}</a>'),
+    ]
+    if app["store_category"]:
+        rows.insert(3, ("App Store category", app["store_category"]))
+    if app["app_store_id"]:
+        store = app_store_url(app["app_store_id"])
+        rows.append(("App Store", f'<a href="{store}">{store.replace("https://", "")}</a>'))
+    out = ['<dl class="facts">']
+    for label, value in rows:
+        # values with links are built above from our own data; everything else is escaped
+        out += [f"    <dt>{esc(label)}</dt>", f"    <dd>{value if '<a ' in value else esc(value)}</dd>"]
+    out.append("</dl>")
+    return out
+
+
+def downloads():
+    out = ['<ul class="downloads">']
+    for label, src in PRESS_ASSETS:
+        f = ROOT / src.lstrip("/")
+        w, h = png_size(f)
+        mb = f.stat().st_size / 1_000_000
+        size = f"{mb:.1f} MB" if mb >= 1 else f"{f.stat().st_size // 1000} KB"
+        out.append(f'    <li><a href="{src}" download>{esc(label)}</a> <span>PNG, {w}\u00d7{h}, {size}</span></li>')
+    out.append("</ul>")
+    return out
+
+
+# ---------------------------------------------------------------- link preview cards
+
+# 1200x630 cards made by tools/make_og_cards.sh. Pages not listed use the studio card.
+OG_CARDS = {
+    "studio": ("/assets/og/studio.jpg", "Zest Mavericks, makers of MarkPDF and TopDrawer for iPhone"),
+    "markpdf": ("/assets/og/markpdf.jpg", "MarkPDF, the PDF editor and scanner for iPhone, by Zest Mavericks"),
+    "topdrawer": ("/assets/og/topdrawer.jpg", "TopDrawer, a private vault for iPhone, by Zest Mavericks"),
+}
+
+
+def og_card(url):
+    if url.startswith("/markpdf/"):
+        return OG_CARDS["markpdf"]
+    if url.startswith("/topdrawer/"):
+        return OG_CARDS["topdrawer"]
+    return OG_CARDS["studio"]
+
+
 # ---------------------------------------------------------------- structured data
 
 
@@ -393,7 +552,38 @@ def mobile_app(key):
 def structured_data(url):
     org = org_ref()
     home = ("Home", "/")
+    markpdf = ("MarkPDF", "/markpdf/")
+    hub = ("Guides", "/markpdf/how-to/")
+    if url.startswith("/markpdf/how-to/") and url != "/markpdf/how-to/":
+        g = read_guide(ROOT / url.lstrip("/") / "index.html")
+        howto = {
+            "@type": "HowTo",
+            "name": g["title"],
+            "description": g["answer"],
+            "url": SITE + url,
+            "about": {"@id": SITE + "/markpdf/#app"},
+            "tool": {"@type": "HowToTool", "name": "MarkPDF for iPhone"},
+            "step": [{"@type": "HowToStep", "position": i + 1, "text": s} for i, s in enumerate(g["steps"])],
+            "publisher": org,
+        }
+        if g["shot"]:
+            howto["image"] = SITE + f"/assets/shots/{g['shot']}-900.webp"
+        return {"@context": "https://schema.org",
+                "@graph": [howto, breadcrumbs(home, markpdf, hub, (g["title"], url))]}
+    guides = [read_guide(f) for f in guide_files()]
     graphs = {
+        "/markpdf/how-to/": [
+            {"@type": "CollectionPage", "url": SITE + "/markpdf/how-to/", "name": "MarkPDF guides",
+             "about": {"@id": SITE + "/markpdf/#app"}, "publisher": org,
+             "mainEntity": {"@type": "ItemList", "itemListElement": [
+                 {"@type": "ListItem", "position": i + 1, "name": g["title"], "url": SITE + g["url"]}
+                 for i, g in enumerate(guides)]}},
+            breadcrumbs(home, markpdf, hub),
+        ],
+        "/press/": [
+            {"@type": "WebPage", "url": SITE + "/press/", "name": "Zest Mavericks press kit", "about": org},
+            breadcrumbs(home, ("Press", "/press/")),
+        ],
         "/": [
             ORGANIZATION,
             {"@type": "WebSite", "@id": SITE + "/#website", "name": "Zest Mavericks", "alternateName": "ZestMavericks",
@@ -417,7 +607,14 @@ def structured_data(url):
 
 
 def meta(url):
-    out = []
+    image, alt = og_card(url)
+    out = [
+        f'<meta property="og:image" content="{SITE}{image}" />',
+        '<meta property="og:image:width" content="1200" />',
+        '<meta property="og:image:height" content="630" />',
+        f'<meta property="og:image:alt" content="{esc(alt)}" />',
+        f'<meta name="twitter:image" content="{SITE}{image}" />',
+    ]
     # Safari on iPhone shows a native "Get" bar for the app this page is about
     banner_app = {"/": "markpdf", "/markpdf/": "markpdf"}.get(url)
     if banner_app and APPS[banner_app]["app_store_id"]:
@@ -451,6 +648,12 @@ def render_block(kind, args, url):
         return screenshot(args["name"], args["alt"], card="card" in args)
     if kind == "meta":
         return meta(url)
+    if kind == "guides":
+        return guides_list(args.get("app", "markpdf"))
+    if kind == "factsheet":
+        return factsheet(args["app"])
+    if kind == "downloads":
+        return downloads()
     raise ValueError(f"unknown render block: {kind}")
 
 
@@ -484,10 +687,54 @@ def sitemap(pages):
                       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', *rows, "</urlset>", ""])
 
 
+def llms_txt():
+    """A plain-text brief for AI agents and tools that read /llms.txt (llmstxt.org)."""
+    lines = [
+        "# Zest Mavericks",
+        "",
+        "> A two person studio in Bangalore, India, building absurdly intuitive apps for iPhone: "
+        "MarkPDF, a PDF editor and scanner, and TopDrawer, a private vault for everything you save.",
+        "",
+        f"Contact: {EMAIL}. Website: {SITE}/",
+        "",
+    ]
+    for key, app in APPS.items():
+        plans = PRICING[key]["plans"]
+        lines += [f"## {app['name']}", "", app["description"], ""]
+        if key == "markpdf":
+            lines.append(f"- Listed on the App Store as \u201c{app['alternate_names'][1]}\u201d.")
+        lines += [
+            f"- Status: {app['status']}. Requires {app['os']}.",
+            "- Prices (US): " + ", ".join(f"{p['name']} {p['price']}/{p['per']}" for p in plans) + ".",
+            f"- Languages: {', '.join(LANGUAGE_NAMES[l] for l in app['languages'])}.",
+            f"- [{app['name']} page]({SITE}{app['url']})",
+        ]
+        if app["app_store_id"]:
+            lines.append(f"- [App Store]({app_store_url(app['app_store_id'])})")
+        lines.append("")
+    guides = [read_guide(f) for f in guide_files()]
+    if guides:
+        lines += ["## MarkPDF guides", ""]
+        lines += [f"- [{g['title']}]({SITE}{g['url']}): {g['answer']}" for g in guides]
+        lines.append("")
+    lines += [
+        "## Optional",
+        "",
+        f"- [Press kit]({SITE}/press/): fact sheets, logos and screenshots",
+        f"- [About]({SITE}/about/)",
+        f"- [Contact]({SITE}/contact/)",
+        f"- [MarkPDF terms and privacy]({SITE}/markpdf/terms/)",
+        f"- [TopDrawer privacy policy]({SITE}/topdrawer/privacy/)",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def main():
     check = "--check" in sys.argv
     stale = []
-    for rel, url in PAGES.items():
+    pages = all_pages()
+    for rel, url in pages.items():
         path = ROOT / rel
         old = path.read_text()
         new = render_page(old, url)
@@ -497,11 +744,18 @@ def main():
                 path.write_text(new)
     # The sitemap goes last, so its dates see the pages just written
     old_map = (ROOT / "sitemap.xml").read_text()
-    new_map = sitemap(PAGES)
+    new_map = sitemap(pages)
     if new_map != old_map:
         stale.append("sitemap.xml")
         if not check:
             (ROOT / "sitemap.xml").write_text(new_map)
+
+    old_llms = (ROOT / "llms.txt").read_text() if (ROOT / "llms.txt").exists() else ""
+    new_llms = llms_txt()
+    if new_llms != old_llms:
+        stale.append("llms.txt")
+        if not check:
+            (ROOT / "llms.txt").write_text(new_llms)
 
     if check:
         if stale:

@@ -7,24 +7,24 @@
             content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
 
-        <title>About Zest Mavericks, the studio behind MarkPDF and TopDrawer</title>
+        <title>MarkPDF guides: scan, edit, lock and summarise PDFs on iPhone</title>
         <meta
             name="description"
-            content="Zest Mavericks is a two person studio of engineers and designers in India, makers of MarkPDF and TopDrawer for iPhone. Zest for energy, mavericks for doing it our own way."
+            content="Short step-by-step guides for MarkPDF on iPhone: scan documents to PDF, delete pages, password-protect a PDF and summarise a PDF with AI."
         />
 
-        <link rel="canonical" href="https://zestmavericks.com/about/" />
+        <link rel="canonical" href="https://zestmavericks.com/markpdf/how-to/" />
         <meta name="theme-color" content="#B7E0FF" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#0D131C" media="(prefers-color-scheme: dark)" />
 
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
         <meta property="og:site_name" content="Zest Mavericks" />
-        <meta property="og:title" content="About Zest Mavericks, the studio behind MarkPDF and TopDrawer" />
+        <meta property="og:title" content="MarkPDF guides" />
         <meta
             property="og:description"
-            content="A two person studio of engineers and designers building apps we'd want to use."
+            content="Short step-by-step guides for MarkPDF on iPhone: scan documents to PDF, delete pages, password-protect a PDF and summarise a PDF with AI."
         />
-        <meta property="og:url" content="https://zestmavericks.com/about/" />
+        <meta property="og:url" content="https://zestmavericks.com/markpdf/how-to/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@zestmavericks" />
 
@@ -48,23 +48,56 @@
         <script src="/js/theme.js"></script>
 
         <!-- render:meta -->
-        <meta property="og:image" content="https://zestmavericks.com/assets/og/studio.jpg" />
+        <meta property="og:image" content="https://zestmavericks.com/assets/og/markpdf.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Zest Mavericks, makers of MarkPDF and TopDrawer for iPhone" />
-        <meta name="twitter:image" content="https://zestmavericks.com/assets/og/studio.jpg" />
+        <meta property="og:image:alt" content="MarkPDF, the PDF editor and scanner for iPhone, by Zest Mavericks" />
+        <meta name="twitter:image" content="https://zestmavericks.com/assets/og/markpdf.jpg" />
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
           "@graph": [
             {
-              "@type": "AboutPage",
-              "url": "https://zestmavericks.com/about/",
+              "@type": "CollectionPage",
+              "url": "https://zestmavericks.com/markpdf/how-to/",
+              "name": "MarkPDF guides",
               "about": {
+                "@id": "https://zestmavericks.com/markpdf/#app"
+              },
+              "publisher": {
                 "@type": "Organization",
                 "@id": "https://zestmavericks.com/#organization",
                 "name": "Zest Mavericks",
                 "url": "https://zestmavericks.com/"
+              },
+              "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "How to delete pages from a PDF on iPhone",
+                    "url": "https://zestmavericks.com/markpdf/how-to/delete-pages-from-a-pdf-on-iphone/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "How to password-protect a PDF on iPhone",
+                    "url": "https://zestmavericks.com/markpdf/how-to/password-protect-a-pdf-on-iphone/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "How to scan documents to PDF on iPhone",
+                    "url": "https://zestmavericks.com/markpdf/how-to/scan-documents-to-pdf-on-iphone/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "name": "How to summarise a PDF with AI on iPhone",
+                    "url": "https://zestmavericks.com/markpdf/how-to/summarise-a-pdf-with-ai-on-iphone/"
+                  }
+                ]
               }
             },
             {
@@ -79,8 +112,14 @@
                 {
                   "@type": "ListItem",
                   "position": 2,
-                  "name": "About",
-                  "item": "https://zestmavericks.com/about/"
+                  "name": "MarkPDF",
+                  "item": "https://zestmavericks.com/markpdf/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Guides",
+                  "item": "https://zestmavericks.com/markpdf/how-to/"
                 }
               ]
             }
@@ -99,7 +138,7 @@
             <a href="/">Home</a>
             <a href="/markpdf/">MarkPDF</a>
             <a href="/topdrawer/">TopDrawer</a>
-            <a href="/about/" aria-current="page">About</a>
+            <a href="/about/">About</a>
             <a href="/contact/">Contact</a>
         </nav>
         <!-- Ships hidden; js/theme.js reveals it, so it never sits there dead without JavaScript -->
@@ -111,87 +150,50 @@
         <!-- /render:header -->
 
         <main id="main">
-            <!-- Hero -->
-            <section class="hero">
-                <div class="container">
-                    <img
-                        class="app-icon"
-                        src="/assets/icons/zest-384.webp"
-                        srcset="/assets/icons/zest-256.webp 256w, /assets/icons/zest-384.webp 384w"
-                        sizes="128px"
-                        alt="Zest Mavericks logo"
-                        width="128"
-                        height="128"
-                        fetchpriority="high"
-                    />
-                    <h1>Zest Mavericks</h1>
-                    <p class="lede">
-                        Two people, a lot of opinions about software, and a habit of
-                        rebuilding things until they feel right.
-                    </p>
-                </div>
-            </section>
+            <article class="guide">
+                <p class="eyebrow"><a href="/markpdf/">MarkPDF</a></p>
+                <h1>MarkPDF guides</h1>
+                <p class="lede">Short answers for the things people do most with PDFs on an iPhone. Each guide takes a minute.</p>
 
-            <!-- Name -->
-            <section class="section bg-smoke">
-                <div class="container">
-                    <div class="card-grid">
-                        <article class="card">
-                            <h3>Zest</h3>
-                            <p>
-                                Great energy, done with enthusiasm. It's the part of
-                                the work you can feel in the finished thing.
-                            </p>
-                        </article>
-                        <article class="card">
-                            <h3>Mavericks</h3>
-                            <p>
-                                Independent people with their own values, happy to
-                                ignore the orthodox way of doing something when it
-                                doesn't hold up.
-                            </p>
-                        </article>
-                    </div>
-                </div>
-            </section>
+                <!-- render:guides app="markpdf" -->
+                <ul class="guide-list">
+                    <li>
+                        <a href="/markpdf/how-to/delete-pages-from-a-pdf-on-iphone/">
+                            <span class="guide-list__title">How to delete pages from a PDF on iPhone</span>
+                            <span class="guide-list__answer">In MarkPDF, tap Delete Pages, choose the PDF, then tap each page you want to remove so it&#x27;s ticked, and tap Delete. Tap Preview first to check the document without those pages.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/markpdf/how-to/password-protect-a-pdf-on-iphone/">
+                            <span class="guide-list__title">How to password-protect a PDF on iPhone</span>
+                            <span class="guide-list__answer">Open MarkPDF, tap Lock PDF, choose the document, type a password and tap Lock PDF. The PDF then asks for that password before it opens, and Remove Lock takes the password off again.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/markpdf/how-to/scan-documents-to-pdf-on-iphone/">
+                            <span class="guide-list__title">How to scan documents to PDF on iPhone</span>
+                            <span class="guide-list__answer">Open MarkPDF, tap Scan Document, then Scan Documents, and hold your iPhone over the page. MarkPDF finds the edges of the page and captures it; scan every page, tap Save, and they&#x27;re saved together as a PDF.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/markpdf/how-to/summarise-a-pdf-with-ai-on-iphone/">
+                            <span class="guide-list__title">How to summarise a PDF with AI on iPhone</span>
+                            <span class="guide-list__answer">Open MarkPDF, tap Summarise PDF, then Choose a File and pick the document. MarkPDF gives you a short summary, so you can see what a long PDF covers before you read all of it.</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /render:guides -->
 
-            <!-- Story -->
-            <section class="section bg-cream">
-                <div class="container container--narrow">
-                    <p class="eyebrow">What we're doing</p>
-                    <h2>We're not here to just ship work</h2>
-                    <div class="stack">
-                        <p class="lede">
-                            We're engineers and designers, the ones who write the
-                            code and draw the screens. We innovate, and we take on the hard
-                            problems so the next generation of engineers and designers
-                            can do better.
-                        </p>
-                        <p class="lede">
-                            We're a team of two. MarkPDF is the fruit of a plant we've
-                            spent a long time nurturing.
-                        </p>
-                        <p class="lede">
-                            And we'll keep trying to make a dent in the universe, as
-                            Steve used to say.
-                        </p>
-                    </div>
+                <div class="guide-cta">
+                    <p>MarkPDF is free on the App Store for iPhone.</p>
                     <div class="btn-row">
-                        <a class="btn" href="/markpdf/">See what we've built</a>
-                        <a class="btn btn--ghost" href="/contact/">Say hello</a>
+                        <a class="badge-link" href="https://apps.apple.com/app/id6737065841" target="_blank" rel="noopener noreferrer"
+                            ><img src="/assets/badges/app-store-504.webp" srcset="/assets/badges/app-store-336.webp 336w, /assets/badges/app-store-504.webp 504w" sizes="168px" alt="Download MarkPDF on the App Store" width="168" height="50" loading="lazy"
+                        /></a>
+                        <a class="btn btn--ghost" href="/markpdf/">About MarkPDF</a>
                     </div>
                 </div>
-            </section>
-
-            <!-- Quote -->
-            <section class="section bg-sky center">
-                <div class="container">
-                    <blockquote class="quote">
-                        It's better to be a pirate than to join the navy.
-                        <cite>Steve Jobs</cite>
-                    </blockquote>
-                </div>
-            </section>
+            </article>
         </main>
 
         <!-- render:footer -->

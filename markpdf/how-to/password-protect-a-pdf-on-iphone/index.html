@@ -7,24 +7,24 @@
             content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
 
-        <title>About Zest Mavericks, the studio behind MarkPDF and TopDrawer</title>
+        <title>How to password-protect a PDF on iPhone | MarkPDF guide</title>
         <meta
             name="description"
-            content="Zest Mavericks is a two person studio of engineers and designers in India, makers of MarkPDF and TopDrawer for iPhone. Zest for energy, mavericks for doing it our own way."
+            content="Lock a PDF with a password on your iPhone using MarkPDF: choose the document, type a password and tap Lock PDF."
         />
 
-        <link rel="canonical" href="https://zestmavericks.com/about/" />
+        <link rel="canonical" href="https://zestmavericks.com/markpdf/how-to/password-protect-a-pdf-on-iphone/" />
         <meta name="theme-color" content="#B7E0FF" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#0D131C" media="(prefers-color-scheme: dark)" />
 
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
         <meta property="og:site_name" content="Zest Mavericks" />
-        <meta property="og:title" content="About Zest Mavericks, the studio behind MarkPDF and TopDrawer" />
+        <meta property="og:title" content="How to password-protect a PDF on iPhone" />
         <meta
             property="og:description"
-            content="A two person studio of engineers and designers building apps we'd want to use."
+            content="Lock a PDF with a password on your iPhone using MarkPDF: choose the document, type a password and tap Lock PDF."
         />
-        <meta property="og:url" content="https://zestmavericks.com/about/" />
+        <meta property="og:url" content="https://zestmavericks.com/markpdf/how-to/password-protect-a-pdf-on-iphone/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@zestmavericks" />
 
@@ -48,24 +48,56 @@
         <script src="/js/theme.js"></script>
 
         <!-- render:meta -->
-        <meta property="og:image" content="https://zestmavericks.com/assets/og/studio.jpg" />
+        <meta property="og:image" content="https://zestmavericks.com/assets/og/markpdf.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Zest Mavericks, makers of MarkPDF and TopDrawer for iPhone" />
-        <meta name="twitter:image" content="https://zestmavericks.com/assets/og/studio.jpg" />
+        <meta property="og:image:alt" content="MarkPDF, the PDF editor and scanner for iPhone, by Zest Mavericks" />
+        <meta name="twitter:image" content="https://zestmavericks.com/assets/og/markpdf.jpg" />
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
           "@graph": [
             {
-              "@type": "AboutPage",
-              "url": "https://zestmavericks.com/about/",
+              "@type": "HowTo",
+              "name": "How to password-protect a PDF on iPhone",
+              "description": "Open MarkPDF, tap Lock PDF, choose the document, type a password and tap Lock PDF. The PDF then asks for that password before it opens, and Remove Lock takes the password off again.",
+              "url": "https://zestmavericks.com/markpdf/how-to/password-protect-a-pdf-on-iphone/",
               "about": {
+                "@id": "https://zestmavericks.com/markpdf/#app"
+              },
+              "tool": {
+                "@type": "HowToTool",
+                "name": "MarkPDF for iPhone"
+              },
+              "step": [
+                {
+                  "@type": "HowToStep",
+                  "position": 1,
+                  "text": "Open MarkPDF. On the home screen, under Edit, tap Lock PDF."
+                },
+                {
+                  "@type": "HowToStep",
+                  "position": 2,
+                  "text": "Choose the PDF you want to protect."
+                },
+                {
+                  "@type": "HowToStep",
+                  "position": 3,
+                  "text": "Type a password in the Lock Document box."
+                },
+                {
+                  "@type": "HowToStep",
+                  "position": 4,
+                  "text": "Tap Lock PDF."
+                }
+              ],
+              "publisher": {
                 "@type": "Organization",
                 "@id": "https://zestmavericks.com/#organization",
                 "name": "Zest Mavericks",
                 "url": "https://zestmavericks.com/"
-              }
+              },
+              "image": "https://zestmavericks.com/assets/shots/markpdf/lock-900.webp"
             },
             {
               "@type": "BreadcrumbList",
@@ -79,8 +111,20 @@
                 {
                   "@type": "ListItem",
                   "position": 2,
-                  "name": "About",
-                  "item": "https://zestmavericks.com/about/"
+                  "name": "MarkPDF",
+                  "item": "https://zestmavericks.com/markpdf/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Guides",
+                  "item": "https://zestmavericks.com/markpdf/how-to/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "name": "How to password-protect a PDF on iPhone",
+                  "item": "https://zestmavericks.com/markpdf/how-to/password-protect-a-pdf-on-iphone/"
                 }
               ]
             }
@@ -99,7 +143,7 @@
             <a href="/">Home</a>
             <a href="/markpdf/">MarkPDF</a>
             <a href="/topdrawer/">TopDrawer</a>
-            <a href="/about/" aria-current="page">About</a>
+            <a href="/about/">About</a>
             <a href="/contact/">Contact</a>
         </nav>
         <!-- Ships hidden; js/theme.js reveals it, so it never sits there dead without JavaScript -->
@@ -111,87 +155,49 @@
         <!-- /render:header -->
 
         <main id="main">
-            <!-- Hero -->
-            <section class="hero">
-                <div class="container">
-                    <img
-                        class="app-icon"
-                        src="/assets/icons/zest-384.webp"
-                        srcset="/assets/icons/zest-256.webp 256w, /assets/icons/zest-384.webp 384w"
-                        sizes="128px"
-                        alt="Zest Mavericks logo"
-                        width="128"
-                        height="128"
-                        fetchpriority="high"
-                    />
-                    <h1>Zest Mavericks</h1>
-                    <p class="lede">
-                        Two people, a lot of opinions about software, and a habit of
-                        rebuilding things until they feel right.
-                    </p>
-                </div>
-            </section>
+            <article class="guide">
+                <p class="eyebrow"><a href="/markpdf/how-to/">MarkPDF guides</a></p>
+                <h1>How to password-protect a PDF on iPhone</h1>
+                <p class="updated">Updated 1 October 2026</p>
 
-            <!-- Name -->
-            <section class="section bg-smoke">
-                <div class="container">
-                    <div class="card-grid">
-                        <article class="card">
-                            <h3>Zest</h3>
-                            <p>
-                                Great energy, done with enthusiasm. It's the part of
-                                the work you can feel in the finished thing.
-                            </p>
-                        </article>
-                        <article class="card">
-                            <h3>Mavericks</h3>
-                            <p>
-                                Independent people with their own values, happy to
-                                ignore the orthodox way of doing something when it
-                                doesn't hold up.
-                            </p>
-                        </article>
-                    </div>
-                </div>
-            </section>
+                <p class="guide-answer">Open MarkPDF, tap <strong>Lock PDF</strong>, choose the document, type a password and tap <strong>Lock PDF</strong>. The PDF then asks for that password before it opens, and <strong>Remove Lock</strong> takes the password off again.</p>
 
-            <!-- Story -->
-            <section class="section bg-cream">
-                <div class="container container--narrow">
-                    <p class="eyebrow">What we're doing</p>
-                    <h2>We're not here to just ship work</h2>
-                    <div class="stack">
-                        <p class="lede">
-                            We're engineers and designers, the ones who write the
-                            code and draw the screens. We innovate, and we take on the hard
-                            problems so the next generation of engineers and designers
-                            can do better.
-                        </p>
-                        <p class="lede">
-                            We're a team of two. MarkPDF is the fruit of a plant we've
-                            spent a long time nurturing.
-                        </p>
-                        <p class="lede">
-                            And we'll keep trying to make a dent in the universe, as
-                            Steve used to say.
-                        </p>
-                    </div>
+                <h2>Step by step</h2>
+                <ol class="guide-steps">
+                    <li>Open MarkPDF. On the home screen, under <strong>Edit</strong>, tap <strong>Lock PDF</strong>.</li>
+                    <li>Choose the PDF you want to protect.</li>
+                    <li>Type a password in the <strong>Lock Document</strong> box.</li>
+                    <li>Tap <strong>Lock PDF</strong>.</li>
+                </ol>
+
+                <div class="guide-shot">
+                    <!-- render:screenshot name="markpdf/lock" alt="Typing a password to lock a PDF in MarkPDF" -->
+                    <picture class="shot-picture">
+                        <source type="image/avif" srcset="/assets/shots/markpdf/lock-600.avif 600w, /assets/shots/markpdf/lock-900.avif 900w" sizes="300px" />
+                        <img class="shot" src="/assets/shots/markpdf/lock-900.webp" srcset="/assets/shots/markpdf/lock-600.webp 600w, /assets/shots/markpdf/lock-900.webp 900w" sizes="300px" alt="Typing a password to lock a PDF in MarkPDF" width="900" height="1848" loading="lazy" decoding="async" />
+                    </picture>
+                    <!-- /render:screenshot -->
+                </div>
+
+                <h2>Removing the password</h2>
+                <p>On the home screen, under <strong>Edit</strong>, tap <strong>Remove Lock</strong>, choose the locked PDF and enter its password.</p>
+
+                <h2>Choosing the password</h2>
+                <ul>
+                    <li>Use something long that you'll remember, or save it in the Passwords app on your iPhone.</li>
+                    <li>Share the password separately from the file, for example by message rather than in the same email.</li>
+                </ul>
+
+                <div class="guide-cta">
+                    <p>MarkPDF is free on the App Store for iPhone.</p>
                     <div class="btn-row">
-                        <a class="btn" href="/markpdf/">See what we've built</a>
-                        <a class="btn btn--ghost" href="/contact/">Say hello</a>
+                        <a class="badge-link" href="https://apps.apple.com/app/id6737065841" target="_blank" rel="noopener noreferrer"
+                            ><img src="/assets/badges/app-store-504.webp" srcset="/assets/badges/app-store-336.webp 336w, /assets/badges/app-store-504.webp 504w" sizes="168px" alt="Download MarkPDF on the App Store" width="168" height="50" loading="lazy"
+                        /></a>
+                        <a class="btn btn--ghost" href="/markpdf/how-to/">More MarkPDF guides</a>
                     </div>
                 </div>
-            </section>
-
-            <!-- Quote -->
-            <section class="section bg-sky center">
-                <div class="container">
-                    <blockquote class="quote">
-                        It's better to be a pirate than to join the navy.
-                        <cite>Steve Jobs</cite>
-                    </blockquote>
-                </div>
-            </section>
+            </article>
         </main>
 
         <!-- render:footer -->
