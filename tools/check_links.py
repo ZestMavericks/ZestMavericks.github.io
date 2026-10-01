@@ -9,7 +9,8 @@ Serves the repo on a local port, the way GitHub Pages would, then:
   * checks that #fragments point at an id that exists on the target page
   * fails on relative paths ("css/style.css", "terms.html"): they break as
     soon as a page lives in a subfolder, so the site uses "/css/..." only
-  * checks canonical, og:url, og:image and sitemap URLs map to a real file
+  * checks canonical, og:url, og:image, structured data (JSON-LD) and sitemap
+    URLs map to a real file
 
 Usage:  python3 tools/check_links.py          (exit code 1 if anything fails)
 """
@@ -38,9 +39,23 @@ class Page(HTMLParser):
         super().__init__()
         self.refs = []  # (what, value)
         self.ids = set()
+        self.in_jsonld = False
+
+    def handle_endtag(self, tag):
+        if tag == "script":
+            self.in_jsonld = False
+
+    def handle_data(self, data):
+        # URLs inside structured data must point at real files too
+        if self.in_jsonld:
+            for url in re.findall(r'"(https://zestmavericks\.com[^"]*)"', data):
+                # "#organization" style @ids are identifiers, not page anchors
+                self.refs.append(("JSON-LD", url.split("#")[0]))
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if tag == "script" and attrs.get("type") == "application/ld+json":
+            self.in_jsonld = True
         if attrs.get("id"):
             self.ids.add(attrs["id"])
         for name in ("href", "src", "xlink:href"):
@@ -49,11 +64,6 @@ class Page(HTMLParser):
         if attrs.get("srcset"):
             for part in attrs["srcset"].split(","):
                 self.refs.append((f"<{tag} srcset>", part.split()[0]))
-        if tag == "app-screenshot" and attrs.get("name"):
-            # js/components/app-screenshot.js builds these URLs from name
-            for width in (600, 900):
-                for fmt in ("avif", "webp"):
-                    self.refs.append(("<app-screenshot name>", f"/assets/shots/{attrs['name']}-{width}.{fmt}"))
         if tag == "meta":
             prop = attrs.get("property") or attrs.get("name") or ""
             if prop in ("og:url", "og:image", "twitter:image") and attrs.get("content"):
